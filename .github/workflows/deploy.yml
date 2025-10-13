@@ -1,0 +1,46 @@
+name: SFTP Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
+    - name: Create .env file
+      run: |
+        echo "${{ secrets.ENV_CONTENT }}" | base64 --decode > .env
+        cat .env # Verify .env content (Optional)
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build the application
+      run: CI=false npm run build 
+
+    - name: Rename build folder
+      run: mv build admin
+
+    - name: Upload files via SFTP
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        source: "./admin/*"
+        target: "/home/Shiftly/"
+        port: 22
+
+    - name: Remove .env file after deployment
+      run: rm -f .env
