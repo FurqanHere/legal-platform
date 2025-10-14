@@ -2,9 +2,9 @@
 import Dashboard from '../pages/Dashboard';
 import Login from '../pages/Login';
 
-import CompanyList from '../pages/comapnies/List';
-import AddCompany from '../pages/comapnies/AddUpdate';
-import CompanyDetails from '../pages/comapnies/Details';
+import CompanyList from '../pages/AskQuestion/List';
+import AddCompany from '../pages/AskQuestion/AddUpdate';
+import CompanyDetails from '../pages/AskQuestion/Details';
 
 import PostList from '../pages/posts/List.jsx';
 import PostDetails from '../pages/posts/Details.jsx';

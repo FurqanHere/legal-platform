@@ -28,11 +28,12 @@ const Layout = () => {
         : true;
 
     // Auth check (optional, if not handled in AppRouter)
-    const isAuthenticated = AuthService.getCurrentUser();
+    // COMMENTED OUT: Authentication check to allow direct access to dashboard
+    // const isAuthenticated = AuthService.getCurrentUser();
 
-    if (requiresAuth && !isAuthenticated) {
-        return <Navigate to="/login" />;
-    }
+    // if (requiresAuth && !isAuthenticated) {
+    //     return <Navigate to="/login" />;
+    // }
 
     // if (!hasPermission) {
     //     toast.error("You don't have permssion to access this!");

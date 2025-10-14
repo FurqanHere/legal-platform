@@ -1,0 +1,525 @@
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import notificationProfile from "../../assets/images/notification-profile.png";
+
+const List = () => {
+  const [selectedQuestion, setSelectedQuestion] = useState(null);
+  const [showDetail, setShowDetail] = useState(false);
+  const [showPostQuestion, setShowPostQuestion] = useState(false);
+
+  const [questions, setQuestions] = useState([
+    {
+      id: 1,
+      title:
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+      date: "Jan 05 - 2025 - 10:25 AM",
+      views: 260,
+      answers: 60,
+      isHighlighted: true, // First card highlighted (black background)
+    },
+    {
+      id: 2,
+      title:
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+      date: "Jan 05 - 2025 - 10:25 AM",
+      views: 260,
+      answers: 60,
+      isHighlighted: false,
+    },
+    {
+      id: 3,
+      title:
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+      date: "Jan 05 - 2025 - 10:25 AM",
+      views: 260,
+      answers: 60,
+      isHighlighted: false,
+    },
+    {
+      id: 4,
+      title:
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+      date: "Jan 05 - 2025 - 10:25 AM",
+      views: 260,
+      answers: 60,
+      isHighlighted: false,
+    },
+    {
+      id: 5,
+      title:
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+      date: "Jan 05 - 2025 - 10:25 AM",
+      views: 260,
+      answers: 60,
+      isHighlighted: false,
+    },
+    {
+      id: 6,
+      title:
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+      date: "Jan 05 - 2025 - 10:25 AM",
+      views: 260,
+      answers: 60,
+      isHighlighted: false,
+    },
+  ]);
+
+  // Sample lawyer responses data
+  const lawyerResponses = [
+    {
+      id: 1,
+      name: "Shamra Joseph",
+      title: "Corporate lawyer",
+      response:
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.",
+      time: "10:35 AM",
+      avatar: notificationProfile,
+    },
+    {
+      id: 2,
+      name: "Shamra Joseph",
+      title: "Corporate lawyer",
+      response:
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.",
+      time: "10:35 AM",
+      avatar: notificationProfile,
+    },
+    {
+      id: 3,
+      name: "Shamra Joseph",
+      title: "Corporate lawyer",
+      response:
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.",
+      time: "10:35 AM",
+      avatar: notificationProfile,
+    },
+    {
+      id: 4,
+      name: "Shamra Joseph",
+      title: "Corporate lawyer",
+      response:
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.",
+      time: "10:35 AM",
+      avatar: notificationProfile,
+    },
+    {
+      id: 5,
+      name: "Shamra Joseph",
+      title: "Corporate lawyer",
+      response:
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.",
+      time: "10:35 AM",
+      avatar: notificationProfile,
+    },
+  ];
+
+  const handleCardClick = (question) => {
+    setSelectedQuestion(question);
+    setShowDetail(true);
+  };
+
+  const handleAddQuestionClick = () => {
+    setShowPostQuestion(true);
+  };
+
+  return (
+    <div
+      className="d-flex flex-column flex-column-fluid"
+      style={{ marginTop: "20px" }}
+    >
+      <div className="app-content flex-column-fluid">
+        {/* Search and Filter Bar */}
+        <div
+          className="d-flex gap-3 mb-6 bg-white p-4 border-top border-bottom"
+          style={{ marginTop: "-20px" }}
+        >
+          <div className="flex-fill" style={{ maxWidth: "30%" }}>
+            <div className="position-relative">
+              <input
+                type="text"
+                className="form-control form-control-lg rounded-pill"
+                placeholder="Search"
+                style={{ borderRadius: "12px", paddingLeft: "45px" }}
+              />
+              <i className="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-gray-600"></i>
+            </div>
+          </div>
+
+          <div className="d-flex gap-3">
+            <button
+              className="btn btn-transparent border rounded-pill d-flex align-items-center gap-2"
+              style={{ borderRadius: "12px", minWidth: "120px" }}
+            >
+              <i className="bi bi-funnel text-black"></i>
+              Filter
+            </button>
+
+            <button
+              className="btn bg-transparent border rounded-pill d-flex align-items-center gap-2"
+              style={{ borderRadius: "12px", minWidth: "180px" }}
+              onClick={handleAddQuestionClick}
+            >
+              <i className="bi bi-plus text-white rounded-pill w-20px h-20px bg-black d-flex justify-content-center align-items-center pe-0"></i>
+              Add New Question
+            </button>
+          </div>
+        </div>
+
+        {/* Questions Grid */}
+        <div className="app-container container-xxl">
+          <div className="row g-4">
+            {questions.map((question) => (
+              <div key={question.id} className="col-lg-4 col-md-6">
+                <div
+                  className={`card ${
+                    question.isHighlighted ? "text-white" : "bg-white border"
+                  }`}
+                  style={{
+                    borderRadius: "12px",
+                    backgroundColor: question.isHighlighted ? "black" : "white",
+                    height: "200px",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => handleCardClick(question)}
+                >
+                  <div className="card-body p-4 d-flex flex-column">
+                    {/* Date */}
+                    <div className="mb-3">
+                      <small
+                        className={`${
+                          question.isHighlighted
+                            ? "text-white-50"
+                            : "text-gray-500"
+                        }`}
+                      >
+                        {question.date}
+                      </small>
+                    </div>
+
+                    {/* Question Content */}
+                    <div className="flex-fill mb-4">
+                      <p
+                        className={`${
+                          question.isHighlighted ? "text-white" : "text-dark"
+                        } mb-0`}
+                      >
+                        {question.title}
+                      </p>
+                    </div>
+
+                    {/* Stats */}
+                    <div className="d-flex align-items-center gap-4">
+                      <div className="d-flex align-items-center gap-2">
+                        <i
+                          className={`bi bi-eye-fill ${
+                            question.isHighlighted
+                              ? "text-white"
+                              : "text-gray-600"
+                          }`}
+                        ></i>
+                        <span
+                          className={`${
+                            question.isHighlighted
+                              ? "text-white"
+                              : "text-gray-600"
+                          }`}
+                        >
+                          Views: {question.views}
+                        </span>
+                      </div>
+
+                      <div className="d-flex align-items-center gap-2">
+                        <i
+                          className={`bi bi-chat-dots-fill ${
+                            question.isHighlighted
+                              ? "text-white"
+                              : "text-gray-600"
+                          }`}
+                        ></i>
+                        <span
+                          className={`${
+                            question.isHighlighted
+                              ? "text-white"
+                              : "text-gray-600"
+                          }`}
+                        >
+                          Ans: {question.answers}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Question Detail Offcanvas */}
+      {selectedQuestion && (
+        <div
+          className={`offcanvas offcanvas-end ${showDetail ? "show" : ""}`}
+          tabIndex="-1"
+          style={{
+            visibility: showDetail ? "visible" : "hidden",
+            width: "400px",
+            right: showDetail ? "0" : "-400px",
+            transition: "all 0.3s ease",
+            borderRadius: "30px",
+            margin: "20px",
+          }}
+        >
+          <div className="offcanvas-header border-bottom">
+            <div className="d-flex justify-content-between align-items-center w-100">
+              <div>
+                <small className="text-muted">{selectedQuestion.date}</small>
+              </div>
+              <div className="d-flex gap-2">
+                <button className="btn btn-dark btn-sm">Mark Closed</button>
+                <button
+                  type="button"
+                  className="btn-close"
+                  onClick={() => setShowDetail(false)}
+                ></button>
+              </div>
+            </div>
+          </div>
+
+          <div className="offcanvas-body p-0">
+            {/* Question Details */}
+            <div className="p-4">
+              <h5 className="mb-3">{selectedQuestion.title}</h5>
+
+              <div className="d-flex align-items-center gap-4 mb-4">
+                <div className="d-flex align-items-center gap-2">
+                  <i className="bi bi-eye-fill text-gray-600"></i>
+                  <span className="text-gray-600">
+                    Views: {selectedQuestion.views}
+                  </span>
+                </div>
+                <div className="d-flex align-items-center gap-2">
+                  <i className="bi bi-chat-dots-fill text-gray-600"></i>
+                  <span className="text-gray-600">
+                    Ans: {selectedQuestion.answers}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Lawyers Respond Section */}
+            <div className="border-top">
+              <div className="p-4">
+                <h6 className="mb-4">Lawyers Respond</h6>
+
+                <div
+                  className="d-flex flex-column gap-3"
+                  style={{ maxHeight: "400px", overflowY: "auto" }}
+                >
+                  {lawyerResponses.map((lawyer) => (
+                    <div
+                      key={lawyer.id}
+                      className="d-flex align-items-start justify-content-between border-bottom pb-3"
+                    >
+                      {/* Left Side: Profile + Message */}
+                      <div className="d-flex align-items-start gap-3">
+                        {/* Profile Picture */}
+                        <img
+                          src={lawyer.avatar}
+                          alt={lawyer.name}
+                          className="rounded-circle"
+                          style={{
+                            width: "40px",
+                            height: "40px",
+                            objectFit: "cover",
+                            flexShrink: 0,
+                          }}
+                        />
+
+                        {/* Text Content */}
+                        <div>
+                          <div className="d-flex flex-column">
+                            <strong
+                              className="text-dark"
+                              style={{ fontSize: "14px" }}
+                            >
+                              {lawyer.name}
+                            </strong>
+                            <small className="text-muted">{lawyer.title}</small>
+                          </div>
+
+                          <p
+                            className="text-dark mb-1 mt-2"
+                            style={{ fontSize: "14px" }}
+                          >
+                            {lawyer.response}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Right Side: Time + Chat Button */}
+                      <div className="text-end ms-3">
+                        <small className="text-muted d-block mb-2">
+                          {lawyer.time}
+                        </small>
+                        <button
+                          className="btn btn-outline-dark bg-dark p-5 rounded-pill text-white btn-sm rounded-circle d-flex justify-content-center align-items-center"
+                          style={{
+                            width: "32px",
+                            height: "32px",
+                            padding: 0,
+                            borderWidth: "1px",
+                          }}
+                        >
+                          <i
+                            className="bi bi-chat-dots-fill p-0 text-white"
+                            style={{ fontSize: "14px" }}
+                          ></i>
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        )}
+
+      {/* Post Question Offcanvas */}
+      {showPostQuestion && (
+        <div
+          className="offcanvas offcanvas-end show"
+          tabIndex="-1"
+          style={{
+            visibility: "visible",
+            width: "400px",
+            right: "0",
+            transition: "all 0.3s ease",
+            borderRadius: "30px",
+            margin: "20px",
+          }}
+        >
+          <div className="offcanvas-header border-bottom">
+            <div className="d-flex justify-content-between align-items-center w-100">
+              <h5 className="mb-0 fw-bold">Post Question</h5>
+              <button
+                type="button"
+                className="btn-close"
+                onClick={() => setShowPostQuestion(false)}
+              ></button>
+            </div>
+          </div>
+
+          <div className="offcanvas-body p-4">
+            {/* Question Input */}
+            <div className="mb-4">
+              <textarea
+                className="form-control"
+                rows="4"
+                placeholder="Explain Your Question"
+                style={{ resize: "none" }}
+              ></textarea>
+            </div>
+
+            {/* Jurisdiction Dropdown */}
+            <div className="mb-4">
+              <div className="position-relative">
+                <select className="form-select">
+                  <option>Jurisdiction</option>
+                  <option>United States</option>
+                  <option>United Kingdom</option>
+                  <option>Canada</option>
+                  <option>Australia</option>
+                </select>
+                <i className="bi bi-chevron-down position-absolute top-50 end-0 translate-middle-y me-3 text-gray-600"></i>
+              </div>
+            </div>
+
+            {/* File Upload */}
+            <div className="mb-4">
+              <div
+                className="border border-2 border-dashed rounded p-4 text-center"
+                style={{ borderColor: "#dee2e6", backgroundColor: "#f8f9fa" }}
+              >
+                <i className="bi bi-paperclip fs-3 text-gray-500 mb-2"></i>
+                <p className="text-muted mb-0">Attach Document</p>
+              </div>
+            </div>
+
+            {/* How it works Section */}
+            <div className="mb-4">
+              <h6 className="fw-bold mb-3">How it works</h6>
+              <div className="d-flex align-items-start gap-3 mb-2">
+                <i className="bi bi-moon-fill text-primary mt-1"></i>
+                <small className="text-muted">
+                  Ask your question and see the answer in Questions & Answers.
+                </small>
+              </div>
+              <div className="d-flex align-items-start gap-3">
+                <i className="bi bi-moon-fill text-primary mt-1"></i>
+                <small className="text-muted">
+                  You will be notified when a lawyer answers.
+                </small>
+              </div>
+            </div>
+
+            {/* Post Question Fee */}
+            <div className="mb-4">
+              <div className="d-flex justify-content-between align-items-center p-3 bg-light rounded">
+                <div>
+                  <h6 className="fw-bold mb-1">Post Question Fee</h6>
+                  <small className="text-muted">1 Question post only</small>
+                </div>
+                <div className="text-end">
+                  <div className="fw-bold">USD</div>
+                  <div className="fw-bold fs-5">1.00</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Submit Button */}
+            <button className="btn bg-black text-white rounded-pill w-100 py-3 fw-bold">
+              Post Your Legal Issues
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Backdrop for Post Question */}
+      {showPostQuestion && (
+        <div
+          className="offcanvas-backdrop fade show"
+          onClick={() => setShowPostQuestion(false)}
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            zIndex: 1040,
+            width: "100vw",
+            height: "100vh",
+            backgroundColor: "rgba(0,0,0,1)",
+          }}
+        ></div>
+      )}
+
+      {/* Backdrop */}
+      {showDetail && (
+        <div
+          className="offcanvas-backdrop fade show"
+          onClick={() => setShowDetail(false)}
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            zIndex: 1040,
+            width: "100vw",
+            height: "100vh",
+            backgroundColor: "rgba(0,0,0,1)",
+          }}
+        ></div>
+      )}
+    </div>
+  );
+};
+
+export default List;

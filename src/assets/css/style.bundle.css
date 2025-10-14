@@ -48163,8 +48163,8 @@ code:not([class*=language-]) {
 }
 
 .symbol.symbol-50px>img {
-    width: 50px;
-    height: 50px
+    width: 40px;
+    height: 40px
 }
 
 .symbol.symbol-50px .symbol-label {
@@ -55617,6 +55617,10 @@ label.rating-label:hover~.rating-label>i {
     align-items: center
 }
 
+.app-sidebar-menu.overflow-hidden.flex-column-fluid {
+    background-color: black;
+}
+
 @media (min-width:576px) {
     .flex-sm-root {
         flex: 1
@@ -56850,7 +56854,7 @@ i[class^=fa-],
 i[class^=fonticon-],
 i[class^=la-] {
     line-height: 1;
-    font-size: 1rem;
+    font-size: 18px;
     color: var(--kt-text-muted)
 }
 
@@ -59515,21 +59519,42 @@ html:not([data-theme=dark]) {
 }
 
 .app-sidebar .menu .menu-item .menu-link {
-    color: var(--kt-gray-700)
+    color: #959595 !important;
 }
 
 .app-sidebar .menu .menu-item .menu-link .menu-title {
-    color: var(--kt-gray-700)
+    color: #959595;
+}
+
+.app-sidebar .menu .menu-item .menu-link .menu-title:hover {
+    color: white !important;
+}
+
+.header-main {
+    margin-top: 30px;
+}
+
+.card.mb-3.border {
+    border: 1px solid #D8D8D8 !important;
+}
+
+.d-flex.align-items-start.border-bottom,
+.d-flex.justify-content-between.align-items-center.mb-4.pt-0.pb-5.border-bottom {
+    border-bottom: 1px solid #D8D8D8 !important;
 }
 
 .app-sidebar .menu .menu-item .menu-link .menu-icon,
 .app-sidebar .menu .menu-item .menu-link .menu-icon .svg-icon,
 .app-sidebar .menu .menu-item .menu-link .menu-icon i {
-    color: var(--kt-gray-500)
+    color: #959595
 }
 
 .app-sidebar .menu .menu-item .menu-link .menu-bullet .bullet {
-    background-color: var(--kt-gray-500)
+    background-color: #959595
+}
+
+#kt_app_content.app-content.flex-column-fluid {
+    background-color: white;
 }
 
 .app-sidebar .menu .menu-item .menu-link .menu-arrow:after {
@@ -59703,7 +59728,7 @@ html:not([data-theme=dark]) {
 }
 
 .app-sidebar .app-sidebar-logo {
-    border-bottom: 1px dashed var(--kt-app-sidebar-light-separator-color)
+    border-bottom: 1px solid #A4A4A4;
 }
 
 .app-header-menu .menu .menu-item .menu-link {
@@ -60650,16 +60675,30 @@ input[type="number"] {
     object-fit:cover;
 }
 
+.postYourLegalImage {
+    width: 109px;
+    height: 119px
+}
+
+.hireLawyerImage {
+    width: 93px;
+    height: 88px
+}
+.createNewCaseImage {
+    width: 119px;
+    height: 107px
+}
+
 .app-sidebar .menu .menu-item .menu-link.active {
-    background-color: var(--bs-base);
-    color: var(--bs-white) !important;
+    background-color: white;
+    color: black !important;
     transition: color .2s ease;
 }
 .menu-item .menu-link.active .menu-title{
-    color: var(--bs-white)  !important;
+    color: black  !important;
 }
 .menu-item .menu-link.active .menu-icon .svg-icon i{
-    color: var(--bs-white)  !important;
+    color: black  !important;
 }
 
 /* Prime Select CSS */
@@ -60840,3 +60879,218 @@ input[type="number"] {
     background: rgb(25, 135, 84) !important;
     color: white !important
   }
+
+/* Header Component Styles */
+.modern-header-container {
+  background-color: white;
+  height: 100px;
+  padding: 0 20px;
+}
+
+.modern-header-layout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+.modern-search-container {
+  position: relative;
+  flex: 1;
+  max-width: 600px;
+  margin: 0 20px;
+}
+
+.modern-search-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.modern-search-input {
+  width: 100%;
+  height: 40px;
+  padding: 0 15px 0 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  background-color: white;
+  font-size: 14px;
+  color: #666;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.modern-search-input:focus {
+  border-color: #007bff;
+}
+
+.modern-search-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  font-size: 16px;
+}
+
+.modern-icons-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.modern-icon-container {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: 1px solid #e9ecef;
+}
+
+.modern-icon-container:hover {
+  background-color: #e9ecef;
+}
+
+.modern-icon {
+  color: #495057;
+  font-size: 18px;
+}
+
+.modern-notification-container {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: 1px solid #e9ecef;
+}
+
+.modern-notification-container:hover {
+  background-color: #e9ecef;
+}
+
+.modern-notification-indicator {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #dc3545;
+  border: 2px solid white;
+}
+
+.modern-notification-dropdown {
+  z-index: 107;
+  position: fixed;
+  inset: 0 auto auto auto;
+  margin: 0;
+  top: 70px;
+  right: 20px;
+  display: none;
+}
+
+.modern-profile-dropdown {
+  z-index: 107;
+  position: fixed;
+  inset: 0 auto auto auto;
+  margin: 0;
+  top: 70px;
+  right: 20px;
+}
+
+.modern-profile-image {
+  border-radius: 50%;
+}
+
+.modern-notifications-table {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.modern-clear-button-container {
+  text-align: center;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.modern-no-data-container {
+  text-align: center;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+/* Sidebar Collapse Styles */
+.app-sidebar.collapsed {
+  width: 130px !important;
+}
+
+.app-sidebar.collapsed .app-sidebar-logo {
+  padding: 0 15px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.app-sidebar.collapsed .app-sidebar-logo img {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.app-sidebar.collapsed .menu-link {
+  justify-content: center !important;
+  padding: 8px 10px !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+
+.app-sidebar.collapsed .menu-icon {
+  margin-right: 0 !important;
+  margin-bottom: 4px !important;
+}
+
+.app-sidebar.collapsed .menu-title {
+  font-size: 10px !important;
+  line-height: 1.2 !important;
+  text-align: center !important;
+  word-break: break-word !important;
+  max-width: 60px !important;
+  display: block !important;
+}
+
+.transition-all {
+  transition: all 0.3s ease;
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
+}
+
+/* Main content area adjustment for sidebar collapse */
+.app-content {
+  transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+.app-sidebar.collapsed ~ .app-content {
+  margin-left: 130px !important;
+}
+
+.app-sidebar:not(.collapsed) ~ .app-content {
+  margin-left: 265px !important;
+}
+
+/* Ensure smooth transition for main content */
+.header-main {
+  transition: all 0.3s ease;
+}

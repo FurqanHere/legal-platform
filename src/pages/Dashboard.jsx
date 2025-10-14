@@ -1,526 +1,519 @@
 import React, { useState, useEffect } from "react";
 import AuthService from "../services/AuthService";
 import { useNavigate, NavLink } from "react-router-dom";
-import { toast } from "react-toastify";
 
+import notificationProfile from "../assets/images/notification-profile.png";
+
+import postYourLegal from "../assets/images/postYourLegal.png";
+import hireLawyer from "../assets/images/hireLawyer.png";
+import createNewCase from "../assets/images/createNewCase.png";
+
+import { toast } from "react-toastify";
 import ApiService from "../services/ApiService";
-import AreaChart from "../components/AreaChart";
-import PieChart from "../components/PieChart";
-import ProgressBarStats from "../components/ProgressBarStats";
-import BarChart from "../components/BarChart";
 
 const Dashboard = () => {
   const navigate = useNavigate();
-
-  const [isLoader, setIsLoader] = useState(false);
-  const [dashboardData, setDashboardData] = useState({
-    overview: {},
-    statistics: {},
-    charts: {},
-    recent_activity: {},
-    user_info: {}
-  });
-  const [current_month, setCurrentMonth] = useState("");
-
-  const labels = [
-    "Job Post",
-    "Software Development",
-    "Healthcare",
-    "Accounting & Finance",
-    "Marketing & Sales",
-  ];
-  const dataset = [21, 10, 7, 15, 3];
-
-  useEffect(() => {
-    const isAuthenticated = AuthService.getCurrentUser();
-    console.log(isAuthenticated);
-    if (!isAuthenticated) {
-      navigate("/login"); // Redirect to dashboard if authenticated
-    }
-    getDashboard();
-
-    const now = new Date();
-    const options = { month: "short", year: "numeric" }; // e.g., Dec, 2024
-    const formattedDate = now.toLocaleDateString("en-US", options);
-    setCurrentMonth(formattedDate);
-  }, [navigate]);
-
-  const getDashboard = async () => {
-    try {
-      setIsLoader(true);
-      const response = await ApiService.request({
-        method: "GET",
-        url: "dashboard",
-      });
-      const data = response.data;
-      if (data.status) {
-        setDashboardData(data.data);
-        // Store map_key if it exists in the response
-        if (data.data.map_key) {
-          localStorage.setItem("map_key", data.data.map_key);
-        }
-      } else {
-        toast.error(data.message);
-      }
-      setIsLoader(false);
-    } catch (error) {
-      console.error("Dashboard API Error:", error);
-      setIsLoader(false);
-      toast.error("Failed to load dashboard data");
-    }
-  };
+  const [activeTab, setActiveTab] = useState("active");
 
   return (
-    <div className="d-flex flex-column flex-column-fluid">
-      <div id="kt_app_toolbar" className="app-toolbar py-3 py-lg-6">
-        <div
-          id="kt_app_toolbar_container"
-          className="app-container container-fluid d-flex flex-stack"
-        >
-          <div className="page-title d-flex flex-column justify-content-center flex-wrap me-3">
-            <h1 className="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-              Dashboard
-            </h1>
-            <ul className="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
-              <li className="breadcrumb-item text-muted">
-                <a href="/admin/" className="text-muted text-hover-primary">
-                  Home
-                </a>
-              </li>
-              <li className="breadcrumb-item">
-                <span className="bullet bg-gray-400 w-5px h-2px"></span>
-              </li>
-              <li className="breadcrumb-item text-muted"> Dashboard </li>
-            </ul>
-          </div>
-          <div className="d-flex align-items-center gap-2 gap-lg-3"></div>
-        </div>
-      </div>
-
+    <div className="d-flex flex-column flex-column-fluid header-main">
       <div id="kt_app_content" className="app-content flex-column-fluid">
         <div
           id="kt_app_content_container"
           className="app-container container-fluid"
         >
-          <div className="row g-5 g-xl-10 mb-5 mb-xl-10">
-            <div className="col-xl-3 col-md-6 mb-4">
-              <NavLink
-                to="/companies"
-                className="card border  shadow h-100 py-2"
+          {/* Main Content Row */}
+          <div className="row">
+            {/* Left Column - Main Content (col-md-8) */}
+            <div
+              className="col-md-8 pt-4"
+              style={{
+                background:
+                  "linear-gradient(to bottom,rgba(0, 0, 0, 0.05) 0%, #ffffff 100%)",
+                borderRadius: "12px",
+                padding: "20px",
+              }}
+            >
+              {/* Welcome Header */}
+              <div className="mb-6">
+                <h1 className="fw-bold text-dark fs-2 mb-2">
+                  Welcome Back! Noon
+                </h1>
+                <p className="text-gray-600 fs-6 mb-4">
+                  Dubai internet city UAE
+                </p>
+              </div>
+
+              {/* Action Cards */}
+              <div className="row mb-8">
+                <div className="col-lg-4 col-md-6 mb-4">
+                  <div
+                    className="card h-100"
+                    style={{ backgroundColor: "black", borderRadius: "12px" }}
+                  >
+                    <div className="card-body p-4 d-flex flex-column justify-content-between h-100">
+                      <div>
+                        <h5 className="text-white fw-bold mb-3">
+                          Post Your Legal <br /> Issues
+                        </h5>
+                      </div>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <button
+                          className="btn btn-light rounded-circle d-flex justify-content-center align-items-center"
+                          style={{ width: "40px", height: "40px" }}
+                        >
+                          <i className="bi bi-plus fs-1 text-dark pe-0"></i>
+                        </button>
+                        <img
+                          src={postYourLegal}
+                          alt="Post Your Legal"
+                          className="rounded-circle postYourLegalImage"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="col-lg-4 col-md-6 mb-4">
+                  <div
+                    className="card h-100 shadow"
+                    style={{ backgroundColor: "#F7FAFC", borderRadius: "12px" }}
+                  >
+                    <div className="card-body p-4 d-flex flex-column justify-content-between h-100">
+                      <div>
+                        <h5 className="text-dark fw-bold mb-3">
+                          Hire Lawyer for Business Consultation
+                        </h5>
+                      </div>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <button
+                          className="btn btn-dark rounded-circle d-flex justify-content-center align-items-center"
+                          style={{
+                            width: "40px",
+                            height: "40px",
+                            backgroundColor: "#EAEAEA",
+                          }}
+                        >
+                          <i className="bi bi-plus fs-1 text-black p-0"></i>
+                        </button>
+                        <img
+                          src={hireLawyer}
+                          alt="Hire Lawyer"
+                          className="rounded-circle hireLawyerImage"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="col-lg-4 col-md-6 mb-4">
+                  <div
+                    className="card h-100 shadow"
+                    style={{ backgroundColor: "#F7FAFC", borderRadius: "12px" }}
+                  >
+                    <div className="card-body p-4 d-flex flex-column justify-content-between h-100">
+                      <div>
+                        <h5 className="text-dark fw-bold mb-3">
+                          Create New Case
+                        </h5>
+                      </div>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <button
+                          className="btn btn-dark rounded-circle d-flex justify-content-center align-items-center"
+                          style={{
+                            width: "40px",
+                            height: "40px",
+                            backgroundColor: "#EAEAEA",
+                          }}
+                        >
+                          <i className="bi bi-plus fs-1 text-black p-0"></i>
+                        </button>
+                        <img
+                          src={createNewCase}
+                          alt="Create New Case"
+                          className="rounded-circle createNewCaseImage"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Recent Posted Question and Lawyer Respond */}
+              <div
+                className="card mb-6 shadow"
+                style={{ borderRadius: "12px" }}
               >
-                <div className="card-body">
-                  <div className="row no-gutters align-items-center">
-                    <div className="col mr-2">
-                      <div className="fs-6 fw-bold text-gray-900 text-uppercase mb-2">
-                        Total Employers
+                <div className="card-body p-4 d-flex justify-content-between">
+                  {/* Recent Posted Question Section */}
+                  <div
+                    className="me-4 d-flex flex-column"
+                    style={{ flex: "2" }}
+                  >
+                    <h1 className="fw-bold text-dark mb-4">
+                      Recent Posted Question
+                    </h1>
+                    <p className="text-gray-700 mb-4">
+                      Sed ut perspiciatis unde omnis iste natus error sit
+                      voluptatem accusantium doloremque laudantium, totam rem
+                      aperiam, eaque ipsa quae ab illo inventore veritatis.
+                    </p>
+                    <div className="mt-auto">
+                      <div className="d-flex align-items-center gap-4">
+                        <div className="d-flex align-items-center">
+                          <i className="bi bi-eye-fill text-black me-2"></i>
+                          <span className="text-black">Views: 260</span>
+                        </div>
+                        <div className="d-flex align-items-center ms-5">
+                          <i className="bi bi-chat-dots-fill text-black me-2"></i>
+                          <span className="text-black">Ans: 60</span>
+                        </div>
+                        <div
+                          className="d-flex align-items-center rounded-pill py-2 px-3 ms-5"
+                          style={{ backgroundColor: "#F0F0F0" }}
+                        >
+                          <span className="text-black">
+                            Jan 05 - 2025 - 10:25 AM
+                          </span>
+                        </div>
                       </div>
-                      <div className="h1 mb-0 font-weight-bold text-gray-900">
-                        {dashboardData.overview?.total_companies || 0}
-                      </div>
-                    </div>
-                    <div className="col-auto">
-                      <i className="bi bi-building fs-3x text-gray-600"></i>
                     </div>
                   </div>
-                </div>
-              </NavLink>
-            </div>
 
-            <div className="col-xl-3 col-md-6 mb-4">
-              <NavLink to="/jobs" className="card border  shadow h-100 py-2">
-                <div className="card-body">
-                  <div className="row no-gutters align-items-center">
-                    <div className="col mr-2">
-                      <div className="fs-6 fw-bold text-gray-900 text-uppercase mb-2">
-                        Total Jobs
-                      </div>
-                      <div className="h1 mb-0 font-weight-bold text-gray-900">
-                        {dashboardData.overview?.total_jobs || 0}
-                      </div>
+                  {/* Lawyer Respond Section */}
+                  <div style={{ flex: "1" }}>
+                    <div className="d-flex justify-content-between align-items-center mb-4">
+                      <h2 className="fw-bold text-dark mb-0">Lawyer Respond</h2>
+                      <a href="#" className="--bs-tertiary-bg-rgb fw-semibold">
+                        See All
+                      </a>
                     </div>
-                    <div className="col-auto">
-                      <i className="bi bi-cast fs-3x text-gray-600"></i>
-                    </div>
-                  </div>
-                </div>
-              </NavLink>
-            </div>
-            <div className="col-xl-3 col-md-6 mb-4">
-              <NavLink to="/users" className="card border  shadow h-100 py-2">
-                <div className="card-body">
-                  <div className="row no-gutters align-items-center">
-                    <div className="col mr-2">
-                      <div className="fs-6 fw-bold text-gray-900 text-uppercase mb-2">
-                        Total Employees
-                      </div>
-                      <div className="h1 mb-0 font-weight-bold text-gray-900">
-                        {dashboardData.overview?.total_employees || 0}
-                      </div>
-                    </div>
-                    <div className="col-auto">
-                      <i className="bi bi-people-fill fs-3x text-gray-600"></i>
-                    </div>
-                  </div>
-                </div>
-              </NavLink>
-            </div>
 
-            {/* <div className="col-xl-3 col-md-6 mb-4">
-              <NavLink
-                to="/transactions"
-                className="card border  shadow h-100 py-2"
+                    <div className="d-flex align-items-center mb-4">
+                      <div className="symbol symbol-50px me-3">
+                        <img
+                          src={notificationProfile}
+                          alt="Jackline Dim"
+                          className="rounded-circle"
+                        />
+                      </div>
+                      <div>
+                        <h6 className="fw-bold text-dark mb-1">Jackline Dim</h6>
+                        <p className="text-gray-600 mb-0">
+                          Lorem ipsum dolor sit amet.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="d-flex align-items-center mb-4">
+                      <div className="symbol symbol-50px me-3">
+                        <img
+                          src={notificationProfile}
+                          alt="Maxwell Clarck"
+                          className="rounded-circle"
+                        />
+                      </div>
+                      <div>
+                        <h6 className="fw-bold text-dark mb-1">
+                          Maxwell Clarck
+                        </h6>
+                        <p className="text-gray-600 mb-0">
+                          Lorem ipsum dolor sit amet.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="d-flex align-items-center">
+                      <div className="symbol symbol-50px me-3">
+                        <img
+                          src={notificationProfile}
+                          alt="Jackline Dim"
+                          className="rounded-circle"
+                        />
+                      </div>
+                      <div>
+                        <h6 className="fw-bold text-dark mb-1">Jackline Dim</h6>
+                        <p className="text-gray-600 mb-0">
+                          Lorem ipsum dolor sit amet.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* My Lawyers */}
+              <div
+                className="card shadow-sm border-0"
+                style={{ borderRadius: "12px" }}
               >
-                <div className="card-body">
-                  <div className="row no-gutters align-items-center">
-                    <div className="col mr-2">
-                      <div className="fs-6 fw-bold text-gray-900 text-uppercase mb-2">
-                        Total Transactions
-                      </div>
-                      <div className="h1 mb-0 fw-bold text-gray-900">
-                        {stats?.total_transactions}
+                <div className="card-body p-4">
+                  {/* Header */}
+                  <div className="d-flex justify-content-between align-items-center mb-4">
+                    <div className="d-flex">
+                      <h4 className="fw-bold text-dark mb-0">My Lawyers</h4>
+                      <div className="d-flex mb-4 ms-5">
+                        <button
+                          className={`btn ${
+                            activeTab === "active"
+                              ? "btn-dark text-white"
+                              : "btn-light text-dark"
+                          } me-2`}
+                          onClick={() => setActiveTab("active")}
+                          style={{
+                            borderRadius: "20px",
+                            padding: "6px 20px",
+                            fontWeight: "500",
+                          }}
+                        >
+                          Active Lawyers
+                        </button>
+                        <button
+                          className={`btn ${
+                            activeTab === "inactive"
+                              ? "btn-dark text-white"
+                              : "btn-light text-dark"
+                          }`}
+                          onClick={() => setActiveTab("inactive")}
+                          style={{
+                            borderRadius: "20px",
+                            padding: "6px 20px",
+                            fontWeight: "500",
+                          }}
+                        >
+                          Inactive Lawyers
+                        </button>
                       </div>
                     </div>
-                    <div className="col-auto">
-                      <i className="bi bi-bar-chart-fill fs-3x text-gray-600"></i>
-                    </div>
+                    <a
+                      href="#"
+                      className="fw-semibold text-decoration-none text-dark"
+                    >
+                      See All
+                    </a>
                   </div>
-                </div>
-              </NavLink>
-            </div> */}
 
-            <div className="col-xl-3 col-md-6 mb-4">
-              <NavLink to="/jobs" className="card border  shadow h-100 py-2">
-                <div className="card-body">
-                  <div className="row no-gutters align-items-center">
-                    <div className="col mr-2">
-                      <div className="fs-6 fw-bold text-gray-900 text-uppercase mb-2">
-                        Active Jobs
-                      </div>
-                      <div className="h1 mb-0 fw-bold text-gray-900">
-                        {dashboardData.overview?.active_jobs || 0}
+                  {/* Lawyers List */}
+                  {[1, 2].map((_, index) => (
+                    <div
+                      key={index}
+                      className="card mb-3 border-0 shadow-sm"
+                      style={{ borderRadius: "12px" }}
+                    >
+                      <div className="card-body d-flex align-items-center justify-content-between flex-wrap p-3">
+                        {/* Profile */}
+                        <div
+                          className="d-flex align-items-center"
+                          style={{ minWidth: "200px" }}
+                        >
+                          <img
+                            src={notificationProfile}
+                            alt="Shamra Joseph"
+                            className="rounded-circle me-3"
+                            width="48"
+                            height="48"
+                          />
+                          <div>
+                            <h6 className="fw-bold text-dark mb-0">
+                              Shamra Joseph
+                            </h6>
+                            <small className="text-muted">
+                              Corporate lawyer
+                            </small>
+                          </div>
+                        </div>
+
+                        {/* Practice Areas */}
+                        <div
+                          className="text-muted"
+                          style={{ minWidth: "180px" }}
+                        >
+                          Criminal Law, Tax Law+
+                        </div>
+
+                        {/* Renewal Date */}
+                        <div
+                          className="text-muted"
+                          style={{ minWidth: "160px" }}
+                        >
+                          Renew 21 September
+                        </div>
+
+                        {/* Price */}
+                        <div className="fw-semibold text-dark">1.99 USD</div>
                       </div>
                     </div>
-                    <div className="col-auto">
-                      <i className="bi bi-cast fs-3x text-gray-600"></i>
-                    </div>
-                  </div>
+                  ))}
                 </div>
-              </NavLink>
+              </div>
             </div>
 
-            <div className="col-xl-3 col-md-6 mb-4">
-              <NavLink to="/jobs" className="card border  shadow h-100 py-2">
-                <div className="card-body">
-                  <div className="row no-gutters align-items-center">
-                    <div className="col mr-2">
-                      <div className="fs-6 fw-bold text-gray-900 text-uppercase mb-2">
-                        Expired Jobs
-                      </div>
-                      <div className="h1 mb-0 fw-bold text-gray-900">
-                        {dashboardData.overview?.expired_jobs || 0}
-                      </div>
-                    </div>
-                    <div className="col-auto">
-                      <i className="bi bi-projector fs-3x text-gray-600"></i>
-                    </div>
+            <div className="col-md-4">
+              {/* My Cases */}
+              <div
+                className="card mb-6 shadow"
+                style={{ borderRadius: "12px" }}
+              >
+                <div className="card-body p-4">
+                  <div className="d-flex justify-content-between align-items-center mb-4">
+                    <h2 className="fw-bold text-dark mb-0">My Cases</h2>
+                    <a href="#" className="--bs-tertiary-bg-rgb fw-semibold">
+                      See All
+                    </a>
                   </div>
-                </div>
-              </NavLink>
-            </div>
 
-            <div className="col-xl-3 col-md-6 mb-4">
-              <NavLink to="/users" className="card border  shadow h-100 py-2">
-                <div className="card-body">
-                  <div className="row no-gutters align-items-center">
-                    <div className="col mr-2">
-                      <div className="fs-6 fw-bold text-gray-900 text-uppercase mb-2">
-                        
-                        Shortlisted Candidates
-                      </div>
-                      <div className="h1 mb-0 font-weight-bold text-gray-900">
-                        {dashboardData.overview?.shortlisted_candidates || 0}
-                      </div>
-                    </div>
-                    <div className="col-auto">
-                      <i className="bi bi-projector-fill fs-3x text-gray-600"></i>
-                    </div>
-                  </div>
-                </div>
-              </NavLink>
-            </div>
-          </div>
-
-          <div className="row g-5 g-xl-10 mb-5 mb-xl-10">
-            <div className="col-md-6">
-              <div className="card card-flush overflow-hidden">
-                <div className="card-header pt-5">
-                  <h3 className="card-title align-items-start flex-column">
-                    <span className="card-label fw-bold text-dark">
-                      Employers Stats
-                    </span>
-                    <span className="text-gray-400 mt-1 fw-semibold fs-6">
-                      Employers registered per month
-                    </span>
-                  </h3>
-                  <div className="card-toolbar"></div>
-                </div>
-                <div className="card-body d-flex align-items-end">
                   <div
-                    className="p-chart h-300px w-100"
-                    style={{ position: "relative" }}
+                    className="card mb-3 border"
+                    style={{ borderRadius: "12px" }}
                   >
-                    <BarChart
-                      labels={["Jan", "Feb", "Mar", "Apr", "May", "Jun"]}
-                      label="Employers"
-                      dataset={[0, 0, 0, 0, 0, 0]}
-                    />
+                    <div className="card-body p-3">
+                      <div className="d-flex justify-content-between align-items-start mb-2">
+                        <h6 className="fw-bold text-dark mb-0">
+                          Crimes Against Persons
+                        </h6>
+                        <span
+                          className="badge bg-light text-dark"
+                          style={{ borderRadius: "12px" }}
+                        >
+                          Case# 2548
+                        </span>
+                      </div>
+                      <p className="text-gray-600 mb-0">
+                        Sed ut perspiciatis unde omnis iste natus error sit
+                        voluptatem ipsum accusantium doloremque laudantium.
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6">
-              <div className="card card-flush overflow-hidden">
-                <div className="card-header pt-5">
-                  <h3 className="card-title align-items-start flex-column">
-                    <span className="card-label fw-bold text-dark">
-                      Role Distribution
-                    </span>
-                    <span className="text-gray-400 mt-1 fw-semibold fs-6">
-                      System User Roles
-                    </span>
-                  </h3>
-                  <div className="card-toolbar"></div>
-                </div>
-                <div className="card-body d-flex align-items-end">
-                  <div
-                    className="p-chart h-300px w-100 d-flex justify-content-center align-items-center"
-                    style={{ position: "relative" }}
-                  >
-                    <PieChart
-                      labels={dashboardData.charts?.role_distribution?.map(role => role.role_name) || []}
-                      dataset={dashboardData.charts?.role_distribution?.map(role => role.count) || []}
-                      label="Roles"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
 
-            <div className="col-md-6">
-              <div className="card card-flush overflow-hidden">
-                <div className="card-header pt-5">
-                  <h3 className="card-title align-items-start flex-column">
-                    <span className="card-label fw-bold text-dark">
-                      {current_month} Jobs
-                    </span>
-                    <span className="text-gray-400 mt-1 fw-semibold fs-6">
-                      This Month Jobs
-                    </span>
-                  </h3>
-                  <div className="card-toolbar"></div>
-                </div>
-                <div className="card-body d-flex align-items-end">
                   <div
-                    className="p-chart h-300px w-100 d-flex justify-content-center align-items-center"
-                    style={{ position: "relative" }}
+                    className="card mb-3 border"
+                    style={{ borderRadius: "12px" }}
                   >
-                    <AreaChart
-                      labels={["Week 1", "Week 2", "Week 3", "Week 4"]}
-                      label="Jobs"
-                      dataset={[0, 0, 0, 0]}
-                    />
+                    <div className="card-body p-3">
+                      <div className="d-flex justify-content-between align-items-start mb-2">
+                        <h6 className="fw-bold text-dark mb-0">
+                          Crimes Against Persons
+                        </h6>
+                        <span
+                          className="badge bg-light text-dark"
+                          style={{ borderRadius: "12px" }}
+                        >
+                          Case# 2548
+                        </span>
+                      </div>
+                      <p className="text-gray-600 mb-0">
+                        Sed ut perspiciatis unde omnis iste natus error sit
+                        voluptatem ipsum accusantium doloremque laudantium.
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6">
-              <div className="card card-flush overflow-hidden">
-                <div className="card-header pt-5">
-                  <h3 className="card-title align-items-start flex-column">
-                    <span className="card-label fw-bold text-dark">
-                      Employee Stats
-                    </span>
-                    <span className="text-gray-400 mt-1 fw-semibold fs-6">
-                      Employee registered per month
-                    </span>
-                  </h3>
-                  <div className="card-toolbar"></div>
-                </div>
-                <div className="card-body d-flex align-items-end">
-                  <div
-                    className="p-chart h-300px w-100"
-                    style={{ position: "relative" }}
-                  >
-                    <BarChart
-                      labels={["Jan", "Feb", "Mar", "Apr", "May", "Jun"]}
-                      label="Employees"
-                      dataset={[0, 0, 0, 0, 0, 0]}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6">
-              <div className="card card-flush overflow-hidden">
-                <div className="card-header pt-5">
-                  <h3 className="card-title align-items-start flex-column">
-                    <span className="card-label fw-bold text-dark">
-                      Monthly Jobs
-                    </span>
-                    <span className="text-gray-400 mt-1 fw-semibold fs-6">
-                      Jobs per month
-                    </span>
-                  </h3>
-                  <div className="card-toolbar"></div>
-                </div>
-                <div className="card-body d-flex align-items-end">
-                  <div
-                    className="p-chart h-300px w-100"
-                    style={{ position: "relative" }}
-                  >
-                    <BarChart
-                      labels={["Jan", "Feb", "Mar", "Apr", "May", "Jun"]}
-                      label="Jobs"
-                      dataset={[0, 0, 0, 0, 0, 0]}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          {/* Recent Activity and User Info Section */}
-          <div className="row g-5 g-xl-10 mb-5 mb-xl-10">
-            <div className="col-md-6">
-              <div className="card card-flush overflow-hidden">
-                <div className="card-header pt-5">
-                  <h3 className="card-title align-items-start flex-column">
-                    <span className="card-label fw-bold text-dark">
-                      Recent System Users
-                    </span>
-                    <span className="text-gray-400 mt-1 fw-semibold fs-6">
-                      Latest registered system users
-                    </span>
-                  </h3>
+                  <div
+                    className="card mb-3 border"
+                    style={{ borderRadius: "12px" }}
+                  >
+                    <div className="card-body p-3">
+                      <div className="d-flex justify-content-between align-items-start mb-2">
+                        <h6 className="fw-bold text-dark mb-0">
+                          Crimes Against Persons
+                        </h6>
+                        <span
+                          className="badge bg-light text-dark"
+                          style={{ borderRadius: "12px" }}
+                        >
+                          Case# 2548
+                        </span>
+                      </div>
+                      <p className="text-gray-600 mb-0">
+                        Sed ut perspiciatis unde omnis iste natus error sit
+                        voluptatem ipsum accusantium doloremque laudantium.
+                      </p>
+                    </div>
+                  </div>
                 </div>
+              </div>
+
+              {/* Notifications */}
+              <div className="card shadow" style={{ borderRadius: "12px" }}>
                 <div className="card-body">
-                  {dashboardData.recent_activity?.recent_system_users?.map((user, index) => (
-                    <div key={index} className="d-flex align-items-center mb-4">
-                      <div className="symbol symbol-40px me-4">
-                        <div className="symbol-label bg-light-primary">
-                          <i className="bi bi-person-fill text-primary fs-2"></i>
-                        </div>
-                      </div>
-                      <div className="d-flex flex-column">
-                        <div className="fw-bold text-gray-900">{user.name}</div>
-                        <div className="text-muted fs-7">{user.email}</div>
-                        <div className="badge badge-light-success">{user.role_id.name}</div>
-                      </div>
-                    </div>
-                  )) || (
-                    <div className="text-center text-muted py-5">
-                      No recent system users found
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
+                  <div className="d-flex justify-content-between align-items-center mb-4 pt-0 pb-5 border-bottom">
+                    <h4 className="fw-bold text-dark mb-0">Notifications</h4>
+                    <a href="#" className="--bs-tertiary-bg-rgb fw-semibold">
+                      See All
+                    </a>
+                  </div>
 
-            <div className="col-md-6">
-              <div className="card card-flush overflow-hidden">
-                <div className="card-header pt-5">
-                  <h3 className="card-title align-items-start flex-column">
-                    <span className="card-label fw-bold text-dark">
-                      System Activity
-                    </span>
-                    <span className="text-gray-400 mt-1 fw-semibold fs-6">
-                      Recent user activity
-                    </span>
-                  </h3>
-                </div>
-                <div className="card-body">
-                  {dashboardData.recent_activity?.system_activity?.map((activity, index) => (
-                    <div key={index} className="d-flex align-items-center mb-4">
-                      <div className="symbol symbol-40px me-4">
-                        <div className="symbol-label bg-light-info">
-                          <i className="bi bi-clock-fill text-info fs-2"></i>
-                        </div>
-                      </div>
-                      <div className="d-flex flex-column">
-                        <div className="fw-bold text-gray-900">{activity.user.name}</div>
-                        <div className="text-muted fs-7">
-                          Last activity: {new Date(activity.last_activity).toLocaleString()}
-                        </div>
-                        <div className="text-muted fs-8">
-                          Login count: {activity.login_count}
-                        </div>
-                      </div>
+                  <div className="d-flex align-items-start mb-4 border-bottom">
+                    <div className="symbol symbol-40px me-3">
+                      <img
+                        src={notificationProfile}
+                        alt="Notification"
+                        className="rounded-circle"
+                      />
                     </div>
-                  )) || (
-                    <div className="text-center text-muted py-5">
-                      No recent activity found
+                    <div>
+                      <p className="text-gray-600 mb-1">
+                        Sed ut perspiciatis unde omnis iste natus error sit
+                        voluptatem accusantium doloremque laudantium, totam rem
+                        aperiam.
+                      </p>
+                      <span className="text-gray-500 fs-7">1 hour</span>
                     </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
+                  </div>
 
-          {/* User Info Section */}
-          <div className="row g-5 g-xl-10 mb-5 mb-xl-10">
-            <div className="col-md-12">
-              <div className="card card-flush overflow-hidden">
-                <div className="card-header pt-5">
-                  <h3 className="card-title align-items-start flex-column">
-                    <span className="card-label fw-bold text-dark">
-                      Current User Information
-                    </span>
-                    <span className="text-gray-400 mt-1 fw-semibold fs-6">
-                      Your account details
-                    </span>
-                  </h3>
-                </div>
-                <div className="card-body">
-                  {dashboardData.user_info?.current_user ? (
-                    <div className="row">
-                      <div className="col-md-3">
-                        <div className="d-flex flex-column">
-                          <span className="text-muted fs-7 mb-1">Name</span>
-                          <span className="fw-bold text-gray-900 fs-6">
-                            {dashboardData.user_info.current_user.name}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="col-md-3">
-                        <div className="d-flex flex-column">
-                          <span className="text-muted fs-7 mb-1">Email</span>
-                          <span className="fw-bold text-gray-900 fs-6">
-                            {dashboardData.user_info.current_user.email}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="col-md-3">
-                        <div className="d-flex flex-column">
-                          <span className="text-muted fs-7 mb-1">Role</span>
-                          <span className="badge badge-light-primary fs-6">
-                            {dashboardData.user_info.current_user.role}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="col-md-3">
-                        <div className="d-flex flex-column">
-                          <span className="text-muted fs-7 mb-1">Last Login</span>
-                          <span className="fw-bold text-gray-900 fs-6">
-                            {new Date(dashboardData.user_info.current_user.last_login).toLocaleString()}
-                          </span>
-                        </div>
-                      </div>
+                  <div className="d-flex align-items-start mb-4 border-bottom">
+                    <div className="symbol symbol-40px me-3">
+                      <img
+                        src={notificationProfile}
+                        alt="Notification"
+                        className="rounded-circle"
+                      />
                     </div>
-                  ) : (
-                    <div className="text-center text-muted py-5">
-                      No user information available
+                    <div>
+                      <p className="text-gray-600 mb-1">
+                        Sed ut perspiciatis unde omnis iste natus error sit
+                        voluptatem accusantium doloremque laudantium, totam rem
+                        aperiam.
+                      </p>
+                      <span className="text-gray-500 fs-7">1 hour</span>
                     </div>
-                  )}
+                  </div>
+
+                  <div className="d-flex align-items-start mb-4 border-bottom">
+                    <div className="symbol symbol-40px me-3">
+                      <img
+                        src={notificationProfile}
+                        alt="Notification"
+                        className="rounded-circle"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-gray-600 mb-1">
+                        Sed ut perspiciatis unde omnis iste natus error sit
+                        voluptatem accusantium doloremque laudantium, totam rem
+                        aperiam.
+                      </p>
+                      <span className="text-gray-500 fs-7">1 hour</span>
+                    </div>
+                  </div>
+
+                  <div className="d-flex align-items-start">
+                    <div className="symbol symbol-40px me-3">
+                      <img
+                        src={notificationProfile}
+                        alt="Notification"
+                        className="rounded-circle"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-gray-600 mb-1">
+                        Sed ut perspiciatis unde omnis iste natus error sit
+                        voluptatem accusantium doloremque laudantium, totam rem
+                        aperiam.
+                      </p>
+                      <span className="text-gray-500 fs-7">1 hour</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

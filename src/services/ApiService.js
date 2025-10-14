@@ -46,8 +46,8 @@ const ApiService = {
         if (status === 401) {
           // Unauthorized: redirect to login
           toast.error(data.message);
-          localStorage.removeItem('admin');
-          window.location.href=process.env.REACT_APP_BASE_PATH+'/login';
+          // localStorage.removeItem('admin');
+          // window.location.href=process.env.REACT_APP_BASE_PATH+'/login';
         } else if (status === 500) {
           // Internal Server Error
           toast.error('An internal server error occurred.');

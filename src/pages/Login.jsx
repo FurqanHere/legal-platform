@@ -4,7 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Loader from "../components/Loader";
 import { setPermissions, clearPermissions } from "../stores/permissionsSlice";
+import logoImg from "../assets/images/login-img.png";
 import logo from "../assets/images/logo.png";
+import G from "../assets/images/G.png";
+import "./Login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -14,135 +17,176 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const isAuthenticated = AuthService.getCurrentUser();
-    if (isAuthenticated) {
-      navigate("/dashboard");
-    }
+    // COMMENTED OUT: Authentication check to allow direct access
+    // const isAuthenticated = AuthService.getCurrentUser();
+    // if (isAuthenticated) {
+    //   navigate("/dashboard");
+    // }
   }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setIsLoader(true);
 
-    try {
-      const data = await AuthService.login(email, password);
-      if (data.status) {
-        toast.success(data.message);
-        let user = data.data.user;
-        user.auth_token = data.data.auth_token;
+    // COMMENTED OUT: Authentication logic to allow direct access to dashboard
+    // try {
+    //   const data = await AuthService.login(email, password);
+    //   if (data.status) {
+    //     toast.success(data.message);
+    //     let user = data.data.user;
+    //     user.auth_token = data.data.auth_token;
 
-        localStorage.setItem("admin", JSON.stringify(user));
+    //     localStorage.setItem("admin", JSON.stringify(user));
         
-        // Handle permissions if they exist in the response
-        if (data.data.permissions) {
-          localStorage.setItem(
-            "permissions",
-            JSON.stringify(data.data.permissions)
-          );
-          setPermissions(data.data.permissions);
-        }
+    //     // Handle permissions if they exist in the response
+    //     if (data.data.permissions) {
+    //       localStorage.setItem(
+    //         "permissions",
+    //         JSON.stringify(data.data.permissions)
+    //       );
+    //       setPermissions(data.data.permissions);
+    //     }
 
-        navigate("/dashboard");
-        // window.location.href=process.env.REACT_APP_BASE_PATH+'/dashboard';
-      } else {
-        toast.error(data.message);
-      }
-    } catch (error) {
-      console.error("Login failed:", error);
-      toast.error("Login failed. Please check your credentials.");
-    } finally {
+    //     navigate("/dashboard");
+    //     // window.location.href=process.env.REACT_APP_BASE_PATH+'/dashboard';
+    //   } else {
+    //     toast.error(data.message);
+    //   }
+    // } catch (error) {
+    //   console.error("Login failed:", error);
+    //   toast.error("Login failed. Please check your credentials.");
+    // } finally {
+    //   setIsLoader(false);
+    // }
+
+    // DIRECT NAVIGATION TO DASHBOARD - NO AUTHENTICATION REQUIRED
+    setTimeout(() => {
+      toast.success("Login successful!");
+      navigate("/dashboard");
       setIsLoader(false);
-    }
+    }, 1000);
   };
 
   return (
-    <div className="page-body-wrapper full-page-wrapper bg-light">
-      <div className="row w-100 m-0 full-page-wrapper">
-        <div className="content-wrapper full-page-wrapper d-flex align-items-center auth">
-          <div className="col-lg-4 mx-auto">
-            <div className="text-center bg-base">
-              <img alt="Logo" src={logo} className="w-100px p-4" />
+    <div className="login-container">
+      {/* Left Panel - Illustration Section */}
+      <div className="left-panel">
+        {/* Background Image */}
+        <div 
+          className="left-panel-bg"
+          style={{ backgroundImage: `url(${logoImg})` }}
+        />
+        
+        {/* Content Overlay */}
+        <div className="left-panel-content">
+          <h1 className="left-panel-title text-white">
+            Perspiciatis unde omnis iste
+          </h1>
+          <p className="left-panel-description text-white">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+          </p>
+        </div>
+        
+        {/* Pagination Dots */}
+        <div className="pagination-dots">
+          <div className="pagination-dot"></div>
+          <div className="pagination-dot-inactive"></div>
+          <div className="pagination-dot-inactive"></div>
+          <div className="pagination-dot-inactive"></div>
+        </div>
+      </div>
+
+      {/* Right Panel - Login Form Section */}
+      <div className="right-panel">
+        {/* Logo */}
+        <div>
+          <img 
+            alt="Legal Platform Logo" 
+            src={logo} 
+            className="login-logo"
+          />
+        </div>
+
+        {/* Login Form */}
+        <div>
+          <h2 className="login-title">
+            Login
+          </h2>
+          
+          <form onSubmit={handleLogin} className="login-form">
+            {/* Email Field */}
+            <div className="form-group">
+              <label className="form-label">
+                Email
+              </label>
+              <input
+                type="email"
+                required
+                autoComplete="off"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="form-input"
+                placeholder="noon@company.com"
+              />
             </div>
-            <div className="card">
-              <div className="card-body px-5 py-5">
-                <div className="text-center my-3">
-                  <h3 className="card-title mb-0 fs-2">Admin Login</h3>
-                  <p>Welcome back! login to your account</p>
-                </div>
-                <br />
 
-                <form onSubmit={handleLogin}>
-                  <div className="form-group my-5">
-                    <label>Email Address *</label>
-                    <input
-                      type="email"
-                      required
-                      autoComplete="off"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="form-control p_input"
-                      placeholder="Email Address"
-                    />
-                  </div>
-
-                  <div className="form-group my-5">
-                    <label>Password *</label>
-                    <div className="input-group" id="show_hide_password">
-                      <input
-                        type={showPassword ? "text" : "password"}
-                        className="form-control p_input"
-                        required
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Password"
-                        autoComplete="off"
-                      />
-                      <div className="input-group-addon bg-light border px-3 py-3">
-                        <button
-                          type="button"
-                          className="btn btn-transparent p-0"
-                          onClick={() => setShowPassword(!showPassword)}
-                        >
-                          <i
-                            className={`text-dark fs-5  ${
-                              showPassword ? "bi bi-eye" : "bi bi-eye-slash"
-                            }`}
-                            aria-hidden="true"
-                          />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="form-group d-flex align-items-center justify-content-between">
-                    <div className="form-check">
-                      <label className="form-check-label">
-                        <input
-                          type="checkbox"
-                          className="form-check-input"
-                          style={{ opacity: 1 }}
-                        />
-                        Remember Me
-                      </label>
-                    </div>
-                  </div>
-
-                  <div className="text-center my-5">
-                    <button
-                      type="submit"
-                      disabled={isLoader}
-                      className="btn btn-base w-100 btn-block"
-                    >
-                      <span hidden={isLoader}>Sign In</span>
-                      {isLoader && (
-                        <Loader size="20" text="Signing" color="white" />
-                      )}
-                    </button>
-                  </div>
-                </form>
+            {/* Password Field */}
+            <div className="form-group">
+              <label className="form-label">
+                Password
+              </label>
+              <div className="password-container">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="form-input"
+                  placeholder="Password"
+                  autoComplete="off"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="password-toggle"
+                >
+                  {showPassword ? '👁️' : '👁️‍🗨️'}
+                </button>
               </div>
             </div>
-          </div>
+
+            {/* Login Button */}
+            <button
+              type="submit"
+              disabled={isLoader}
+              className="login-button"
+            >
+              {isLoader ? (
+                <Loader size="20" text="Signing" color="white" />
+              ) : (
+                <>
+                  Login
+                  <span className="login-button-arrow">→</span>
+                </>
+              )}
+            </button>
+
+            {/* Google Login Button */}
+            <button
+              type="button"
+              className="google-button"
+            >
+              <span className="google-icon">
+                <img src={ G } alt="" className="w-35px h-35px" />
+              </span>
+              Continue With Google
+            </button>
+          </form>
+        </div>
+
+        {/* Copyright */}
+        <div className="copyright">
+          © 2025 Legal Platform. All rights Reserved.
         </div>
       </div>
     </div>
