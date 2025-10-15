@@ -144,7 +144,7 @@ const Sidebar = () => {
             </div>
 
             <div className="menu-item">
-              <NavLink to="/companies" className="menu-link">
+              <NavLink to="/ask-question" className="menu-link">
                 <span className="menu-icon">
                   <i class="bi bi-question-circle"></i>
                 </span>
@@ -153,7 +153,7 @@ const Sidebar = () => {
             </div>
 
             <div className="menu-item">
-              <NavLink to="/jobs" className="menu-link">
+              <NavLink to="/my-lawyers" className="menu-link">
                 <span className="menu-icon">
                   <svg
                     width="20"
@@ -189,12 +189,12 @@ const Sidebar = () => {
                     <path d="M18 8h2" />
                   </svg>
                 </span>
-                <span className="menu-title fs-6">Lawyers</span>
+                <span className="menu-title fs-6">My Lawyers</span>
               </NavLink>
             </div>
 
             <div className="menu-item">
-              <NavLink to="/users" className="menu-link">
+              <NavLink to="/messages" className="menu-link">
                 <span className="menu-icon">
                   <svg
                     width="20"

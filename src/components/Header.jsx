@@ -6,6 +6,7 @@ import ApiService from "../services/ApiService";
 import { toast } from "react-toastify";
 import moment from "moment";
 import circle from "../assets/images/yellow-circle.png";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   const location = useLocation();
@@ -21,6 +22,15 @@ const Header = () => {
   const isAskQuestionPage =
     location.pathname.includes("/companies") ||
     location.pathname.includes("/ask-question");
+
+  // Check if we're on the Chat page
+  const isChatPage =
+    location.pathname.includes("/users") || location.pathname.includes("/messages");
+
+  // Check if we're on the My Lawyers page
+  const isMyLawyersPage =
+    location.pathname.includes("/jobs") ||
+    location.pathname.includes("/my-lawyers");
 
   const logout = () => {
     if (window.confirm("Are you sure you want to logout?")) {
@@ -90,6 +100,50 @@ const Header = () => {
             </div>
           </div>
         </div>
+      ) : isChatPage ? (
+        // Chat Page Header
+        <div className="d-flex justify-content-between align-items-center w-100">
+          <div>
+            <h1 className="fw-bold text-dark fs-2 mb-2">Messages</h1>
+            <p className="text-gray-600 fs-6 mb-0">
+              Quick, Clear and concise communications.
+            </p>
+          </div>
+          <div className="d-flex align-items-center gap-3">
+            <i className="bi bi-bell text-gray-600 fs-4"></i>
+            <div className="symbol symbol-40px">
+              <div className="symbol-label bg-warning text-white rounded-circle">
+                <img
+                  src={circle}
+                  className="w-40px h-40px rounded-circle"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : isMyLawyersPage ? (
+        // My Lawyers Page Header
+        <div className="d-flex justify-content-between align-items-center w-100">
+          <div>
+            <h1 className="fw-bold text-dark fs-2 mb-2">My Lawyers</h1>
+            <p className="text-gray-600 fs-6 mb-0">
+              Manage your legal team and communications.
+            </p>
+          </div>
+          <div className="d-flex align-items-center gap-3">
+            <i className="bi bi-bell text-gray-600 fs-4"></i>
+            <div className="symbol symbol-40px">
+              <div className="symbol-label bg-warning text-white rounded-circle">
+                <img
+                  src={circle}
+                  className="w-40px h-40px rounded-circle"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       ) : (
         // Default Header Layout
         <div className="modern-header-layout d-flex align-items-center justify-content-between w-100">
@@ -122,9 +176,11 @@ const Header = () => {
           {/* Right side icons */}
           <div className="modern-icons-container d-flex align-items-center gap-3">
             {/* Messages Icon */}
-            <div className="modern-icon-container">
-              <i className="bi bi-chat-dots modern-icon"></i>
-            </div>
+            <NavLink to="/messages">
+              <div className="modern-icon-container">
+                <i className="bi bi-chat-dots modern-icon"></i>
+              </div>
+            </NavLink>
 
             {/* Notifications Icon */}
             <div className="modern-notification-container position-relative">

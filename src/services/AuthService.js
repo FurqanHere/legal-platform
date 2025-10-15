@@ -25,7 +25,7 @@ class AuthService {
   logout() {
     localStorage.removeItem('admin');
     localStorage.removeItem('permissions');
-    window.location.href=process.env.REACT_APP_BASE_PATH+'/login';
+    window.location.href = '/legal-platform-portal/login';
   }
 
   getCurrentUser() {

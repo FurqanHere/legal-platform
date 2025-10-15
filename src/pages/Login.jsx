@@ -5,8 +5,10 @@ import { toast } from "react-toastify";
 import Loader from "../components/Loader";
 import { setPermissions, clearPermissions } from "../stores/permissionsSlice";
 import logoImg from "../assets/images/login-img.png";
+import logoImg2 from "../assets/images/logoImg2.png";
 import logo from "../assets/images/logo.png";
 import G from "../assets/images/G.png";
+import notificationProfile from "../assets/images/notification-profile.png";
 import "./Login.css";
 
 const Login = () => {
@@ -14,7 +16,36 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [isLoader, setIsLoader] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const navigate = useNavigate();
+
+  // Slider data
+  const sliderData = [
+    {
+      id: 1,
+      title: "Perspiciatis unde omnis iste",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+      image: logoImg
+    },
+    {
+      id: 2,
+      title: "Legal Solutions Made Simple",
+      description: "Connect with experienced lawyers and get expert legal advice for all your business needs",
+      image: logoImg2
+    },
+    {
+      id: 3,
+      title: "Expert Legal Guidance",
+      description: "Access a network of qualified attorneys ready to help you navigate complex legal challenges",
+      image: logoImg
+    },
+    {
+      id: 4,
+      title: "Secure & Confidential",
+      description: "Your legal matters are handled with the highest level of security and confidentiality",
+      image: logoImg2
+    }
+  ];
 
   useEffect(() => {
     // COMMENTED OUT: Authentication check to allow direct access
@@ -23,6 +54,22 @@ const Login = () => {
     //   navigate("/dashboard");
     // }
   }, []);
+
+  // Auto-advance slider
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prevSlide) => 
+        prevSlide === sliderData.length - 1 ? 0 : prevSlide + 1
+      );
+    }, 4000); // Change slide every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [sliderData.length]);
+
+  // Handle dot click
+  const handleDotClick = (index) => {
+    setCurrentSlide(index);
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -69,30 +116,39 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      {/* Left Panel - Illustration Section */}
+      {/* Left Panel - Slider Section */}
       <div className="left-panel">
-        {/* Background Image */}
-        <div 
-          className="left-panel-bg"
-          style={{ backgroundImage: `url(${logoImg})` }}
-        />
-        
-        {/* Content Overlay */}
-        <div className="left-panel-content">
-          <h1 className="left-panel-title text-white">
-            Perspiciatis unde omnis iste
-          </h1>
-          <p className="left-panel-description text-white">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-          </p>
+        {/* Slider Container */}
+        <div className="slider-container">
+          {/* Background Image */}
+          <div 
+            key={currentSlide}
+            className="left-panel-bg"
+            style={{ backgroundImage: `url(${sliderData[currentSlide].image})` }}
+          />
+          
+          {/* Content Overlay */}
+          <div className="left-panel-content">
+            <h1 className="left-panel-title text-white">
+              {sliderData[currentSlide].title}
+            </h1>
+            <p className="left-panel-description text-white">
+              {sliderData[currentSlide].description}
+            </p>
+          </div>
         </div>
         
         {/* Pagination Dots */}
         <div className="pagination-dots">
-          <div className="pagination-dot"></div>
-          <div className="pagination-dot-inactive"></div>
-          <div className="pagination-dot-inactive"></div>
-          <div className="pagination-dot-inactive"></div>
+          {sliderData.map((_, index) => (
+            <div
+              key={index}
+              className={`pagination-dot ${
+                index === currentSlide ? 'active' : 'inactive'
+              }`}
+              onClick={() => handleDotClick(index)}
+            />
+          ))}
         </div>
       </div>
 

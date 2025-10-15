@@ -86,6 +86,10 @@ a {
     color: #7e8299 !important;
 }
 
+.bg-dark {
+    background-color: #4A4A4A !important;
+}
+
 body {
     margin: 0;
     font-family: var(--bs-body-font-family);
@@ -8527,8 +8531,8 @@ fieldset:disabled .btn {
     border-right: 0 !important
 }
 
-.border-bottom {
-    border-bottom: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important
+.border-bottom-3px {
+    border-bottom: 3px solid black !important;
 }
 
 .border-bottom-0 {
@@ -41130,6 +41134,11 @@ html:not([data-theme=dark]) .theme-light-bg-body {
     color: var(--kt-dark-inverse)
 }
 
+.btn.btn-dark .svg-icon,
+.btn.btn-dark i:hover {
+    color: var(--kt-dark-inverse) !important
+}
+
 .btn.btn-dark.dropdown-toggle:after {
     color: var(--kt-dark-inverse)
 }
@@ -54946,7 +54955,7 @@ label.rating-label:hover~.rating-label>i {
 
 .bg-dark {
     --kt-bg-rgb-color: var(--kt-dark-rgb);
-    background-color: var(--kt-dark) !important
+    background-color: #4A4A4A !important
 }
 
 .bg-hover-light-dark {
@@ -57213,6 +57222,18 @@ body {
     .app-container {
         padding-left: 30px !important;
         padding-right: 30px !important
+    }
+
+    /* Override padding for MyLawyers page */
+    .my-lawyers-page .app-container {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    /* Override padding for Chat page */
+    .chat-page .app-container {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
     }
 
     .app-container-fit-desktop {
@@ -59538,6 +59559,12 @@ html:not([data-theme=dark]) {
     border: 1px solid #D8D8D8 !important;
 }
 
+.card.mb-3.border:hover {
+    border: 1px solid black !important;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
 .d-flex.align-items-start.border-bottom,
 .d-flex.justify-content-between.align-items-center.mb-4.pt-0.pb-5.border-bottom {
     border-bottom: 1px solid #D8D8D8 !important;
@@ -60690,16 +60717,16 @@ input[type="number"] {
 }
 
 .app-sidebar .menu .menu-item .menu-link.active {
-    background-color: white;
-    color: black !important;
+    
+    color: white !important;
     transition: color .2s ease;
 }
 .menu-item .menu-link.active .menu-title{
-    color: black  !important;
+    color: black;
 }
-.menu-item .menu-link.active .menu-icon .svg-icon i{
-    color: black  !important;
-}
+/* .menu-item .menu-link.active .menu-icon .svg-icon i{
+    color: black;
+} */
 
 /* Prime Select CSS */
 .p-dropdown{
@@ -61093,4 +61120,212 @@ input[type="number"] {
 /* Ensure smooth transition for main content */
 .header-main {
   transition: all 0.3s ease;
+}
+
+/* Sidebar Menu Link Hover and Active States */
+.app-sidebar .menu-item .menu-link {
+  color: #959595 !important;
+  transition: color 0.2s ease;
+}
+
+.app-sidebar .menu-item .menu-link .menu-title {
+  color: #959595 !important;
+  transition: color 0.2s ease;
+}
+
+.app-sidebar .menu-item .menu-link .menu-icon,
+.app-sidebar .menu-item .menu-link .menu-icon i,
+.app-sidebar .menu-item .menu-link .menu-icon svg {
+  color: #959595 !important;
+  transition: color 0.2s ease;
+}
+
+/* Hover states */
+.app-sidebar .menu-item .menu-link:hover {
+  color: white !important;
+}
+
+.app-sidebar .menu-item .menu-link:hover .menu-title {
+  color: white !important;
+}
+
+.app-sidebar .menu-item .menu-link:hover .menu-icon,
+.app-sidebar .menu-item .menu-link:hover .menu-icon i,
+.app-sidebar .menu-item .menu-link:hover .menu-icon svg {
+  color: white !important;
+}
+
+/* Active states */
+.app-sidebar .menu-item .menu-link.active {
+  color: white !important;
+}
+
+.app-sidebar .menu-item .menu-link.active .menu-title {
+  color: white !important;
+}
+
+.app-sidebar .menu-item .menu-link.active .menu-icon,
+.app-sidebar .menu-item .menu-link.active .menu-icon i,
+.app-sidebar .menu-item .menu-link.active .menu-icon svg {
+  color: white !important;
+}
+
+/* Chat List page styles */
+.chat-list-main-container {
+    height: calc(100vh - 70px);
+}
+
+.chat-list-left-panel {
+    border-right: 1px solid #DEDEDE;
+    border-top: 1px solid #DEDEDE;
+}
+
+.chat-list-search-input {
+    padding-left: 45px;
+}
+
+.chat-list-contact-item {
+    cursor: pointer;
+}
+
+.chat-list-avatar {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+.chat-list-conversation-header {
+    border: 1px solid #DEDEDE;
+    border-right: none;
+    border-left: none;
+}
+
+.chat-list-messages-area {
+    background-color: #f8f9fa;
+}
+
+.chat-list-message-bubble {
+    max-width: 70%;
+}
+
+.chat-list-message-bubble-user {
+    border-bottom-left-radius: 0px !important;
+}
+.chat-list-message-bubble-sender {
+    border-bottom-right-radius: 0px !important;
+}
+
+.chat-list-send-button {
+    width: 40px;
+    height: 40px;
+}
+
+.chat-list-empty-state-icon {
+    font-size: 4rem;
+}
+
+/* MyLawyers List Page Styles */
+.my-lawyers-main-container {
+    height: calc(100vh - 70px);
+}
+
+.my-lawyers-left-panel {
+    border-right: 1px solid #DEDEDE;
+    border-top: 1px solid #DEDEDE;
+}
+
+.my-lawyers-tabs-container {
+    border-bottom: 1px solid #D3D3D3;
+    height: 54px;
+}
+
+.my-lawyers-contact-list {
+    margin-top: -18px;
+}
+
+.my-lawyers-contact-list-chats {
+    margin-top: 0px;
+}
+
+.my-lawyers-contact-card {
+    width: 94%;
+    border: 1px solid #D3D3D3;
+    border-radius: 10px;
+}
+
+.my-lawyers-avatar-40 {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+.my-lawyers-avatar-30 {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+}
+
+.my-lawyers-unread-badge {
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.my-lawyers-chat-flex-fill {
+    min-width: 0;
+}
+
+.my-lawyers-name-truncate {
+    max-width: 60%;
+}
+
+.my-lawyers-chat-unread-badge {
+    font-size: 10px;
+    min-width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.my-lawyers-message-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+}
+
+.my-lawyers-right-panel {
+    background-color: #f8f9fa;
+    height: 87.9vh;
+}
+
+.my-lawyers-conversation-header {
+    border: 1px solid #DEDEDE;
+    border-right: none;
+    border-left: none;
+}
+
+.my-lawyers-messages-area {
+    background-color: #f8f9fa;
+}
+
+.my-lawyers-message-bubble {
+    max-width: 70%;
+}
+
+.my-lawyers-message-input {
+    margin-bottom: 1.5rem;
+}
+
+.my-lawyers-send-button {
+    width: 40px;
+    height: 40px;
+}
+
+.my-lawyers-empty-state-icon {
+    font-size: 4rem;
 }

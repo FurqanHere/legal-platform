@@ -14,6 +14,11 @@ import ApiService from "../services/ApiService";
 const Dashboard = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("active");
+  const [showPostQuestion, setShowPostQuestion] = useState(false);
+
+  const handleAddQuestionClick = () => {
+    setShowPostQuestion(true);
+  };
 
   return (
     <div className="d-flex flex-column flex-column-fluid header-main">
@@ -29,7 +34,7 @@ const Dashboard = () => {
               className="col-md-8 pt-4"
               style={{
                 background:
-                  "linear-gradient(to bottom,rgba(0, 0, 0, 0.05) 0%, #ffffff 100%)",
+                  "linear-gradient(to bottom,rgba(0, 0, 0, 0.06) 0%, #ffffff 100%, #ffffff 100%)",
                 borderRadius: "12px",
                 padding: "20px",
               }}
@@ -61,6 +66,7 @@ const Dashboard = () => {
                         <button
                           className="btn btn-light rounded-circle d-flex justify-content-center align-items-center"
                           style={{ width: "40px", height: "40px" }}
+                          onClick={handleAddQuestionClick}
                         >
                           <i className="bi bi-plus fs-1 text-dark pe-0"></i>
                         </button>
@@ -520,6 +526,150 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+
+      {/* Post Question Offcanvas */}
+      {showPostQuestion && (
+        <div
+          className="offcanvas offcanvas-end show"
+          tabIndex="-1"
+          style={{
+            visibility: "visible",
+            width: "515px",
+            right: "0",
+            transition: "all 0.3s ease",
+            borderRadius: "30px",
+            margin: "20px",
+          }}
+        >
+          <div className="offcanvas-header border-bottom">
+            <div className="d-flex justify-content-between align-items-center w-100">
+              <h5 className="mb-0 fw-bold">Post Question</h5>
+              <button
+                type="button"
+                className="btn-close"
+                onClick={() => setShowPostQuestion(false)}
+              ></button>
+            </div>
+          </div>
+
+          <div className="offcanvas-body p-4">
+            {/* Question Input */}
+            <div className="mb-4">
+              <textarea
+                className="form-control"
+                rows="4"
+                placeholder="Explain Your Question"
+                style={{ resize: "none" }}
+              ></textarea>
+            </div>
+
+            {/* Jurisdiction Dropdown */}
+            <div className="mb-4">
+              <div className="position-relative">
+                <select className="form-select">
+                  <option>Jurisdiction</option>
+                  <option>United States</option>
+                  <option>United Kingdom</option>
+                  <option>Canada</option>
+                  <option>Australia</option>
+                </select>
+                <i className="bi bi-chevron-down position-absolute top-50 end-0 translate-middle-y me-3 text-gray-600"></i>
+              </div>
+            </div>
+
+            {/* File Upload */}
+            <div className="mb-4">
+              <div
+                className="d-flex align-items-center justify-content-start border border-2 border-dashed rounded p-4 text-center"
+                style={{ border: "1.5px solid #C9C9C9" }}
+              >
+                <div
+                  className="p-3 me-3 rounded-1"
+                  style={{
+                    backgroundColor: "#FDFDFD",
+                    border: "1px dashed #BEBEBE",
+                  }}
+                >
+                  <i
+                    className="bi bi-paperclip fs-3 d-inline-block"
+                    style={{
+                      transform: "rotate(45deg)",
+                      display: "inline-block",
+                    }}
+                  ></i>
+                </div>
+
+                <p className="text-muted mb-0">Attach Document</p>
+              </div>
+            </div>
+
+            {/* How it works Section */}
+            <div className="mb-4">
+              <h6 className="fw-bold mb-3">How it works</h6>
+              <div className="d-flex align-items-start gap-3 my-4">
+                <i
+                  className="bi bi-moon-fill text-black"
+                  style={{
+                    transform: "rotate(35deg)",
+                    display: "inline-block",
+                  }}
+                ></i>
+                <small className="text-muted">
+                  Ask your question and see the answer in Questions & Answers.
+                </small>
+              </div>
+              <div className="d-flex align-items-start gap-3">
+                <i
+                  className="bi bi-moon-fill text-black"
+                  style={{
+                    transform: "rotate(35deg)",
+                    display: "inline-block",
+                  }}
+                ></i>
+                <small className="text-muted">
+                  You will be notified when a lawyer answers.
+                </small>
+              </div>
+            </div>
+
+            {/* Post Question Fee */}
+            <div className="mb-4 rounded-4" style={{ border: "1px solid #D3D3D3" }}>
+              <div className="d-flex justify-content-between align-items-center p-3 rounded">
+                <div>
+                  <h6 className="fw-bold mb-1">Post Question Fee</h6>
+                  <small className="text-muted">1 Question post only</small>
+                </div>
+                <div className="text-end px-5 py-4" style={{ borderLeft: "1px solid #D3D3D3" }}>
+                  <div className="fw-bold">USD</div>
+                  <div className="fw-bold fs-5">1.00</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Submit Button */}
+            <button className="btn bg-black text-white rounded-pill w-100 py-3 fw-bold">
+              Post Your Legal Issues
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Backdrop for Post Question */}
+      {showPostQuestion && (
+        <div
+          className="offcanvas-backdrop fade show"
+          onClick={() => setShowPostQuestion(false)}
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            zIndex: 1040,
+            width: "100vw",
+            height: "100vh",
+            backgroundColor: "rgba(0,0,0,1)",
+          }}
+        ></div>
+      )}
     </div>
   );
 };

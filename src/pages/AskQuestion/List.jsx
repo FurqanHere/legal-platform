@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import notificationProfile from "../../assets/images/notification-profile.png";
 
 const List = () => {
@@ -361,20 +361,22 @@ const List = () => {
                         <small className="text-muted d-block mb-2">
                           {lawyer.time}
                         </small>
-                        <button
-                          className="btn btn-outline-dark bg-dark p-5 rounded-pill text-white btn-sm rounded-circle d-flex justify-content-center align-items-center"
-                          style={{
-                            width: "32px",
-                            height: "32px",
-                            padding: 0,
-                            borderWidth: "1px",
-                          }}
-                        >
-                          <i
-                            className="bi bi-chat-dots-fill p-0 text-white"
-                            style={{ fontSize: "14px" }}
-                          ></i>
-                        </button>
+                        <NavLink to="/messages">
+                          <button
+                            className="btn btn-outline-dark bg-dark p-5 rounded-pill text-white btn-sm rounded-circle d-flex justify-content-center align-items-center"
+                            style={{
+                              width: "32px",
+                              height: "32px",
+                              padding: 0,
+                              borderWidth: "1px",
+                            }}
+                          >
+                            <i
+                              className="bi bi-chat-dots-fill p-0 text-white"
+                              style={{ fontSize: "14px" }}
+                            ></i>
+                          </button>
+                        </NavLink>
                       </div>
                     </div>
                   ))}
@@ -382,8 +384,8 @@ const List = () => {
               </div>
             </div>
           </div>
-        </div>
-        )}
+                    </div>
+      )}
 
       {/* Post Question Offcanvas */}
       {showPostQuestion && (
@@ -392,7 +394,7 @@ const List = () => {
           tabIndex="-1"
           style={{
             visibility: "visible",
-            width: "400px",
+            width: "515px",
             right: "0",
             transition: "all 0.3s ease",
             borderRadius: "30px",
@@ -402,13 +404,13 @@ const List = () => {
           <div className="offcanvas-header border-bottom">
             <div className="d-flex justify-content-between align-items-center w-100">
               <h5 className="mb-0 fw-bold">Post Question</h5>
-              <button
-                type="button"
+                      <button
+                        type="button"
                 className="btn-close"
                 onClick={() => setShowPostQuestion(false)}
               ></button>
-            </div>
-          </div>
+                    </div>
+                  </div>
 
           <div className="offcanvas-body p-4">
             {/* Question Input */}
@@ -438,10 +440,25 @@ const List = () => {
             {/* File Upload */}
             <div className="mb-4">
               <div
-                className="border border-2 border-dashed rounded p-4 text-center"
-                style={{ borderColor: "#dee2e6", backgroundColor: "#f8f9fa" }}
+                className="d-flex align-items-center justify-content-start border border-2 border-dashed rounded p-4 text-center"
+                style={{ border: "1.5px solid #C9C9C9" }}
               >
-                <i className="bi bi-paperclip fs-3 text-gray-500 mb-2"></i>
+                <div
+                  className="p-3 me-3 rounded-1"
+                  style={{
+                    backgroundColor: "#FDFDFD",
+                    border: "1px dashed #BEBEBE",
+                  }}
+                >
+                  <i
+                    className="bi bi-paperclip fs-3 d-inline-block"
+                    style={{
+                      transform: "rotate(45deg)",
+                      display: "inline-block",
+                    }}
+                  ></i>
+                </div>
+
                 <p className="text-muted mb-0">Attach Document</p>
               </div>
             </div>
@@ -449,14 +466,26 @@ const List = () => {
             {/* How it works Section */}
             <div className="mb-4">
               <h6 className="fw-bold mb-3">How it works</h6>
-              <div className="d-flex align-items-start gap-3 mb-2">
-                <i className="bi bi-moon-fill text-primary mt-1"></i>
+              <div className="d-flex align-items-start gap-3 my-4">
+                <i
+                  className="bi bi-moon-fill text-black"
+                  style={{
+                    transform: "rotate(35deg)",
+                    display: "inline-block",
+                  }}
+                ></i>
                 <small className="text-muted">
                   Ask your question and see the answer in Questions & Answers.
                 </small>
               </div>
               <div className="d-flex align-items-start gap-3">
-                <i className="bi bi-moon-fill text-primary mt-1"></i>
+                <i
+                  className="bi bi-moon-fill text-black"
+                  style={{
+                    transform: "rotate(35deg)",
+                    display: "inline-block",
+                  }}
+                ></i>
                 <small className="text-muted">
                   You will be notified when a lawyer answers.
                 </small>
@@ -464,13 +493,13 @@ const List = () => {
             </div>
 
             {/* Post Question Fee */}
-            <div className="mb-4">
-              <div className="d-flex justify-content-between align-items-center p-3 bg-light rounded">
+            <div className="mb-4 rounded-4" style={{ border: "1px solid #D3D3D3" }}>
+              <div className="d-flex justify-content-between align-items-center p-3 rounded">
                 <div>
                   <h6 className="fw-bold mb-1">Post Question Fee</h6>
                   <small className="text-muted">1 Question post only</small>
                 </div>
-                <div className="text-end">
+                <div className="text-end px-5 py-4" style={{ borderLeft: "1px solid #D3D3D3" }}>
                   <div className="fw-bold">USD</div>
                   <div className="fw-bold fs-5">1.00</div>
                 </div>
@@ -478,7 +507,7 @@ const List = () => {
             </div>
 
             {/* Submit Button */}
-            <button className="btn bg-black text-white rounded-pill w-100 py-3 fw-bold">
+            <button className="btn text-white rounded-pill w-100" style={{ height: "55px", fontSize: "18px", fontWeight: "500", backgroundColor: "#474747" }}>
               Post Your Legal Issues
             </button>
           </div>

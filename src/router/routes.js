@@ -25,9 +25,9 @@ import AddSkill from '../pages/skills/AddUpdate';
 import BannerList from '../pages/banners/List';
 import AddBanner from '../pages/banners/AddUpdate';
 
-import JobList from '../pages/jobs/List';
-import JobDetails from '../pages/jobs/Details';
-import AddJob from '../pages/jobs/AddUpdate';
+import JobList from '../pages/MyLawyers/List.jsx';
+import JobDetails from '../pages/MyLawyers/Details.jsx';
+import AddJob from '../pages/MyLawyers/AddUpdate.jsx';
 
 import SystemUserList from '../pages/system_users/List';
 import AddSystemUser from '../pages/system_users/AddUpdate';
@@ -42,9 +42,9 @@ import ItemDetails from '../pages/items/Details';
 import AddonList from '../pages/addons/List';
 import AddAddon from '../pages/addons/AddUpdate';
 
-import UserList from '../pages/users/List';
-import UserDetails from '../pages/users/Details';
-import UserEdit from '../pages/users/Edit.jsx';
+import UserList from '../pages/Chat/List.jsx';
+import UserDetails from '../pages/Chat/Details.jsx';
+import UserEdit from '../pages/Chat/Edit.jsx';
 
 import Account from '../pages/Account';
 import NotFound from '../pages/NotFound'; 
@@ -69,19 +69,19 @@ const routes = [
     },
   
     {
-        path: '/companies',
+        path: '/ask-question',
         component: CompanyList,
-        meta: { requiresAuth: true , hideHeader: false,  permission:'list-companies' }
+        meta: { requiresAuth: true , hideHeader: false,  permission:'list-questions' }
     },
     {
-        path: '/companies/create/:id?',
+        path: '/ask-question/create/:id?',
         component: AddCompany,
-        meta: { requiresAuth: true , hideHeader: false, permission:'create-companies' }
+        meta: { requiresAuth: true , hideHeader: false, permission:'create-questions' }
     },
     {
-        path: '/companies/:id',
+        path: '/ask-question/:id',
         component: CompanyDetails,
-        meta: { requiresAuth: true , hideHeader: false , permission:'list-companies'  }
+        meta: { requiresAuth: true , hideHeader: false , permission:'list-questions'  }
     },
 
     {
@@ -185,19 +185,19 @@ const routes = [
 
    
     {
-        path: '/jobs/',
+        path: '/my-lawyers',
         component: JobList,
-        meta: { requiresAuth: true , hideHeader: false , permission:'list-jobs'  }
+        meta: { requiresAuth: true , hideHeader: false , permission:'list-lawyers'  }
     },
     {
-        path: '/jobs/:id',
+        path: '/my-lawyers/:id',
         component: JobDetails,
-        meta: { requiresAuth: true , hideHeader: false , permission:'detail-jobs' }
+        meta: { requiresAuth: true , hideHeader: false , permission:'detail-lawyers' }
     },
     {
-        path: '/jobs/create/:id?',
+        path: '/my-lawyers/create/:id?',
         component: AddJob,
-        meta: { requiresAuth: true , hideHeader: false, permission:'create-jobs' }
+        meta: { requiresAuth: true , hideHeader: false, permission:'create-lawyers' }
     },
 
  
@@ -217,17 +217,17 @@ const routes = [
     },
 
     {
-        path: '/users/',
+        path: '/chat/',
         component: UserList,
         meta: { requiresAuth: true , hideHeader: false }
     },
     {
-        path: '/users/detail/:id',
+        path: '/chat/detail/:id',
         component: UserDetails,
         meta: { requiresAuth: true , hideHeader: false  }
     },
     {
-        path: '/users/edit/',
+        path: '/chat/edit/',
         component: UserEdit,
         meta: { requiresAuth: true , hideHeader: false  }
     },

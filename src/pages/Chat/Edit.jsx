@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 
-import Loader from "../../components/Loader";
-import TimingModal from "../../components/TimingModal";
+import Loader from "../../components/Loader.jsx";
+import TimingModal from "../../components/TimingModal.jsx";
 import { toast } from "react-toastify";
-import ApiService from "../../services/ApiService";
+import ApiService from "../../services/ApiService.js";
 import { Dropdown } from "primereact/dropdown";
 import { MultiSelect } from "primereact/multiselect";
 import ImageDropzone from "../../components/ImageDropzone.jsx";
