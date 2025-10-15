@@ -194,7 +194,7 @@ const Sidebar = () => {
             </div>
 
             <div className="menu-item">
-              <NavLink to="/messages" className="menu-link">
+              <NavLink to="/chat" className="menu-link">
                 <span className="menu-icon">
                   <svg
                     width="20"
