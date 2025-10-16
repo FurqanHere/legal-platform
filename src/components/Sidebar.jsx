@@ -18,6 +18,12 @@ const Sidebar = () => {
 
   const toggleSidebarCollapse = () => {
     setIsCollapsed(!isCollapsed);
+    // Add/remove class to body for CSS targeting
+    if (!isCollapsed) {
+      document.body.classList.add('sidebar-collapsed');
+    } else {
+      document.body.classList.remove('sidebar-collapsed');
+    }
   };
 
   useEffect(() => {
@@ -25,6 +31,21 @@ const Sidebar = () => {
 
     return () => cleanupSidebar();
   });
+
+  // Handle initial state and cleanup
+  useEffect(() => {
+    // Set initial state
+    if (isCollapsed) {
+      document.body.classList.add('sidebar-collapsed');
+    } else {
+      document.body.classList.remove('sidebar-collapsed');
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.classList.remove('sidebar-collapsed');
+    };
+  }, [isCollapsed]);
 
   const initializeSidebar = () => {
     const button = document.getElementById("kt_app_sidebar_mobile_toggle");
@@ -72,11 +93,11 @@ const Sidebar = () => {
       data-kt-drawer-name="app-sidebar"
       data-kt-drawer-activate="{default: true, lg: false}"
       data-kt-drawer-overlay="true"
-      data-kt-drawer-width={isCollapsed ? "130px" : "265px"}
+      data-kt-drawer-width={isCollapsed ? "120px" : "265px"}
       data-kt-drawer-direction="start"
       data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle"
       style={{
-        width: isCollapsed ? "130px" : "265px",
+        width: isCollapsed ? "120px" : "265px",
         transition: "width 0.3s ease",
       }}
     >
@@ -104,21 +125,26 @@ const Sidebar = () => {
         </NavLink>
 
         {/* Collapse/Expand Toggle Button */}
-        {/* <button 
-                    id="kt_app_sidebar_toggle" 
-                    className="btn btn-icon btn-sm position-absolute top-50 end-0 translate-middle-y me-3"
-                    onClick={toggleSidebarCollapse}
-                    style={{ 
-                        backgroundColor: 'rgba(255, 255, 255, 0.1)', 
-                        border: '1px solid rgba(255, 255, 255, 0.2)',
-                        color: 'white',
-                        width: '32px',
-                        height: '32px',
-                        borderRadius: '6px'
-                    }}
-                >
-                    <i className={`bi bi-chevron-left text-white transition-all ${isCollapsed ? 'rotate-180' : ''}`} style={{ fontSize: '10px' }}></i>
-                </button> */}
+        <button
+          id="kt_app_sidebar_toggle"
+          className="btn btn-icon btn-sm position-absolute top-50 end-0 translate-middle-y me-1"
+          onClick={toggleSidebarCollapse}
+          style={{
+            backgroundColor: "rgba(255, 255, 255, 0.1)",
+            border: "1px solid rgba(255, 255, 255, 0.2)",
+            color: "white",
+            width: "25px",
+            height: "25px",
+            borderRadius: "6px",
+          }}
+        >
+          <i
+            className={`bi bi-chevron-left text-white transition-all ${
+              isCollapsed ? "rotate-180" : ""
+            }`}
+            style={{ fontSize: "10px" }}
+          ></i>
+        </button>
       </div>
 
       <div className="app-sidebar-menu overflow-hidden flex-column-fluid">
@@ -194,7 +220,7 @@ const Sidebar = () => {
             </div>
 
             <div className="menu-item">
-              <NavLink to="/chat" className="menu-link">
+              <NavLink to="/lawyers" className="menu-link">
                 <span className="menu-icon">
                   <svg
                     width="20"
@@ -207,213 +233,73 @@ const Sidebar = () => {
                     strokeLinejoin="round"
                     className="fs-5"
                   >
-                    {/* Speech bubble with typing indicator */}
-                    <path d="M8 4h8a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H8l-4 4V6a2 2 0 0 1 2-2z" />
-                    <circle cx="9" cy="10" r="1" fill="currentColor" />
-                    <circle cx="12" cy="10" r="1" fill="currentColor" />
-                    <circle cx="15" cy="10" r="1" fill="currentColor" />
+                    {/* Person silhouette */}
+                    <circle cx="12" cy="7" r="2.5" fill="none" />
+                    <path d="M12 9.5v4" />
+                    <path d="M8 15l1 1" />
+                    <path d="M16 15l-1 1" />
+                    <path d="M9 16h6" />
+                    <path d="M9 16l-1 1" />
+                    <path d="M15 16l1 1" />
+                    <path d="M8 17h8" />
+                    {/* Scales of justice */}
+                    <path d="M6 4l-1 1" />
+                    <path d="M18 4l1 1" />
+                    <path d="M5 5h14" />
+                    <path d="M5 5l-1 1" />
+                    <path d="M19 5l1 1" />
+                    <path d="M4 6h2" />
+                    <path d="M18 6h2" />
+                    <path d="M5 7v1" />
+                    <path d="M19 7v1" />
+                    <path d="M4 8h2" />
+                    <path d="M18 8h2" />
                   </svg>
+                </span>
+                <span className="menu-title fs-6">Lawyers</span>
+              </NavLink>
+            </div>
+
+            <div className="menu-item">
+              <NavLink to="/chat" className="menu-link">
+                <span className="menu-icon">
+                  <i class="bi bi-chat-left-dots"></i>
                 </span>
                 <span className="menu-title fs-6">Chat</span>
               </NavLink>
             </div>
 
-            {/* <div className="menu-item">
-                            <NavLink  to="/posts" className="menu-link">
-                                <span className="menu-icon">
-                                    <i class="bi bi-file-post fs-5"></i>
-                                </span>
-                                <span className="menu-title fs-6">Posts Management</span>
-                            </NavLink >
-                        </div> */}
-
-            {/* <div className="menu-item">
-                            <NavLink  to="/transactions" className="menu-link">
-                                <span className="menu-icon">
-                                    <i className="bi bi-credit-card-fill fs-5"></i>
-                                </span>
-                                <span className="menu-title fs-6">Transactions Management</span>
-                            </NavLink >
-                        </div> */}
-
-            <div className="menu-item menu-accordion ">
-              <span
-                className="menu-link"
-                id="menuLink"
-                onClick={() => toggleDropdown("dataManagement")}
-              >
+            <div className="menu-item">
+              <NavLink to="/my-cases" className="menu-link">
                 <span className="menu-icon">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="fs-5"
-                  >
-                    {/* Briefcase */}
-                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
-                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-                    <rect x="10" y="7" width="4" height="2" rx="1" />
-                  </svg>
+                  <i class="bi bi-briefcase-fill"></i>
                 </span>
                 <span className="menu-title fs-6">My Cases</span>
-                {/* <span className="menu-arrow"></span> */}
-              </span>
-              {/* <div  className={`menu-sub menu-sub-accordion ${openDropdown === 'dataManagement' ? 'show' : ''}`}  >
-                              
-                                <div className="menu-item">
-                                    <NavLink  to="/business_types" className="menu-link">
-                                        <span className="menu-bullet">
-                                            <span className="bullet bullet-dot"></span>
-                                        </span>
-                                        <span className="menu-title fs-6"> Business Types</span>
-                                    </NavLink >
-                                </div>
-                                <div className="menu-item">
-                                    <NavLink  to="/services" className="menu-link">
-                                        <span className="menu-bullet">
-                                            <span className="bullet bullet-dot"></span>
-                                        </span>
-                                        <span className="menu-title fs-6"> Services</span>
-                                    </NavLink >
-                                </div>
-                                <div className="menu-item">
-                                    <NavLink  to="/skills" className="menu-link">
-                                        <span className="menu-bullet">
-                                            <span className="bullet bullet-dot"></span>
-                                        </span>
-                                        <span className="menu-title fs-6"> Skils</span>
-                                    </NavLink >
-                                </div>
-                                <div className="menu-item">
-                                    <NavLink  to="/settings" className="menu-link">
-                                        <span className="menu-bullet">
-                                            <span className="bullet bullet-dot"></span>
-                                        </span>
-                                        <span className="menu-title fs-6"> App Settings</span>
-                                    </NavLink >
-                                </div>
-                              
-                            </div> */}
+              </NavLink>
             </div>
 
             <div className="menu-item menu-accordion ">
-              <span
-                className="menu-link"
-                id="menuLink"
-                onClick={() => toggleDropdown("accessControl")}
-              >
+              <span className="menu-link" id="menuLink">
                 <span className="menu-icon">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="fs-5"
-                  >
-                    {/* Professional person with tie */}
-                    <circle cx="12" cy="7" r="2.5" />
-                    <path d="M12 9.5v4" />
-                    <path d="M8 15l1 1" />
-                    <path d="M16 15l-1 1" />
-                    <path d="M9 16h6" />
-                    <path d="M10 13h4" />
-                    <path d="M11 14h2" />
-                  </svg>
+                  <i class="bi bi-person-lines-fill"></i>
                 </span>
                 <span className="menu-title fs-6">Employees</span>
-                {/* <span className="menu-arrow"></span> */}
               </span>
-              {/* <div  className={`menu-sub menu-sub-accordion ${openDropdown === 'accessControl' ? 'show' : ''}`}  >
-                                <div className="menu-item">
-                                    <NavLink  to="/system-users" className="menu-link">
-                                        <span className="menu-bullet">
-                                            <span className="bullet bullet-dot"></span>
-                                        </span>
-                                        <span className="menu-title fs-6"> System Users</span>
-                                    </NavLink >
-                                </div>
-                                <div className="menu-item">
-                                    <NavLink  to="/roles" className="menu-link">
-                                        <span className="menu-bullet">
-                                            <span className="bullet bullet-dot"></span>
-                                        </span>
-                                        <span className="menu-title fs-6"> Roles</span>
-                                    </NavLink >
-                                </div>
-                            </div> */}
             </div>
 
             <div className="menu-item">
               <NavLink to="/account" className="menu-link">
                 <span className="menu-icon">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="fs-5"
-                  >
-                    {/* Document with checklist and checkmark */}
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                    <polyline points="14,2 14,8 20,8" />
-                    <line x1="9" y1="12" x2="15" y2="12" />
-                    <line x1="9" y1="16" x2="15" y2="16" />
-                    <line x1="9" y1="20" x2="15" y2="20" />
-                    <circle cx="18" cy="4" r="2" />
-                    <polyline points="17,4 18,5 19,4" />
-                  </svg>
+                  <i class="bi bi-file-earmark-text"></i>
                 </span>
                 <span className="menu-title fs-6">Terms of Use</span>
               </NavLink>
             </div>
 
             <div className="menu-item">
-              <span
-                className="menu-link"
-                //  onClick={logout}
-              >
+              <span className="menu-link">
                 <span className="menu-icon">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="fs-5"
-                  >
-                    {/* Headset with microphone */}
-                    <path d="M3 9v6a2 2 0 0 0 2 2h1" />
-                    <path d="M21 9v6a2 2 0 0 1-2 2h-1" />
-                    <path d="M7 9h10" />
-                    <path d="M7 9v6a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9" />
-                    <path d="M9 15h6" />
-                    <path d="M8 15v2" />
-                    <path d="M16 15v2" />
-                    <path d="M6 17h2" />
-                    <path d="M16 17h2" />
-                    <path d="M7 19h2" />
-                    <path d="M15 19h2" />
-                    <path d="M8 21h8" />
-                    {/* Microphone arm */}
-                    <path d="M6 13l-2 2" />
-                    <circle cx="4" cy="15" r="1" />
-                  </svg>
+                  <i class="bi bi-headset"></i>
                 </span>
                 <span className="menu-title fs-6">Help</span>
               </span>

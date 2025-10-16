@@ -229,10 +229,21 @@ const List = () => {
     }
   };
 
+  // Calculate unread counts for badges
+  const getUnreadChatsCount = () => {
+    return chatContacts.reduce((total, contact) => total + (contact.unread || 0), 0);
+  };
+
+  const getUnreadLawyersCount = () => {
+    const activeUnread = activeLawyers.reduce((total, lawyer) => total + (lawyer.unreadCount || 0), 0);
+    const inactiveUnread = inactiveLawyers.reduce((total, lawyer) => total + (lawyer.unreadCount || 0), 0);
+    return activeUnread + inactiveUnread;
+  };
+
   return (
     <div className="d-flex flex-column flex-column-fluid my-lawyers-page my-lawyers-main-container">
       <div id="kt_app_content" className="app-content flex-column-fluid pb-0">
-        <div id="kt_app_content_container" className="app-container container-xxl h-100 px-0">
+        <div id="kt_app_content_container" className="app-container container-xxl h-100 px-0 mx-0">
           <div className="row h-100 g-0">
             <div className="col-lg-4 col-md-5">
               <div className="d-flex flex-column h-100 my-lawyers-left-panel">
@@ -240,7 +251,7 @@ const List = () => {
                     <div className="py-4">
                       <div className="d-flex gap-2 my-lawyers-tabs-container">
                         <button
-                          className={`btn flex-fill ${
+                          className={`btn flex-fill d-flex align-items-center justify-content-center gap-2 ${
                             activeTab === "chats" 
                               ? "border-bottom-3px text-black rounded-0" 
                               : "text-black"
@@ -248,9 +259,14 @@ const List = () => {
                           onClick={() => setActiveTab("chats")}
                         >
                           Chats
+                          {getUnreadChatsCount() > 0 && (
+                            <span className="badge bg-black text-white rounded-pill">
+                              {getUnreadChatsCount()}
+                            </span>
+                          )}
                         </button>
                         <button
-                          className={`btn flex-fill ${
+                          className={`btn flex-fill d-flex align-items-center justify-content-center gap-2 ${
                             activeTab === "lawyers" 
                               ? "border-bottom-3px text-black rounded-0" 
                               : "text-black"
@@ -258,6 +274,11 @@ const List = () => {
                           onClick={() => setActiveTab("lawyers")}
                         >
                           Lawyers
+                          {getUnreadLawyersCount() > 0 && (
+                            <span className="badge bg-black text-white rounded-pill">
+                              {getUnreadLawyersCount()}
+                            </span>
+                          )}
                         </button>
                       </div>
                     </div>
@@ -290,14 +311,26 @@ const List = () => {
                   </div>
                 )}
 
+                {/* Search Bar for Chats Tab */}
+                {activeTab === "chats" && (
+                  <div className="p-4">
+                    <div className="position-relative">
+                      <input
+                        type="text"
+                        className="form-control form-control-lg rounded-pill my-lawyers-search-input"
+                        placeholder="Search"
+                      />
+                      <i className="bi bi-search position-absolute top-50 translate-middle-y text-muted fs-4 ms-4"></i>
+              </div>
+            </div>
+                )}
+
                 {/* Contact List */}
                 <div className={`flex-fill overflow-auto d-flex justify-content-start align-items-center flex-column ${activeTab === "chats" ? "my-lawyers-contact-list-chats" : "my-lawyers-contact-list"}`}>
                   {getCurrentData().map((item, index) => (
                     <div
                       key={item.id}
-                      className={`p-3 cursor-pointer mb-4 bg-white shadow my-lawyers-contact-card ${
-                        selectedContact?.id === item.id ? "shadow" : ""
-                      }`}
+                      className="p-3 cursor-pointer mb-3 bg-white my-lawyers-contact-card"
                       onClick={() => handleContactSelect(item)}
                     >
                       {activeTab === "lawyers" ? (
@@ -331,7 +364,7 @@ const List = () => {
                           </div>
                         </div>
                       ) : (
-                        // Chats Layout
+                        // Chats Layout - Clean minimalist design
                         <div className="d-flex align-items-center">
                           <div className="symbol symbol-40px me-3">
                             <img
@@ -343,16 +376,30 @@ const List = () => {
                           <div className="flex-fill my-lawyers-chat-flex-fill">
                             <div className="d-flex justify-content-between align-items-center mb-1">
                               <h6 className="mb-0 fw-bold text-dark text-truncate me-2 my-lawyers-name-truncate">{item.name}</h6>
-                              <div className="d-flex align-items-center gap-2">
-                                <small className="text-muted fs-8">{item.time}</small>
-                                {item.unread > 0 && (
-                                  <span className="badge bg-danger text-white rounded-pill my-lawyers-chat-unread-badge">
-                                    {item.unread}
-                                  </span>
-                                )}
-                              </div>
+                              <small className="text-muted fs-8">{item.time}</small>
                             </div>
-                            <p className="text-muted mb-0 fs-7 my-lawyers-message-text">{item.lastMessage}</p>
+                            <div className="d-flex justify-content-between align-items-center">
+                              <p className="text-muted mb-0 fs-7 my-lawyers-message-text flex-fill me-2" style={{
+                                overflow: "hidden",
+                                textOverflow: "ellipsis",
+                                whiteSpace: "nowrap",
+                                maxWidth: "calc(100% - 40px)"
+                              }}>{item.lastMessage}</p>
+                              {item.unread > 0 && (
+                                <span className={`badge text-white rounded-pill my-lawyers-chat-unread-badge ${
+                                  item.unread === 3 ? "bg-success" : "bg-black"
+                                }`} style={{
+                                  minWidth: "20px",
+                                  height: "20px",
+                                  fontSize: "0.7rem",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "center"
+                                }}>
+                                  {item.unread}
+                                </span>
+                              )}
+                            </div>
                           </div>
                         </div>
                       )}
@@ -405,8 +452,8 @@ const List = () => {
                           className={`d-flex ${message.isFromUser ? "justify-content-end" : "justify-content-start"}`}
                         >
                           <div className={`d-flex align-items-end ${message.isFromUser ? "flex-row-reverse" : ""}`}>
-                            <div className="symbol symbol-30px me-2">
-                              <div className="symbol-label bg-warning text-white rounded-circle">
+                            <div className="symbol symbol-30px mx-2">
+                              <div className="symbol-label bg-black text-white rounded-circle">
                                 <img src={circle} alt="avatar" className="rounded-circle my-lawyers-avatar-30" />
                               </div>
                             </div>

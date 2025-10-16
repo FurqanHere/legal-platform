@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Loader from "../../components/Loader"; 
-import Paginator from "../../components/Paginator"; 
 import ApiService from "../../services/ApiService";
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
@@ -219,14 +218,14 @@ const List = () => {
                                         <Loader text="Loading" size="30" className="text-center"  />
                                     )}
 
-                                    {pagination.total_pages > 1 && (
+                                    {/* {pagination.total_pages > 1 && (
                                         <Paginator
                                             page={pagination.current_page}
                                             rows={pagination.per_page}
                                             totalRecords={pagination.total_records}
                                             onPageChange={handlePageChange}
                                         />
-                                    )}
+                                    )} */}
                                 </div>
                             </div>
                         </div>

@@ -15,7 +15,7 @@ const List = () => {
       date: "Jan 05 - 2025 - 10:25 AM",
       views: 260,
       answers: 60,
-      isHighlighted: true, // First card highlighted (black background)
+      isHighlighted: true,
     },
     {
       id: 2,
@@ -361,7 +361,7 @@ const List = () => {
                         <small className="text-muted d-block mb-2">
                           {lawyer.time}
                         </small>
-                        <NavLink to="/messages">
+                        <NavLink to="/chat">
                           <button
                             className="btn btn-outline-dark bg-dark p-5 rounded-pill text-white btn-sm rounded-circle d-flex justify-content-center align-items-center"
                             style={{
@@ -384,7 +384,7 @@ const List = () => {
               </div>
             </div>
           </div>
-                    </div>
+        </div>
       )}
 
       {/* Post Question Offcanvas */}
@@ -394,39 +394,52 @@ const List = () => {
           tabIndex="-1"
           style={{
             visibility: "visible",
-            width: "515px",
+            width: "633px",
             right: "0",
             transition: "all 0.3s ease",
-            borderRadius: "30px",
+            borderRadius: "13px",
             margin: "20px",
           }}
         >
           <div className="offcanvas-header border-bottom">
             <div className="d-flex justify-content-between align-items-center w-100">
               <h5 className="mb-0 fw-bold">Post Question</h5>
-                      <button
-                        type="button"
+              <button
+                type="button"
                 className="btn-close"
                 onClick={() => setShowPostQuestion(false)}
               ></button>
-                    </div>
-                  </div>
+            </div>
+          </div>
 
           <div className="offcanvas-body p-4">
             {/* Question Input */}
-            <div className="mb-4">
+            <div className="mb-3">
               <textarea
                 className="form-control"
-                rows="4"
                 placeholder="Explain Your Question"
-                style={{ resize: "none" }}
+                style={{
+                  resize: "none",
+                  width: "606px",
+                  height: "217px",
+                  border: "1px solid #C9C9C9",
+                  borderRadius: "8px",
+                }}
               ></textarea>
             </div>
 
             {/* Jurisdiction Dropdown */}
-            <div className="mb-4">
+            <div className="mb-3">
               <div className="position-relative">
-                <select className="form-select">
+                <select
+                  className="form-select"
+                  style={{
+                    width: "606px",
+                    height: "79px",
+                    border: "1px solid #C9C9C9",
+                    borderRadius: "8px",
+                  }}
+                >
                   <option>Jurisdiction</option>
                   <option>United States</option>
                   <option>United Kingdom</option>
@@ -438,13 +451,18 @@ const List = () => {
             </div>
 
             {/* File Upload */}
-            <div className="mb-4">
+            <div className="mb-3">
               <div
-                className="d-flex align-items-center justify-content-start border border-2 border-dashed rounded p-4 text-center"
-                style={{ border: "1.5px solid #C9C9C9" }}
+                className="d-flex align-items-center justify-content-start border border-2 border-dashed rounded"
+                style={{
+                  border: "1.5px dashed #C9C9C9",
+                  width: "606px",
+                  height: "80px",
+                  borderRadius: "8px",
+                }}
               >
                 <div
-                  className="p-3 me-3 rounded-1"
+                  className="p-3 mx-3 rounded-1"
                   style={{
                     backgroundColor: "#FDFDFD",
                     border: "1px dashed #BEBEBE",
@@ -464,9 +482,9 @@ const List = () => {
             </div>
 
             {/* How it works Section */}
-            <div className="mb-4">
-              <h6 className="fw-bold mb-3">How it works</h6>
-              <div className="d-flex align-items-start gap-3 my-4">
+            <div className="mb-3">
+              <h6 className="fw-bold mb-2">How it works</h6>
+              <div className="d-flex align-items-start gap-5 my-5">
                 <i
                   className="bi bi-moon-fill text-black"
                   style={{
@@ -478,7 +496,7 @@ const List = () => {
                   Ask your question and see the answer in Questions & Answers.
                 </small>
               </div>
-              <div className="d-flex align-items-start gap-3">
+              <div className="d-flex align-items-start gap-5 my-5">
                 <i
                   className="bi bi-moon-fill text-black"
                   style={{
@@ -493,13 +511,24 @@ const List = () => {
             </div>
 
             {/* Post Question Fee */}
-            <div className="mb-4 rounded-4" style={{ border: "1px solid #D3D3D3" }}>
-              <div className="d-flex justify-content-between align-items-center p-3 rounded">
-                <div>
+            <div
+              className="mb-3 rounded-4"
+              style={{
+                border: "1px solid #D3D3D3",
+                width: "606px",
+                height: "92px",
+                borderRadius: "8px",
+              }}
+            >
+              <div className="d-flex justify-content-between align-items-center h-100 rounded">
+                <div className="p-3">
                   <h6 className="fw-bold mb-1">Post Question Fee</h6>
                   <small className="text-muted">1 Question post only</small>
                 </div>
-                <div className="text-end px-5 py-4" style={{ borderLeft: "1px solid #D3D3D3" }}>
+                <div
+                  className="text-end px-4 h-100 d-flex flex-column justify-content-center"
+                  style={{ borderLeft: "1px solid #D3D3D3" }}
+                >
                   <div className="fw-bold">USD</div>
                   <div className="fw-bold fs-5">1.00</div>
                 </div>
@@ -507,7 +536,17 @@ const List = () => {
             </div>
 
             {/* Submit Button */}
-            <button className="btn text-white rounded-pill w-100" style={{ height: "55px", fontSize: "18px", fontWeight: "500", backgroundColor: "#474747" }}>
+            <button
+              className="btn text-white rounded-pill"
+              style={{
+                height: "63px",
+                fontSize: "20px",
+                fontWeight: "500",
+                backgroundColor: "#474747",
+                width: "606px",
+                marginTop: "25px",
+              }}
+            >
               Post Your Legal Issues
             </button>
           </div>

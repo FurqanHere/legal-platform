@@ -1,112 +1,211 @@
 import React, { useState } from "react";
-import circle from "../../assets/images/yellow-circle.png";
 import notificationProfile from "../../assets/images/notification-profile.png";
+import circle from "../../assets/images/yellow-circle.png";
 
 const List = () => {
+  const [activeTab, setActiveTab] = useState("chats");
+  const [activeSubTab, setActiveSubTab] = useState("active");
   const [selectedContact, setSelectedContact] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
   const [newMessage, setNewMessage] = useState("");
 
-  // Sample contacts data
-  const contacts = [
+  // Sample lawyers data - Active Lawyers
+  const activeLawyers = [
     {
       id: 1,
-      name: "Oliva Lyons",
-      lastMessage: "I will share today all documents.",
-      time: "04:52 PM",
-      unread: 0,
+      name: "Shamra Joseph",
+      title: "Corporate lawyer",
+      status: "Active",
       avatar: notificationProfile,
+      specializations: "Criminal Law, Tax Law+",
+      renewalDate: "Renew 21 September",
+      price: "1.99 USD",
+      unreadCount: 0,
     },
     {
       id: 2,
-      name: "Jackline Dim",
-      lastMessage: "Lorem ipsum dolor sit amet consec.",
-      time: "04:52 PM",
-      unread: 3,
+      name: "Joseph Dan",
+      title: "Corporate lawyer",
+      status: "Active",
       avatar: notificationProfile,
+      specializations: "Criminal Law, Tax Law+",
+      renewalDate: "Renew 21 September",
+      price: "1.99 USD",
+      unreadCount: 0,
     },
     {
       id: 3,
-      name: "Maxwell Clarck",
-      lastMessage: "Ok thanks bro.",
-      time: "04:52 PM",
-      unread: 3,
+      name: "Dan Smith",
+      title: "Corporate lawyer",
+      status: "Active",
       avatar: notificationProfile,
+      specializations: "Criminal Law, Tax Law+",
+      renewalDate: "Renew 21 September",
+      price: "1.99 USD",
+      unreadCount: 3,
     },
     {
       id: 4,
-      name: "Sarah Johnson",
-      lastMessage: "The contract review is complete. Please check your email.",
-      time: "01:45 PM",
-      unread: 1,
+      name: "Sarah Mitchell",
+      title: "Family Law Attorney",
+      status: "Active",
       avatar: notificationProfile,
+      specializations: "Family Law, Divorce Law+",
+      renewalDate: "Renew 15 October",
+      price: "2.25 USD",
+      unreadCount: 1,
     },
     {
       id: 5,
-      name: "Michael Chen",
-      lastMessage: "I've prepared the legal brief for tomorrow's meeting.",
-      time: "12:20 PM",
-      unread: 0,
+      name: "Robert Johnson",
+      title: "Real Estate Lawyer",
+      status: "Active",
       avatar: notificationProfile,
+      specializations: "Real Estate Law, Property Law+",
+      renewalDate: "Renew 28 October",
+      price: "1.85 USD",
+      unreadCount: 0,
+    }
+  ];
+
+  // Sample lawyers data - Inactive Lawyers
+  const inactiveLawyers = [
+    {
+      id: 7,
+      name: "David Brown",
+      title: "Tax Attorney",
+      status: "Inactive",
+      avatar: notificationProfile,
+      specializations: "Tax Law, Corporate Law+",
+      renewalDate: "Expired 15 October",
+      price: "2.50 USD",
+      unreadCount: 0,
     },
     {
-      id: 6,
-      name: "Emily Rodriguez",
-      lastMessage: "The court documents have been filed successfully.",
-      time: "11:30 AM",
+      id: 8,
+      name: "Lisa Davis",
+      title: "Real Estate Lawyer",
+      status: "Inactive",
+      avatar: notificationProfile,
+      specializations: "Real Estate Law, Property Law+",
+      renewalDate: "Expired 10 November",
+      price: "1.75 USD",
+      unreadCount: 1,
+    },
+    {
+      id: 9,
+      name: "John Smith",
+      title: "Criminal Defense",
+      status: "Inactive",
+      avatar: notificationProfile,
+      specializations: "Criminal Law, Defense Law+",
+      renewalDate: "Expired 5 December",
+      price: "3.00 USD",
+      unreadCount: 0,
+    },
+    {
+      id: 10,
+      name: "Maria Rodriguez",
+      title: "Immigration Lawyer",
+      status: "Inactive",
+      avatar: notificationProfile,
+      specializations: "Immigration Law, Visa Law+",
+      renewalDate: "Expired 20 November",
+      price: "2.75 USD",
+      unreadCount: 0,
+    },
+    {
+      id: 11,
+      name: "James Wilson",
+      title: "Personal Injury Attorney",
+      status: "Inactive",
+      avatar: notificationProfile,
+      specializations: "Personal Injury Law, Tort Law+",
+      renewalDate: "Expired 12 December",
+      price: "2.15 USD",
+      unreadCount: 2,
+    }
+  ];
+
+  // Sample chat contacts
+  const chatContacts = [
+    {
+      id: 1,
+      name: "Emily Chen",
+      lastMessage: "I've reviewed your case documents. Let's discuss the strategy.",
+      time: "2:30 PM",
       unread: 2,
       avatar: notificationProfile,
     },
     {
-      id: 7,
-      name: "David Thompson",
-      lastMessage: "We need to discuss the settlement terms.",
-      time: "10:15 AM",
+      id: 2,
+      name: "Robert Martinez",
+      lastMessage: "The contract amendments are ready for your review.",
+      time: "1:15 PM",
       unread: 0,
       avatar: notificationProfile,
     },
     {
-      id: 8,
-      name: "Lisa Anderson",
-      lastMessage: "The property transfer documents are ready for signature.",
-      time: "09:45 AM",
+      id: 3,
+      name: "Jennifer Lee",
+      lastMessage: "We need to schedule a consultation for next week.",
+      time: "11:45 AM",
       unread: 1,
       avatar: notificationProfile,
     },
     {
-      id: 9,
-      name: "Robert Wilson",
-      lastMessage: "I'll send you the updated case files by this afternoon.",
-      time: "09:00 AM",
+      id: 4,
+      name: "Alex Thompson",
+      lastMessage: "I'll send you the updated legal brief by tomorrow.",
+      time: "10:20 AM",
       unread: 0,
       avatar: notificationProfile,
     },
+    {
+      id: 5,
+      name: "Sarah Williams",
+      lastMessage: "The court hearing has been rescheduled to next Friday.",
+      time: "09:30 AM",
+      unread: 1,
+      avatar: notificationProfile,
+    },
+    {
+      id: 6,
+      name: "Michael Brown",
+      lastMessage: "I've prepared the settlement agreement for your review.",
+      time: "08:45 AM",
+      unread: 0,
+      avatar: notificationProfile,
+    },
+    {
+      id: 7,
+      name: "Lisa Garcia",
+      lastMessage: "The property documents are ready for signature.",
+      time: "08:15 AM",
+      unread: 2,
+      avatar: notificationProfile,
+    },
+    {
+      id: 8,
+      name: "David Wilson",
+      lastMessage: "We need to discuss the tax implications of this deal.",
+      time: "07:30 AM",
+      unread: 0,
+      avatar: notificationProfile,
+    }
   ];
 
-  // Sample messages for the selected contact
+  // Sample messages
   const messages = [
     {
       id: 1,
-      text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo.",
-      time: "02:14 PM",
+      text: "I will review the contract and get back to you with my analysis.",
+      time: "10:30 AM",
       isFromUser: false,
     },
     {
       id: 2,
-      text: "accusantium doloremque laudantium, totam.",
-      time: "02:14 PM",
-      isFromUser: false,
-    },
-    {
-      id: 3,
-      text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo.",
-      time: "02:14 PM",
-      isFromUser: true,
-    },
-    {
-      id: 4,
-      text: "accusantium doloremque laudantium, totam.",
-      time: "02:14 PM",
+      text: "Thank you for the quick response. I'll wait for your feedback.",
+      time: "10:32 AM",
       isFromUser: true,
     },
   ];
@@ -117,113 +216,219 @@ const List = () => {
 
   const handleSendMessage = () => {
     if (newMessage.trim()) {
-      // Here you would typically send the message to your backend
       console.log("Sending message:", newMessage);
       setNewMessage("");
     }
   };
 
-  const filteredContacts = contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const getCurrentData = () => {
+    if (activeTab === "lawyers") {
+      return activeSubTab === "active" ? activeLawyers : inactiveLawyers;
+      } else {
+      return chatContacts;
+    }
+  };
+
+  // Calculate unread counts for badges
+  const getUnreadChatsCount = () => {
+    return chatContacts.reduce((total, contact) => total + (contact.unread || 0), 0);
+  };
+
+  const getUnreadLawyersCount = () => {
+    const activeUnread = activeLawyers.reduce((total, lawyer) => total + (lawyer.unreadCount || 0), 0);
+    const inactiveUnread = inactiveLawyers.reduce((total, lawyer) => total + (lawyer.unreadCount || 0), 0);
+    return activeUnread + inactiveUnread;
+  };
 
   return (
-    <div className="d-flex flex-column flex-column-fluid chat-list-main-container chat-page">
+    <div className="d-flex flex-column flex-column-fluid my-lawyers-page my-lawyers-main-container">
       <div id="kt_app_content" className="app-content flex-column-fluid pb-0">
-        <div
-          id="kt_app_content_container"
-          className="app-container container-xxl h-100 px-0"
-        >
+        <div id="kt_app_content_container" className="app-container container-xxl h-100 px-0 mx-0">
           <div className="row h-100 g-0">
             <div className="col-lg-4 col-md-5">
-              <div className="d-flex flex-column h-100 chat-list-left-panel">
-                {/* Search Bar */}
-                <div className="p-4">
-                  <div className="position-relative">
-                    <input
-                      type="text"
-                      className="form-control form-control-lg rounded-pill chat-list-search-input"
-                      placeholder="Search"
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                    />
-                    <i className="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-gray-600"></i>
+              <div className="d-flex flex-column h-100 my-lawyers-left-panel">
+                    {/* Main Tabs */}
+                    <div className="py-4">
+                      <div className="d-flex gap-2 my-lawyers-tabs-container">
+                        <button
+                          className={`btn flex-fill d-flex align-items-center justify-content-center gap-2 ${
+                            activeTab === "chats" 
+                              ? "border-bottom-3px text-black rounded-0" 
+                              : "text-black"
+                          }`}
+                          onClick={() => setActiveTab("chats")}
+                        >
+                          Chats
+                          {getUnreadChatsCount() > 0 && (
+                            <span className="badge bg-black text-white rounded-pill">
+                              {getUnreadChatsCount()}
+                            </span>
+                          )}
+                        </button>
+                        <button
+                          className={`btn flex-fill d-flex align-items-center justify-content-center gap-2 ${
+                            activeTab === "lawyers" 
+                              ? "border-bottom-3px text-black rounded-0" 
+                              : "text-black"
+                          }`}
+                          onClick={() => setActiveTab("lawyers")}
+                        >
+                          Lawyers
+                          {getUnreadLawyersCount() > 0 && (
+                            <span className="badge bg-black text-white rounded-pill">
+                              {getUnreadLawyersCount()}
+                            </span>
+                          )}
+                        </button>
+                      </div>
+                    </div>
+
+                {/* Sub Tabs (only for Lawyers tab) */}
+                {activeTab === "lawyers" && (
+                  <div className="px-4 pb-3">
+                    <div className="d-flex gap-2">
+                      <button
+                        className={`btn flex-fill ${
+                          activeSubTab === "active" 
+                            ? "bg-black text-white" 
+                            : "btn-light text-black"
+                        }`}
+                        onClick={() => setActiveSubTab("active")}
+                      >
+                        Active Lawyers
+                      </button>
+                      <button
+                        className={`btn flex-fill ${
+                          activeSubTab === "inactive" 
+                            ? "bg-black text-white" 
+                            : "btn-light text-black"
+                        }`}
+                        onClick={() => setActiveSubTab("inactive")}
+                      >
+                        Inactive Lawyers
+                      </button>
+                    </div>
                   </div>
-                </div>
+                )}
+
+                {/* Search Bar for Chats Tab */}
+                {activeTab === "chats" && (
+                  <div className="p-4">
+                    <div className="position-relative">
+                      <input
+                        type="text"
+                        className="form-control form-control-lg rounded-pill my-lawyers-search-input"
+                        placeholder="Search"
+                      />
+                      <i className="bi bi-search position-absolute top-50 translate-middle-y text-muted fs-4 ms-4"></i>
+              </div>
+            </div>
+                )}
 
                 {/* Contact List */}
-                <div className="flex-fill overflow-auto">
-                  {filteredContacts.map((contact) => (
+                <div className={`flex-fill overflow-auto d-flex justify-content-start align-items-center flex-column ${activeTab === "chats" ? "my-lawyers-contact-list-chats" : "my-lawyers-contact-list"}`}>
+                  {getCurrentData().map((item, index) => (
                     <div
-                      key={contact.id}
-                      className={`p-3 mb-3 cursor-pointer chat-list-contact-item bg-white ${
-                        selectedContact?.id === contact.id
-                          ? "shadow"
-                          : ""
-                      }`}
-                      onClick={() => handleContactSelect(contact)}
+                      key={item.id}
+                      className="p-3 cursor-pointer mb-3 bg-white my-lawyers-contact-card"
+                      onClick={() => handleContactSelect(item)}
                     >
-                      <div className="d-flex align-items-center">
-                        <div className="symbol symbol-40px me-3">
-                          <img
-                            src={contact.avatar}
-                            alt={contact.name}
-                            className="rounded-circle chat-list-avatar"
-                          />
-                        </div>
-                        <div className="flex-fill">
-                          <div className="d-flex justify-content-between align-items-center mb-1">
-                            <h6 className="mb-0 fw-bold text-dark">
-                              {contact.name}
-                            </h6>
-                            <span className="text-muted fs-7">
-                              {contact.time}
-                            </span>
+                      {activeTab === "lawyers" ? (
+                        // Lawyers Layout
+                        <div className="d-flex align-items-center justify-content-between">
+                          <div className="d-flex align-items-center flex-fill">
+                                <div className="symbol symbol-40px me-3">
+                              <img
+                                src={item.avatar}
+                                alt={item.name}
+                                className="rounded-circle my-lawyers-avatar-40"
+                              />
+                                  </div>
+                            <div className="flex-fill">
+                              <h6 className="mb-1 fw-bold text-dark">{item.name}</h6>
+                              <p className="text-muted mb-1 fs-7">{item.title}</p>
+                              <p className="text-muted mb-2 fs-8">{item.specializations}</p>
+                              <div className="d-flex justify-content-between align-items-center">
+                                <small className="text-muted">{item.renewalDate}</small>
+                                <div className="d-flex align-items-center gap-2">
+                                  <span className="fw-bold text-dark">{item.price}</span>
+                                  {item.unreadCount > 0 && (
+                                    <span className="badge bg-dark text-white rounded-circle my-lawyers-unread-badge">
+                                      {item.unreadCount}
+                                    </span>
+                                  )}
+                                  <i className="bi bi-chevron-right text-muted"></i>
+                                </div>
+                              </div>
+                            </div>
                           </div>
-                          <p className="text-muted mb-0 fs-7 text-truncate">
-                            {contact.lastMessage}
-                          </p>
                         </div>
-                        {contact.unread > 0 && (
-                          <div className="ms-2">
-                            <span
-                              className={`badge rounded-pill ${
-                                contact.unread === 3
-                                  ? "bg-success"
-                                  : "bg-danger"
-                              } text-white`}
-                            >
-                              {contact.unread}
-                            </span>
+                      ) : (
+                        // Chats Layout - Clean minimalist design
+                        <div className="d-flex align-items-center">
+                          <div className="symbol symbol-40px me-3">
+                            <img
+                              src={item.avatar}
+                              alt={item.name}
+                              className="rounded-circle my-lawyers-avatar-40"
+                            />
                           </div>
-                        )}
-                      </div>
+                          <div className="flex-fill my-lawyers-chat-flex-fill">
+                            <div className="d-flex justify-content-between align-items-center mb-1">
+                              <h6 className="mb-0 fw-bold text-dark text-truncate me-2 my-lawyers-name-truncate">{item.name}</h6>
+                              <small className="text-muted fs-8">{item.time}</small>
+                            </div>
+                            <div className="d-flex justify-content-between align-items-center">
+                              <p className="text-muted mb-0 fs-7 my-lawyers-message-text flex-fill me-2" style={{
+                                overflow: "hidden",
+                                textOverflow: "ellipsis",
+                                whiteSpace: "nowrap",
+                                maxWidth: "calc(100% - 40px)"
+                              }}>{item.lastMessage}</p>
+                              {item.unread > 0 && (
+                                <span className={`badge text-white rounded-pill my-lawyers-chat-unread-badge ${
+                                  item.unread === 3 ? "bg-success" : "bg-black"
+                                }`} style={{
+                                  minWidth: "20px",
+                                  height: "20px",
+                                  fontSize: "0.7rem",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "center"
+                                }}>
+                                  {item.unread}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
               </div>
             </div>
 
-            <div className="col-lg-8 col-md-7 d-flex flex-column" style={{ height: "87.9vh", backgroundColor: "#f8f9fa" }}>
+            {/* Right Panel - Chat Interface (70% width) */}
+            <div className="col-lg-8 col-md-7 d-flex flex-column my-lawyers-right-panel">
               {selectedContact ? (
+                // Chat Interface - Always show chat when contact is selected
                 <>
                   {/* Conversation Header */}
-                  <div className="p-4 bg-white chat-list-conversation-header">
+                  <div className="p-4 bg-white my-lawyers-conversation-header">
                     <div className="d-flex justify-content-between align-items-center">
                       <div className="d-flex align-items-center">
                         <div className="symbol symbol-40px me-3">
                           <img
                             src={selectedContact.avatar}
                             alt={selectedContact.name}
-                            className="rounded-circle chat-list-avatar"
+                            className="rounded-circle my-lawyers-avatar-40"
                           />
                         </div>
                         <div>
-                          <h6 className="mb-0 fw-bold text-dark">
-                            {selectedContact.name}
-                          </h6>
+                          <h6 className="mb-0 fw-bold text-dark">{selectedContact.name}</h6>
                           <small className="text-muted">
-                            maxwell@clarcklawyer.com
+                            {activeTab === "chats" ? "Lawyer" : `${selectedContact.title || "Lawyer"}`}
                           </small>
                         </div>
                       </div>
@@ -239,46 +444,30 @@ const List = () => {
                   </div>
 
                   {/* Messages Area */}
-                  <div className="flex-fill p-4 overflow-auto chat-list-messages-area">
+                  <div className="flex-fill p-4 overflow-auto my-lawyers-messages-area">
                     <div className="d-flex flex-column gap-3">
                       {messages.map((message) => (
                         <div
                           key={message.id}
-                          className={`d-flex ${
-                            message.isFromUser
-                              ? "justify-content-end"
-                              : "justify-content-start"
-                          }`}
+                          className={`d-flex ${message.isFromUser ? "justify-content-end" : "justify-content-start"}`}
                         >
-                          <div
-                            className={`d-flex align-items-end ${
-                              message.isFromUser ? "flex-row-reverse" : ""
-                            }`}
-                          >
-                            <div className="symbol symbol-30px mx-3">
-                              <div className="symbol-label text-white rounded-circle">
-                                <img
-                                  src={circle}
-                                  alt="avatar"
-                                  className="rounded-circle w-30px h-30px"
-                                />
+                          <div className={`d-flex align-items-end ${message.isFromUser ? "flex-row-reverse" : ""}`}>
+                            <div className="symbol symbol-30px me-2">
+                              <div className="symbol-label bg-black text-white rounded-circle">
+                                <img src={circle} alt="avatar" className="rounded-circle my-lawyers-avatar-30" />
                               </div>
                             </div>
                             <div
-                              className={`p-3 rounded-4 chat-list-message-bubble ${
+                              className={`p-3 rounded-3 my-lawyers-message-bubble ${
                                 message.isFromUser
-                                  ? "bg-dark text-white chat-list-message-bubble-user"
-                                  : "bg-white text-dark chat-list-message-bubble-sender"
+                                  ? "bg-dark text-white"
+                                  : "bg-white text-dark"
                               }`}
                             >
                               <p className="mb-0">{message.text}</p>
-                              <small
-                                className={`${
-                                  message.isFromUser
-                                    ? "text-white-50"
-                                    : "text-muted"
-                                }`}
-                              >
+                              <small className={`${
+                                message.isFromUser ? "text-white-50" : "text-muted"
+                              }`}>
                                 {message.time}
                               </small>
                             </div>
@@ -289,7 +478,7 @@ const List = () => {
                   </div>
 
                   {/* Message Input */}
-                  <div className="p-4 border-top bg-white shadow rounded-3 mb-5 mx-5">
+                  <div className="p-4 border-top bg-white rounded-3 shadow mx-5 my-lawyers-message-input">
                     <div className="d-flex align-items-center gap-3">
                       <div className="flex-fill">
                         <input
@@ -298,16 +487,14 @@ const List = () => {
                           placeholder="Write a Messages..."
                           value={newMessage}
                           onChange={(e) => setNewMessage(e.target.value)}
-                          onKeyPress={(e) =>
-                            e.key === "Enter" && handleSendMessage()
-                          }
+                          onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
                         />
                       </div>
                       <button className="btn btn-sm">
                         <i className="bi bi-paperclip"></i>
                       </button>
                       <button
-                        className="btn btn-dark rounded-circle d-flex justify-content-center align-items-center chat-list-send-button"
+                        className="btn btn-dark rounded-circle d-flex justify-content-center align-items-center my-lawyers-send-button"
                         onClick={handleSendMessage}
                       >
                         <i className="bi bi-send-fill text-white"></i>
@@ -318,10 +505,8 @@ const List = () => {
               ) : (
                 <div className="d-flex align-items-center justify-content-center h-100">
                   <div className="text-center">
-                    <i className="bi bi-chat-dots text-muted chat-list-empty-state-icon"></i>
-                    <h5 className="text-muted mt-3">
-                      Select a conversation to start chatting
-                    </h5>
+                    <i className="bi bi-chat-dots text-muted my-lawyers-empty-state-icon"></i>
+                    <h5 className="text-muted mt-3">Select a contact to start chatting</h5>
                   </div>
                 </div>
               )}

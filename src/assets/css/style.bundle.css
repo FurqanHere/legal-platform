@@ -57240,6 +57240,80 @@ body {
         padding-left: 0 !important;
         padding-right: 0 !important
     }
+
+    /* Dynamic width adjustment when sidebar is collapsed */
+    body.sidebar-collapsed {
+        --kt-app-sidebar-width: 120px !important;
+    }
+    
+    body.sidebar-collapsed .app-content {
+        margin-left: 0px !important;
+        /* width: calc(100% - 120px) !important; */
+        transition: all 0.3s ease;
+    }
+
+    /* When sidebar is NOT collapsed - ensure proper margin */
+    body:not(.sidebar-collapsed) {
+        --kt-app-sidebar-width: 265px !important;
+    }
+    
+    body:not(.sidebar-collapsed) .app-content {
+        margin-left: 0px !important;
+        /* width: calc(100% - 265px) !important; */
+        transition: all 0.3s ease;
+    }
+
+    /* Ensure smooth transitions for all content areas */
+    .app-content,
+    .app-content .row,
+    .app-content .col-lg-4,
+    .app-content .col-lg-8,
+    .app-content .col-md-4,
+    .app-content .col-md-8 {
+        transition: all 0.3s ease;
+    }
+
+    /* Additional rules to ensure proper spacing */
+    body.sidebar-collapsed .app-content .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    body:not(.sidebar-collapsed) .app-content .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    /* Ensure sidebar uses correct width */
+    body.sidebar-collapsed .app-sidebar {
+        width: 120px !important;
+    }
+
+    body:not(.sidebar-collapsed) .app-sidebar {
+        width: 265px !important;
+    }
+
+    /* My Lawyers Chat Search Input */
+    .my-lawyers-search-input {
+        border: 1px solid #e9ecef;
+        background-color: #f8f9fa;
+        padding-left: 45px;
+        font-size: 0.9rem;
+        border-radius: 25px;
+        height: 45px;
+    }
+
+    .my-lawyers-search-input:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+        background-color: white;
+    }
+
+    /* Remove border from chat tab contact cards */
+    .my-lawyers-contact-list-chats .my-lawyers-contact-card {
+        border: none !important;
+        box-shadow: none !important;
+    }
 }
 
 @media (max-width:991.98px) {
@@ -61058,7 +61132,7 @@ input[type="number"] {
 
 /* Sidebar Collapse Styles */
 .app-sidebar.collapsed {
-  width: 130px !important;
+  width: 120px !important;
 }
 
 .app-sidebar.collapsed .app-sidebar-logo {
@@ -61104,18 +61178,7 @@ input[type="number"] {
   transform: rotate(180deg);
 }
 
-/* Main content area adjustment for sidebar collapse */
-.app-content {
-  transition: margin-left 0.3s ease, width 0.3s ease;
-}
-
-.app-sidebar.collapsed ~ .app-content {
-  margin-left: 130px !important;
-}
-
-.app-sidebar:not(.collapsed) ~ .app-content {
-  margin-left: 265px !important;
-}
+/* Removed conflicting CSS rules - now handled by body class approach */
 
 /* Ensure smooth transition for main content */
 .header-main {

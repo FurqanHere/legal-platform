@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import ApiService from "../../services/ApiService";
 import Loader from "../../components/Loader";
-import Paginator from "../../components/Paginator";
 
 const WebsiteList = () => {
   const navigate = useNavigate();
@@ -274,7 +273,7 @@ const WebsiteList = () => {
               </div>
             )}
 
-            {pagination.totalPages > 1 && (
+            {/* {pagination.totalPages > 1 && (
               <div className="d-flex flex-stack flex-wrap pt-10">
                 <div className="fs-6 fw-bold text-gray-700">
                   Showing {((pagination.currentPage - 1) * pagination.itemsPerPage) + 1} to{" "}
@@ -287,7 +286,7 @@ const WebsiteList = () => {
                   onPageChange={handlePageChange}
                 />
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </div>
