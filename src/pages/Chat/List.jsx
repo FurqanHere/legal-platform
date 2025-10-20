@@ -241,7 +241,7 @@ const List = () => {
   };
 
   return (
-    <div className="d-flex flex-column flex-column-fluid my-lawyers-page my-lawyers-main-container">
+    <div className="d-flex flex-column flex-column-fluid my-lawyers-page my-lawyers-main-container dashboard--inter-font">
       <div id="kt_app_content" className="app-content flex-column-fluid pb-0">
         <div id="kt_app_content_container" className="app-container container-xxl h-100 px-0 mx-0">
           <div className="row h-100 g-0">

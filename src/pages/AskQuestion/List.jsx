@@ -124,7 +124,7 @@ const List = () => {
 
   return (
     <div
-      className="d-flex flex-column flex-column-fluid"
+      className="d-flex flex-column flex-column-fluid ask-question--mukta-font"
       style={{ marginTop: "20px" }}
     >
       <div className="app-content flex-column-fluid">
@@ -166,7 +166,7 @@ const List = () => {
         </div>
 
         {/* Questions Grid */}
-        <div className="app-container container-xxl">
+        <div className="app-container container-xxl px-0">
           <div className="row g-4">
             {questions.map((question) => (
               <div key={question.id} className="col-lg-4 col-md-6">
