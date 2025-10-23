@@ -60,7 +60,10 @@ const Details = () => {
   return (
     <div className="container-fluid case-details--mukta-font">
       {/* Search and Filter Section */}
-      <div className="row mb-4 bg-white px-4 py-5 case-details-search-section">
+      <div 
+        className="row mb-4 bg-white px-4 py-5 case-details-search-section"
+        data-aos="fade-up"
+      >
         <div className="col-12 px-0">
           <div className="d-flex gap-3 align-items-center">
             {/* Search Bar */}
@@ -70,7 +73,7 @@ const Details = () => {
             >
               <input
                 type="text"
-                className="form-control form-control-lg rounded-pill case-details-search-input"
+                className="form-control form-control-lg rounded-pill case-details-search-input portal-form-hover"
                 placeholder="Search"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -79,16 +82,16 @@ const Details = () => {
             </div>
 
             {/* Filter Button */}
-            <button
-              className="btn btn-outline-secondary rounded-pill d-flex align-items-center gap-2 case-details-filter-btn"
+            {/* <button
+              className="btn btn-outline-secondary rounded-pill d-flex align-items-center gap-2 case-details-filter-btn portal-button-hover"
             >
               <i className="bi bi-funnel"></i>
               Filter
-            </button>
+            </button> */}
 
             {/* Add New Case Button */}
             <button
-              className="btn bg-transparent btn-outline-dark rounded-pill text-black px-4 py-2 d-flex justify-content-center align-items-center gap-2 case-details-add-case-btn" style={{ border: "1px solid #DEDEDE" }}
+              className="btn bg-transparent btn-outline-dark rounded-pill text-black px-4 py-2 d-flex justify-content-center align-items-center gap-2 case-details-add-case-btn portal-button-hover" style={{ border: "1px solid #DEDEDE", marginLeft: "80px" }}
               type="button"
               onClick={() => setShowCreateCase(true)}
             >
@@ -106,16 +109,20 @@ const Details = () => {
       </div>
 
       {/* Explain Your Case Section */}
-      <div className="row mb-4 case-details-main-section">
+      <div 
+        className="row mb-4 case-details-main-section"
+        data-aos="fade-up"
+        data-aos-delay="100"
+      >
         <div className="col-12 rounded-4">
           <div
-            className="card bg-white case-details-explain-card"
+            className="card bg-white case-details-explain-card case-card-hover"
           >
             <div className="card-body p-0">
               <div className="d-flex justify-content-between align-items-center mb-3 p-4">
                 <h4 className="text-dark mb-0 case-details-explain-title">{caseDetails.title}</h4>
                 <span
-                  className="badge bg-light text-dark px-3 py-2 rounded-pill case-details-explain-badge"
+                  className="badge bg-light text-dark px-3 py-2 rounded-pill case-details-explain-badge portal-badge-hover"
                 >
                   {caseDetails.caseId}
                 </span>
@@ -131,10 +138,16 @@ const Details = () => {
       </div>
 
       {/* Case Details Section */}
-      <div className="row mb-4 case-details-main-section">
+      <div 
+        className="row mb-4 case-details-main-section"
+        data-aos="fade-up"
+        data-aos-delay="200"
+      >
         <div className="col-lg-4 col-md-6 mb-3">
           <div
-            className="card h-100 shadow-sm case-details-info-card"
+            className="card h-100 shadow-sm case-details-info-card case-details-info-hover"
+            data-aos="fade-right"
+            data-aos-delay="300"
           >
             <div className="card-body p-4">
               <div
@@ -169,7 +182,9 @@ const Details = () => {
 
         <div className="col-lg-4 col-md-6 mb-3">
           <div
-            className="card h-100 shadow-sm case-details-info-card"
+            className="card h-100 shadow-sm case-details-info-card case-details-info-hover"
+            data-aos="fade-up"
+            data-aos-delay="400"
           >
             <div className="card-body p-4">
               <div
@@ -204,7 +219,9 @@ const Details = () => {
 
         <div className="col-lg-4 col-md-6 mb-3">
           <div
-            className="card shadow-sm case-details-financial-card"
+            className="card shadow-sm case-details-financial-card case-details-info-hover"
+            data-aos="fade-left"
+            data-aos-delay="500"
           >
             <div className="card-body p-4 h-100">
               <div className="row h-100">
@@ -241,7 +258,11 @@ const Details = () => {
       </div>
 
       {/* Lawyers Respond Section */}
-      <div className="row case-details-lawyers-section">
+      <div 
+        className="row case-details-lawyers-section"
+        data-aos="fade-up"
+        data-aos-delay="600"
+      >
         <div className="col-12">
           <div
             className="card bg-transparent border-0 case-details-lawyers-card"
@@ -253,10 +274,12 @@ const Details = () => {
               </div>
 
               {/* Lawyers List */}
-              {lawyers.map((lawyer) => (
+              {lawyers.map((lawyer, index) => (
                 <div
                   key={lawyer.id}
-                  className="card mb-3 border-0 shadow-sm case-details-lawyer-card"
+                  className="card mb-3 border-0 shadow-sm case-details-lawyer-card case-lawyer-portal-hover"
+                  data-aos="fade-up"
+                  data-aos-delay={700 + (index * 100)}
                 >
                   <div className="card-body d-flex align-items-center justify-content-between flex-wrap p-3">
                     {/* Profile */}

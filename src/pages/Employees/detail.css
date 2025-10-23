@@ -1,0 +1,278 @@
+.employee-container {
+  font-family: "Mukta", sans-serif;
+  background-color: #fff;
+}
+
+/* ===== Banner Section ===== */
+.banner-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.banner-image {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+}
+
+/* ===== Profile Card ===== */
+.profile-card {
+  background: #fff;
+  max-width: 100%;
+  margin: -80px 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  position: relative;
+  z-index: 2;
+}
+
+.profile-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.profile-image-wrapper {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-info {
+  flex-grow: 1;
+  margin-left: 20px;
+  margin-top: 8px;
+}
+
+.edit-button-wrapper {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 15px;
+}
+
+.company-name {
+  font-weight: 700;
+  font-size: 22px;
+  color: #000;
+  margin-bottom: 5px;
+}
+
+.company-location {
+  color: #474747;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.edit-btn {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 8px 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s;
+  white-space: nowrap;
+}
+
+.edit-btn:hover {
+  background-color: #444;
+}
+
+.company-description {
+  font-size: 14px;
+  color: #555;
+  margin-top: 20px;
+  line-height: 1.6;
+}
+
+/* ===== Company Textarea Section ===== */
+.company-textarea-section {
+  margin-top: 20px;
+}
+
+.company-textarea {
+  width: 100%;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 14px;
+  font-family: "Mukta", sans-serif;
+  resize: vertical;
+  background-color: #fff;
+  color: #555;
+  line-height: 1.5;
+}
+
+.company-textarea:focus {
+  outline: none;
+  border-color: #ffd700;
+  box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+}
+
+.company-textarea::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+/* ===== Content Section ===== */
+.content-section {
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  text-align: center;
+  padding: 50px 20px;
+  margin: 0 auto 40px;
+  max-width: 900px;
+  color: #555;
+}
+
+.content-icon {
+  font-size: 50px;
+  color: #999;
+  margin-bottom: 10px;
+}
+
+/* ===== Social Section ===== */
+.social-section {
+  text-align: left;
+}
+
+.social-section h6 {
+  font-weight: 700;
+  font-size: 14px;
+  color: #222;
+  margin-bottom: 12px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.social-icons a {
+  background-color: #feee03;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  transition: transform 0.3s;
+}
+
+.social-icons a:hover {
+  transform: scale(1.1);
+}
+
+.social-icons i {
+  color: #fff;
+  font-size: 18px;
+}
+
+/* ===== Offcanvas ===== */
+.offcanvas-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 99;
+}
+
+.edit-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 380px;
+  height: 100%;
+  background: #fff;
+  z-index: 100;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px;
+  border-bottom: 1px solid #eee;
+}
+
+.edit-header button {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.edit-body {
+  padding: 20px;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.edit-body label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.edit-body input,
+.edit-body textarea {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 16px;
+}
+
+.save-btn {
+  background: #474747;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  width: 100%;
+  height: 55px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.save-btn:hover {
+  background: #333;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .profile-card {
+    margin: -60px 10px 20px;
+    padding: 20px;
+  }
+  .banner-image {
+    height: 300px;
+  }
+  .profile-image-wrapper {
+    width: 80px;
+    height: 80px;
+    margin-top: -40px;
+  }
+  .company-name {
+    font-size: 22px;
+  }
+}

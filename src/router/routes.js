@@ -39,6 +39,9 @@ import Setting from '../pages/Setting';
 
 import WebsiteList from '../pages/websites/List';
 
+import EmployeesList from '../pages/Employees/List';
+import EmployeeDetails from '../pages/Employees/Details';
+
 
 const routes = [
     {
@@ -183,6 +186,18 @@ const routes = [
         path: '/websites',
         component: WebsiteList,
         meta: { requiresAuth: true, hideHeader: false, permission: 'read-websites' }
+    },
+
+    {
+        path: '/employees',
+        component: EmployeesList,
+        meta: { requiresAuth: true, hideHeader: false, permission: 'list-employees' }
+    },
+
+    {
+        path: '/employees/:id',
+        component: EmployeeDetails,
+        meta: { requiresAuth: true, hideHeader: false, permission: 'view-employee-details' }
     },
     
 

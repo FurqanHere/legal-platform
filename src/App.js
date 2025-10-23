@@ -6,6 +6,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './assets/css/style.bundle.css';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function App() {
 
@@ -23,6 +25,14 @@ function App() {
      if (metaKeywords) {
         metaKeywords.content = process.env.REACT_APP_KEYWORDS || 'React App keywords';
      }
+
+     // Initialize AOS
+     AOS.init({
+       duration: 800,
+       easing: 'ease-in-out',
+       once: true,
+       offset: 100
+     });
 
   }, []);
   return (

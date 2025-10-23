@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import moment from "moment";
 import circle from "../assets/images/yellow-circle.png";
 import { NavLink } from "react-router-dom";
+import LogoutModal from "./LogoutModal";
 
 const Header = () => {
   const location = useLocation();
@@ -16,7 +17,39 @@ const Header = () => {
       email: "admin@example.com",
     }
   );
-    const [notifications, setNotifications] = useState([]);
+  const [notifications, setNotifications] = useState([
+    {
+      id: 1,
+      message:
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+      time: "1 hour",
+      avatar: blank,
+    },
+    {
+      id: 2,
+      message:
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+      time: "2 hours",
+      avatar: blank,
+    },
+    {
+      id: 3,
+      message:
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+      time: "3 hours",
+      avatar: blank,
+    },
+    {
+      id: 4,
+      message:
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+      time: "4 hours",
+      avatar: blank,
+    },
+  ]);
+  const [showNotificationDropdown, setShowNotificationDropdown] =
+    useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   // Check if we're on the Ask Question page
   const isAskQuestionPage =
@@ -25,7 +58,8 @@ const Header = () => {
 
   // Check if we're on the Chat page
   const isChatPage =
-    location.pathname.includes("/users") || location.pathname.includes("/messages");
+    location.pathname.includes("/users") ||
+    location.pathname.includes("/messages");
 
   // Check if we're on the My Lawyers page
   const isMyLawyersPage =
@@ -42,74 +76,159 @@ const Header = () => {
   const isNotificationsPage = location.pathname.includes("/notifications");
 
   // Check if we're on the Case Details page
-  const isCaseDetailsPage = location.pathname.includes("/my-cases/") && location.pathname !== "/my-cases";
+  const isCaseDetailsPage =
+    location.pathname.includes("/my-cases/") &&
+    location.pathname !== "/my-cases";
 
-    const logout = () => {
-    if (window.confirm("Are you sure you want to logout?")) {
-            AuthService.logout();
-        }
-    };
+  // Check if we're on the Employees page
+  const isEmployeesPage = location.pathname.includes("/employees");
 
-    useEffect(() => {
-        // getNotifications();
-    }, []); 
+  // Check if we're on the Employee Details page
+  const isEmployeeDetailsPage =
+    location.pathname.includes("/employees/") &&
+    location.pathname !== "/employees";
 
-    const getNotifications = async () => {
-        try {
-            const response = await ApiService.request({
-                method: "GET",
-        url: "getNotifications",
-            });
-            const data = response.data;
-            if (data.status) {
-                setNotifications(data.data);
-            } else {
-                toast.error(data.message);
-            }
-        } catch (error) {
-            console.log(error);
-        }
+  const logout = () => {
+    setShowLogoutModal(true);
   };
-       
-    const clearAllNotifications = async () => {
-        try {
-            const response = await ApiService.request({
-                method: "POST",
-        url: "clearAllNotifications",
-            });
-            const data = response.data;
-            if (data.status) {
-                setNotifications([]);
-            } else {
-                toast.error(data.message);
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    };
 
-    return (
-    <div id="kt_app_header" className="app-header modern-header-container">
+  const handleLogoutConfirm = () => {
+    setShowLogoutModal(false);
+  };
+
+  const handleLogoutCancel = () => {
+    setShowLogoutModal(false);
+  };
+
+  useEffect(() => {
+    // getNotifications();
+  }, []);
+
+  const getNotifications = async () => {
+    try {
+      const response = await ApiService.request({
+        method: "GET",
+        url: "getNotifications",
+      });
+      const data = response.data;
+      if (data.status) {
+        setNotifications(data.data);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const clearAllNotifications = async () => {
+    try {
+      const response = await ApiService.request({
+        method: "POST",
+        url: "clearAllNotifications",
+      });
+      const data = response.data;
+      if (data.status) {
+        setNotifications([]);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // Notification Dropdown Component
+  const NotificationDropdown = () => (
+    <div
+      className="notification-dropdown position-absolute bg-white shadow-lg rounded-3 border"
+      style={{
+        top: "100%",
+        right: "0",
+        width: "237px",
+        maxHeight: "300px",
+        zIndex: 1050,
+        marginTop: "0px",
+      }}
+      onMouseEnter={() => setShowNotificationDropdown(true)}
+      onMouseLeave={() => setShowNotificationDropdown(false)}
+    >
+      <div
+        className="notification-list"
+        style={{ maxHeight: "200px", overflowY: "auto" }}
+      >
+        {notifications.map((notification, index) => (
+          <div
+            key={notification.id}
+            className="notification-item p-2 border-bottom"
+          >
+            <div className="d-flex align-items-start">
+              <div className="symbol symbol-30px me-2">
+                <img
+                  src={notification.avatar}
+                  alt="Notification"
+                  className="rounded-circle"
+                  style={{ width: "30px", height: "30px", objectFit: "cover" }}
+                />
+              </div>
+              <div className="flex-grow-1">
+                <p
+                  className="text-dark mb-1 fs-8"
+                  style={{ lineHeight: "1.3", fontSize: "12px" }}
+                >
+                  {notification.message}
+                </p>
+                <small className="text-muted fs-9" style={{ fontSize: "10px" }}>
+                  {notification.time}
+                </small>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="p-2 text-center border-top">
+        <NavLink
+          to="/notifications"
+          className="btn bg-black text-white btn-sm w-100"
+          onClick={() => setShowNotificationDropdown(false)}
+          style={{ fontSize: "12px", padding: "4px 8px" }}
+        >
+          See All
+        </NavLink>
+      </div>
+    </div>
+  );
+
+  return (
+    <div
+      id="kt_app_header"
+      className="app-header modern-header-container"
+      data-aos="fade-down"
+    >
       {isAskQuestionPage ? (
         // Ask Question Page Header
         <div className="d-flex justify-content-between align-items-center w-100">
           <div>
-            <h1 className="fw-bold text-dark fs-2 mb-2">Ask Question</h1>
-            <p className="text-gray-600 fs-6 mb-0">
-              Question listing and responding Lawyers.
-            </p>
+            <h1 className="fw-bold text-dark fs-2 mb-2">Post question</h1>
+            <p className="text-gray-600 fs-6 mb-0">Post Connect and Solve</p>
           </div>
           <div className="d-flex align-items-center gap-3">
-            <NavLink to="/notifications">
-              <div className="modern-icon-container position-relative">
-                <i className="bi bi-bell text-gray-600 fs-4"></i>
-                {notifications.length > 0 && (
-                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{ fontSize: "0.6rem" }}>
-                    {notifications.length}
-                  </span>
-                )}
-              </div>
-            </NavLink>
+            <div
+              className="modern-icon-container position-relative"
+              onMouseEnter={() => setShowNotificationDropdown(true)}
+              onMouseLeave={() => setShowNotificationDropdown(false)}
+            >
+              <i className="bi bi-bell text-gray-600 fs-4"></i>
+              {notifications.length > 0 && (
+                <span
+                  className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  style={{ fontSize: "0.6rem" }}
+                >
+                  {notifications.length}
+                </span>
+              )}
+              {showNotificationDropdown && <NotificationDropdown />}
+            </div>
             <div className="symbol symbol-40px">
               <div className="symbol-label text-white rounded-circle">
                 <img
@@ -131,16 +250,22 @@ const Header = () => {
             </p>
           </div>
           <div className="d-flex align-items-center gap-3">
-            <NavLink to="/notifications">
-              <div className="modern-icon-container position-relative">
-                <i className="bi bi-bell text-gray-600 fs-4"></i>
-                {notifications.length > 0 && (
-                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{ fontSize: "0.6rem" }}>
-                    {notifications.length}
-                  </span>
-                )}
-              </div>
-            </NavLink>
+            <div
+              className="modern-icon-container position-relative"
+              onMouseEnter={() => setShowNotificationDropdown(true)}
+              onMouseLeave={() => setShowNotificationDropdown(false)}
+            >
+              <i className="bi bi-bell text-gray-600 fs-4"></i>
+              {notifications.length > 0 && (
+                <span
+                  className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  style={{ fontSize: "0.6rem" }}
+                >
+                  {notifications.length}
+                </span>
+              )}
+              {showNotificationDropdown && <NotificationDropdown />}
+            </div>
             <div className="symbol symbol-40px">
               <div className="symbol-label bg-warning text-white rounded-circle">
                 <img
@@ -158,20 +283,26 @@ const Header = () => {
           <div>
             <h1 className="fw-bold text-dark fs-2 mb-2">My Lawyers</h1>
             <p className="text-gray-600 fs-6 mb-0">
-              Manage your legal team and communications.
+              Stay updated with your legal team anytime.
             </p>
           </div>
           <div className="d-flex align-items-center gap-3">
-            <NavLink to="/notifications">
-              <div className="modern-icon-container position-relative">
-                <i className="bi bi-bell text-gray-600 fs-4"></i>
-                {notifications.length > 0 && (
-                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{ fontSize: "0.6rem" }}>
-                    {notifications.length}
-                  </span>
-                )}
-              </div>
-            </NavLink>
+            <div
+              className="modern-icon-container position-relative"
+              onMouseEnter={() => setShowNotificationDropdown(true)}
+              onMouseLeave={() => setShowNotificationDropdown(false)}
+            >
+              <i className="bi bi-bell text-gray-600 fs-4"></i>
+              {notifications.length > 0 && (
+                <span
+                  className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  style={{ fontSize: "0.6rem" }}
+                >
+                  {notifications.length}
+                </span>
+              )}
+              {showNotificationDropdown && <NotificationDropdown />}
+            </div>
             <div className="symbol symbol-40px">
               <div className="symbol-label bg-warning text-white rounded-circle">
                 <img
@@ -189,49 +320,63 @@ const Header = () => {
           <div>
             <h1 className="fw-bold text-dark fs-2 mb-2">My Cases</h1>
             <p className="text-gray-600 fs-6 mb-0">
-              cases and date and time with lawyers.
+              View all your cases and connect with interested lawyers.
             </p>
           </div>
           <div className="d-flex align-items-center gap-3">
-            <NavLink to="/notifications">
-              <div className="modern-icon-container position-relative">
-                <i className="bi bi-bell text-gray-600 fs-4"></i>
-                {notifications.length > 0 && (
-                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{ fontSize: "0.6rem" }}>
-                    {notifications.length}
-                  </span>
-                )}
-              </div>
-            </NavLink>
+            <div
+              className="modern-icon-container position-relative"
+              onMouseEnter={() => setShowNotificationDropdown(true)}
+              onMouseLeave={() => setShowNotificationDropdown(false)}
+            >
+              <i className="bi bi-bell text-gray-600 fs-4"></i>
+              {notifications.length > 0 && (
+                <span
+                  className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  style={{ fontSize: "0.6rem" }}
+                >
+                  {notifications.length}
+                </span>
+              )}
+              {showNotificationDropdown && <NotificationDropdown />}
+            </div>
             <div className="modern-icon-container">
               <img
                 src={circle}
                 className="w-40px h-40px rounded-circle"
                 alt=""
               />
-                    </div>
-                </div>
-                </div>
+            </div>
+          </div>
+        </div>
       ) : isLawyersPage ? (
         // Lawyers Page Header
         <div className="d-flex justify-content-between align-items-center w-100">
           <div>
-            <h1 className="fw-bold text-dark fs-2 mb-2">Find Best Lawyers</h1>
+            <h1 className="fw-bold text-dark fs-2 mb-2">
+              Explore Lawyers / Lawyers{" "}
+            </h1>
             <p className="text-gray-600 fs-6 mb-0">
-              Add New Employee and view list.
+              Search, compare, and connect with verified lawyers instantly.
             </p>
           </div>
           <div className="d-flex align-items-center gap-3">
-            <NavLink to="/notifications">
-              <div className="modern-icon-container position-relative">
-                <i className="bi bi-bell text-gray-600 fs-4"></i>
-                {notifications.length > 0 && (
-                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{ fontSize: "0.6rem" }}>
-                    {notifications.length}
-                  </span>
-                )}
-              </div>
-            </NavLink>
+            <div
+              className="modern-icon-container position-relative"
+              onMouseEnter={() => setShowNotificationDropdown(true)}
+              onMouseLeave={() => setShowNotificationDropdown(false)}
+            >
+              <i className="bi bi-bell text-gray-600 fs-4"></i>
+              {notifications.length > 0 && (
+                <span
+                  className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  style={{ fontSize: "0.6rem" }}
+                >
+                  {notifications.length}
+                </span>
+              )}
+              {showNotificationDropdown && <NotificationDropdown />}
+            </div>
             <div className="modern-icon-container">
               <img
                 src={circle}
@@ -246,14 +391,15 @@ const Header = () => {
         <div className="d-flex justify-content-between align-items-center w-100">
           <div>
             <h1 className="fw-bold text-dark fs-2 mb-2">Notifications</h1>
-            <p className="text-gray-600 fs-6 mb-0">
-              Listing notifications
-            </p>
+            <p className="text-gray-600 fs-6 mb-0">Listing notifications</p>
           </div>
           <div className="d-flex align-items-center gap-3">
             <div className="modern-icon-container position-relative">
               <i className="bi bi-bell text-gray-600 fs-4"></i>
-              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{ fontSize: "0.6rem" }}>
+              <span
+                className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                style={{ fontSize: "0.6rem" }}
+              >
                 3
               </span>
             </div>
@@ -271,21 +417,95 @@ const Header = () => {
         <div className="d-flex justify-content-between align-items-center w-100">
           <div>
             <h1 className="fw-bold text-dark fs-2 mb-2">Case Summary</h1>
+            <p className="text-gray-600 fs-6 mb-0">Detail</p>
+          </div>
+          <div className="d-flex align-items-center gap-3">
+            <div
+              className="modern-icon-container position-relative"
+              onMouseEnter={() => setShowNotificationDropdown(true)}
+              onMouseLeave={() => setShowNotificationDropdown(false)}
+            >
+              <i className="bi bi-bell text-gray-600 fs-4"></i>
+              {notifications.length > 0 && (
+                <span
+                  className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  style={{ fontSize: "0.6rem" }}
+                >
+                  {notifications.length}
+                </span>
+              )}
+              {showNotificationDropdown && <NotificationDropdown />}
+            </div>
+            <div className="modern-icon-container">
+              <img
+                src={circle}
+                className="w-40px h-40px rounded-circle"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      ) : isEmployeeDetailsPage ? (
+        // Employee Details Page Header
+        <div className="d-flex justify-content-between align-items-center w-100">
+          <div>
+            <h1 className="fw-bold text-dark fs-2 mb-2">Employee Details</h1>
             <p className="text-gray-600 fs-6 mb-0">
-              Detail
+              View and manage employee information.
             </p>
           </div>
           <div className="d-flex align-items-center gap-3">
-            <NavLink to="/notifications">
-              <div className="modern-icon-container position-relative">
-                <i className="bi bi-bell text-gray-600 fs-4"></i>
-                {notifications.length > 0 && (
-                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{ fontSize: "0.6rem" }}>
-                    {notifications.length}
-                  </span>
-                )}
-              </div>
-            </NavLink>
+            <div
+              className="modern-icon-container position-relative"
+              onMouseEnter={() => setShowNotificationDropdown(true)}
+              onMouseLeave={() => setShowNotificationDropdown(false)}
+            >
+              <i className="bi bi-bell text-gray-600 fs-4"></i>
+              {notifications.length > 0 && (
+                <span
+                  className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  style={{ fontSize: "0.6rem" }}
+                >
+                  {notifications.length}
+                </span>
+              )}
+              {showNotificationDropdown && <NotificationDropdown />}
+            </div>
+            <div className="modern-icon-container">
+              <img
+                src={circle}
+                className="w-40px h-40px rounded-circle"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      ) : isEmployeesPage ? (
+        // Employees Page Header
+        <div className="d-flex justify-content-between align-items-center w-100">
+          <div>
+            <h1 className="fw-bold text-dark fs-2 mb-2">Employee</h1>
+            <p className="text-gray-600 fs-6 mb-0">
+              Add your team members and send invites.
+            </p>
+          </div>
+          <div className="d-flex align-items-center gap-3">
+            <div
+              className="modern-icon-container position-relative"
+              onMouseEnter={() => setShowNotificationDropdown(true)}
+              onMouseLeave={() => setShowNotificationDropdown(false)}
+            >
+              <i className="bi bi-bell text-gray-600 fs-4"></i>
+              {notifications.length > 0 && (
+                <span
+                  className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  style={{ fontSize: "0.6rem" }}
+                >
+                  {notifications.length}
+                </span>
+              )}
+              {showNotificationDropdown && <NotificationDropdown />}
+            </div>
             <div className="modern-icon-container">
               <img
                 src={circle}
@@ -308,8 +528,8 @@ const Header = () => {
               id="kt_app_sidebar_mobile_toggle"
             >
               <i className="bi bi-list text-gray-600 fs-3"></i>
-                        </div>
-                    </div>
+            </div>
+          </div>
 
           {/* Search Bar */}
           <div className="modern-search-container flex-grow-1 me-4">
@@ -322,7 +542,7 @@ const Header = () => {
               />
               <i className="bi bi-search modern-search-icon position-absolute"></i>
             </div>
-                        </div>
+          </div>
 
           {/* Right side icons */}
           <div className="modern-icons-container d-flex align-items-center gap-3">
@@ -330,34 +550,37 @@ const Header = () => {
             <NavLink to="/chat">
               <div className="modern-icon-container">
                 <i className="bi bi-chat-dots modern-icon"></i>
-                            </div>
+              </div>
             </NavLink>
 
             {/* Notifications Icon */}
-            <NavLink to="/notifications">
-              <div className="modern-notification-container position-relative">
-                <i className="bi bi-bell modern-icon"></i>
-                {notifications.length > 0 && (
-                  <span className="modern-notification-indicator"></span>
-                )}
-                                    </div>
-            </NavLink>
+            <div
+              className="modern-notification-container position-relative"
+              onMouseEnter={() => setShowNotificationDropdown(true)}
+              onMouseLeave={() => setShowNotificationDropdown(false)}
+            >
+              <i className="bi bi-bell modern-icon"></i>
+              {notifications.length > 0 && (
+                <span className="modern-notification-indicator"></span>
+              )}
+              {showNotificationDropdown && <NotificationDropdown />}
+            </div>
 
             {/* User Profile */}
             <div
               className="app-navbar-item ms-1 ms-lg-3"
               id="kt_header_user_menu_toggle"
             >
-                            <div className="cursor-pointer symbol symbol-35px symbol-md-40px profile-dropdown">
+              <div className="cursor-pointer symbol symbol-35px symbol-md-40px profile-dropdown">
                 <img src={blank} alt="user" className="modern-profile-image" />
-                            </div>
+              </div>
               <div className="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px profile-submenu modern-profile-dropdown">
-                                <div className="menu-item px-3">
-                                    <div className="menu-content d-flex align-items-center px-3">
-                                        <div className="symbol symbol-50px me-5">
+                <div className="menu-item px-3">
+                  <div className="menu-content d-flex align-items-center px-3">
+                    <div className="symbol symbol-50px me-5">
                       <img alt="Logo" src={blank} />
-                                        </div>
-                                        <div className="d-flex flex-column">
+                    </div>
+                    <div className="d-flex flex-column">
                       <div className="fw-bold d-flex align-items-center fs-5">
                         {user.name}
                       </div>
@@ -367,30 +590,37 @@ const Header = () => {
                       >
                         {user.email}
                       </Link>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="separator my-2"></div>
-                                <div className="menu-item px-5 my-1">
+                    </div>
+                  </div>
+                </div>
+                <div className="separator my-2"></div>
+                <div className="menu-item px-5 my-1">
                   <Link to="/account" className="menu-link px-5">
                     Account Settings
                   </Link>
-                                </div>
-                                <div className="menu-item px-5">
+                </div>
+                <div className="menu-item px-5">
                   <button
                     onClick={logout}
                     className="menu-link px-5 btn btn-transparent"
                   >
                     Logout
                   </button>
-                        </div>
-                    </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
       )}
-        </div>
-    );
+
+      {/* Logout Modal */}
+      <LogoutModal
+        show={showLogoutModal}
+        onClose={handleLogoutCancel}
+        onConfirm={handleLogoutConfirm}
+      />
+    </div>
+  );
 };
 
 export default Header;

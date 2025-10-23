@@ -17,34 +17,39 @@ const Login = () => {
   const [isLoader, setIsLoader] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [agreeToTerms, setAgreeToTerms] = useState(false);
   const navigate = useNavigate();
 
   // Slider data
   const sliderData = [
     {
       id: 1,
-      title: "Perspiciatis unde omnis iste",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
-      image: logoImg
+      title: "Professional Legal Services",
+      description:
+        "Get expert legal advice from qualified attorneys. Our platform connects you with experienced lawyers for all your business and personal legal needs.",
+      image: logoImg,
     },
     {
       id: 2,
       title: "Legal Solutions Made Simple",
-      description: "Connect with experienced lawyers and get expert legal advice for all your business needs",
-      image: logoImg2
+      description:
+        "Connect with experienced lawyers and get expert legal advice for all your business needs. Streamlined process for quick and effective legal solutions.",
+      image: logoImg2,
     },
     {
       id: 3,
       title: "Expert Legal Guidance",
-      description: "Access a network of qualified attorneys ready to help you navigate complex legal challenges",
-      image: logoImg
+      description:
+        "Access a network of qualified attorneys ready to help you navigate complex legal challenges. Get professional guidance when you need it most.",
+      image: logoImg,
     },
     {
       id: 4,
       title: "Secure & Confidential",
-      description: "Your legal matters are handled with the highest level of security and confidentiality",
-      image: logoImg2
-    }
+      description:
+        "Your legal matters are handled with the highest level of security and confidentiality. Trust us with your sensitive legal information and documents.",
+      image: logoImg2,
+    },
   ];
 
   useEffect(() => {
@@ -58,7 +63,7 @@ const Login = () => {
   // Auto-advance slider
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prevSlide) => 
+      setCurrentSlide((prevSlide) =>
         prevSlide === sliderData.length - 1 ? 0 : prevSlide + 1
       );
     }, 4000); // Change slide every 4 seconds
@@ -84,7 +89,7 @@ const Login = () => {
     //     user.auth_token = data.data.auth_token;
 
     //     localStorage.setItem("admin", JSON.stringify(user));
-        
+
     //     // Handle permissions if they exist in the response
     //     if (data.data.permissions) {
     //       localStorage.setItem(
@@ -117,34 +122,36 @@ const Login = () => {
   return (
     <div className="login-container">
       {/* Left Panel - Slider Section */}
-      <div className="left-panel">
+      <div className="left-panel" data-aos="fade-right" data-aos-delay="100">
         {/* Slider Container */}
         <div className="slider-container">
           {/* Background Image */}
-          <div 
+          <div
             key={currentSlide}
             className="left-panel-bg"
-            style={{ backgroundImage: `url(${sliderData[currentSlide].image})` }}
+            style={{
+              backgroundImage: `url(${sliderData[currentSlide].image})`,
+            }}
           />
-          
+
           {/* Content Overlay */}
-          <div className="left-panel-content">
-            <h1 className="left-panel-title text-white">
+          <div className="left-panel-content" data-aos="fade-up" data-aos-delay="300">
+            <h1 className="left-panel-title text-white text-center">
               {sliderData[currentSlide].title}
             </h1>
-            <p className="left-panel-description text-white">
+            <p className="left-panel-description text-white text-center">
               {sliderData[currentSlide].description}
             </p>
           </div>
         </div>
-        
+
         {/* Pagination Dots */}
         <div className="pagination-dots">
           {sliderData.map((_, index) => (
             <div
               key={index}
               className={`pagination-dot ${
-                index === currentSlide ? 'active' : 'inactive'
+                index === currentSlide ? "active" : "inactive"
               }`}
               onClick={() => handleDotClick(index)}
             />
@@ -153,87 +160,94 @@ const Login = () => {
       </div>
 
       {/* Right Panel - Login Form Section */}
-      <div className="right-panel">
+      <div className="right-panel" data-aos="fade-left" data-aos-delay="200">
         {/* Logo */}
-        <div>
-          <img 
-            alt="Legal Platform Logo" 
-            src={logo} 
-            className="login-logo"
-          />
+        <div style={{ marginBottom: "60px" }} data-aos="fade-up" data-aos-delay="300">
+          <img alt="Legal Platform Logo" src={logo} className="login-logo" />
         </div>
 
         {/* Login Form */}
-        <div>
-          <h2 className="login-title">
-            Login
-          </h2>
-          
+        <div data-aos="fade-up" data-aos-delay="400">
+          <h2 className="login-title">Login</h2>
+
           <form onSubmit={handleLogin} className="login-form">
             {/* Email Field */}
-            <div className="form-group">
-              <label className="form-label">
-                Email
-              </label>
+            <div className="form-group" data-aos="fade-up" data-aos-delay="500">
+              <label className="form-label" style={{ fontSize: "18px" }}>Email</label>
               <input
                 type="email"
                 required
                 autoComplete="off"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="form-input"
+                className="form-input rounded-pill login-inp"
                 placeholder="noon@company.com"
+                style={{ fontSize: "18px", width: "398px", height: "67px", paddingLeft: "30px", paddingRight: "30px" }}
               />
             </div>
 
             {/* Password Field */}
-            <div className="form-group">
-              <label className="form-label">
-                Password
-              </label>
+            <div className="form-group" data-aos="fade-up" data-aos-delay="600">
+              <label className="form-label" style={{ fontSize: "18px" }}>Password</label>
               <div className="password-container">
                 <input
                   type={showPassword ? "text" : "password"}
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="form-input"
+                  className="form-input rounded-pill login-inp"
                   placeholder="Password"
                   autoComplete="off"
+                  style={{ width: "398px", height: "67px", fontSize: "18px", paddingLeft: "30px", paddingRight: "30px" }}
                 />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="password-toggle"
-                >
-                  {showPassword ? '👁️' : '👁️‍🗨️'}
-                </button>
+              </div>
+            </div>
+
+            {/* Terms and Conditions Checkbox */}
+            <div className="form-group" data-aos="fade-up" data-aos-delay="650">
+              <div className="d-flex align-items-start" style={{ width: "398px" }}>
+                <div className="form-check">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    id="agreeToTerms"
+                    checked={agreeToTerms}
+                    onChange={(e) => setAgreeToTerms(e.target.checked)}
+                    style={{ 
+                      width: "18px", 
+                      height: "18px", 
+                      marginTop: "2px",
+                      accentColor: "#000"
+                    }}
+                  />
+                  <label className="form-check-label text-muted" htmlFor="agreeToTerms" style={{ fontSize: "14px", lineHeight: "1.4", marginLeft: "8px" }}>
+                    I agree to all the{" "}
+                    <a href="#" className="text-dark fw-semibold" style={{ textDecoration: "underline" }}>
+                      Terms and Conditions
+                    </a>
+                  </label>
+                </div>
               </div>
             </div>
 
             {/* Login Button */}
-            <button
-              type="submit"
-              disabled={isLoader}
-              className="login-button"
-            >
+            <button type="submit" disabled={isLoader || !agreeToTerms} className="login-button rounded-pill d-flex align-items-center justify-content-center position-relative" style={{ width: "398px", height: "67px", fontSize: "18px", opacity: agreeToTerms ? 1 : 0.6 }} data-aos="fade-up" data-aos-delay="700">
               {isLoader ? (
                 <Loader size="20" text="Signing" color="white" />
               ) : (
                 <>
-                  Login
-                  <span className="login-button-arrow">→</span>
+                  <span className="login-text">Login</span>
+                  <span className="login-button-arrow rounded-pill bg-white d-flex justify-content-center align-items-center position-absolute" style={{ width: "29px", height: "29px", right: "15px" }}> 
+                    <i className="bi bi-arrow-right text-black fs-6"></i> 
+                  </span>
                 </>
               )}
             </button>
 
             {/* Google Login Button */}
-            <button
-              type="button"
-              className="google-button"
-            >
+            <button type="button" className="google-button rounded-pill login-btn-google" disabled={!agreeToTerms} style={{ width: "398px", height: "67px", fontSize: "18px", opacity: agreeToTerms ? 1 : 0.6 }} data-aos="fade-up" data-aos-delay="800">
               <span className="google-icon">
-                <img src={ G } alt="" className="w-35px h-35px" />
+                <img src={G} alt="" className="w-35px h-35px" />
               </span>
               Continue With Google
             </button>
@@ -241,7 +255,7 @@ const Login = () => {
         </div>
 
         {/* Copyright */}
-        <div className="copyright">
+        <div className="copyright" data-aos="fade-up" data-aos-delay="900">
           © 2025 Legal Platform. All rights Reserved.
         </div>
       </div>

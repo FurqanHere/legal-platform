@@ -2987,6 +2987,51 @@ textarea.form-control-lg {
     opacity: .65
 }
 
+.recent-posted-question-lawyer-respond:hover h2,
+.recent-posted-question-lawyer-respond:hover p,
+.recent-posted-question-lawyer-respond:hover span,
+.recent-posted-question-lawyer-respond:hover div {
+    color: white !important;
+    transition: all 0.3s ease;
+}
+.recent-posted-question-card:hover {
+    background-color: black !important;
+    transition: all 0.15s ease;
+    cursor: pointer;
+}
+.recent-posted-question-card:hover h1,
+.recent-posted-question-card:hover h2,
+.recent-posted-question-card:hover h6,
+.recent-posted-question-card:hover p,
+.recent-posted-question-card:hover span,
+.recent-posted-question-card:hover div {
+    color: white !important;
+    transition: all 0.15s ease;
+}
+
+.lawyer-card-hover:hover {
+    background-color: black !important;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.lawyer-card-hover:hover h6,
+.lawyer-card-hover:hover small,
+.lawyer-card-hover:hover .text-muted,
+.lawyer-card-hover:hover .text-dark {
+    color: white !important;
+}
+
+.my-cases-row-hover:hover {
+    background-color: black !important;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.my-cases-row-hover:hover .card-body h6,
+.my-cases-row-hover:hover .card-body p {
+    color: white !important;
+    transition: all 0.3s ease;
+}
+
 .form-range {
     width: 100%;
     height: 1.5rem;
@@ -33921,7 +33966,7 @@ html:not([data-theme=dark]) .theme-light-bg-body {
 .menu-item {
     display: block;
     padding: .15rem 0;
-    margin: 0px 1rem;
+    margin: 0.75rem 1rem;
 }
 
 .menu-item .menu-link {
@@ -38697,7 +38742,7 @@ html:not([data-theme=dark]) .theme-light-bg-body {
 }
 
 .card .card-body {
-    padding: 2rem 2.25rem;
+    padding: 2rem 1.8rem;
     color: var(--kt-card-color)
 }
 
@@ -57243,7 +57288,7 @@ body {
 
     /* Dynamic width adjustment when sidebar is collapsed */
     body.sidebar-collapsed {
-        --kt-app-sidebar-width: 120px !important;
+        --kt-app-sidebar-width: 80px !important;
     }
     
     body.sidebar-collapsed .app-content {
@@ -57271,6 +57316,7 @@ body {
     .app-content .col-md-4,
     .app-content .col-md-8 {
         transition: all 0.3s ease;
+        /* background-color: #FAFAFA !important; */
     }
 
     /* Additional rules to ensure proper spacing */
@@ -57286,7 +57332,7 @@ body {
 
     /* Ensure sidebar uses correct width */
     body.sidebar-collapsed .app-sidebar {
-        width: 120px !important;
+        width: 80px !important;
     }
 
     body:not(.sidebar-collapsed) .app-sidebar {
@@ -57304,7 +57350,7 @@ body {
     }
 
     .my-lawyers-search-input:focus {
-        border-color: #0d6efd;
+        border-color: #000000;
         box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
         background-color: white;
     }
@@ -59829,7 +59875,7 @@ html:not([data-theme=dark]) {
 }
 
 .app-sidebar .app-sidebar-logo {
-    border-bottom: 1px solid #A4A4A4;
+    border-bottom: 0.1px solid #A4A4A4;
 }
 
 .app-header-menu .menu .menu-item .menu-link {
@@ -60790,6 +60836,25 @@ input[type="number"] {
     height: 107px
 }
 
+.case-card-hover:hover,
+.case-details-info-hover:hover,
+.case-lawyer-portal-hover:hover {
+    background-color: black !important;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.case-card-hover:hover h4,
+.case-card-hover:hover p,
+.case-details-info-hover:hover small,
+.case-details-info-hover:hover span,
+.case-lawyer-portal-hover:hover h6,
+.case-lawyer-portal-hover:hover .case-details-lawyer-practice,
+.case-lawyer-portal-hover:hover .case-details-lawyer-renewal,
+.case-lawyer-portal-hover:hover .case-details-lawyer-price,
+.case-lawyer-portal-hover:hover .case-details-lawyer-arrow i {
+    color: white !important;
+}
+
 .app-sidebar .menu .menu-item .menu-link.active {
     
     color: white !important;
@@ -61022,7 +61087,7 @@ input[type="number"] {
 }
 
 .modern-search-input:focus {
-  border-color: #007bff;
+  border-color: black;
 }
 
 .modern-search-icon {
@@ -61132,42 +61197,132 @@ input[type="number"] {
 
 /* Sidebar Collapse Styles */
 .app-sidebar.collapsed {
-  width: 120px !important;
+  width: 80px !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: fixed !important;
+  left: 0 !important;
+  top: 0 !important;
+  height: 100vh !important;
+  z-index: 1000 !important;
+  overflow-x: hidden !important;
+  background-color: #000000 !important;
+}
+
+.app-sidebar.collapsed * {
+  background-color: transparent !important;
 }
 
 .app-sidebar.collapsed .app-sidebar-logo {
-  padding: 0 15px !important;
+  background-color: #000000 !important;
+}
+
+.app-sidebar.collapsed .app-sidebar-menu {
+  background-color: #000000 !important;
+}
+
+.app-sidebar.collapsed .menu {
+  background-color: #000000 !important;
+}
+
+.app-sidebar.collapsed .app-sidebar-logo {
+  padding: 0 10px !important;
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
+  height: 60px !important;
 }
 
 .app-sidebar.collapsed .app-sidebar-logo img {
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
+  max-width: 40px !important;
+  max-height: 40px !important;
 }
 
 .app-sidebar.collapsed .menu-link {
   justify-content: center !important;
-  padding: 8px 10px !important;
+  padding: 12px 8px !important;
   flex-direction: column !important;
   align-items: center !important;
   text-align: center !important;
+  min-height: 60px !important;
+  display: flex !important;
 }
 
 .app-sidebar.collapsed .menu-icon {
   margin-right: 0 !important;
   margin-bottom: 4px !important;
+  font-size: 18px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .app-sidebar.collapsed .menu-title {
-  font-size: 10px !important;
-  line-height: 1.2 !important;
+  font-size: 9px !important;
+  line-height: 1.1 !important;
   text-align: center !important;
   word-break: break-word !important;
-  max-width: 60px !important;
+  max-width: 50px !important;
   display: block !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* Ensure sidebar is always visible */
+.app-sidebar {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: fixed !important;
+  left: 0 !important;
+  top: 0 !important;
+  height: 100vh !important;
+  z-index: 1000 !important;
+  background-color: #000000 !important;
+  transition: width 0.3s ease !important;
+}
+
+/* Ensure all sidebar sections have black background */
+.app-sidebar * {
+  background-color: transparent !important;
+}
+
+.app-sidebar .app-sidebar-logo {
+  background-color: #000000 !important;
+}
+
+.app-sidebar .app-sidebar-menu {
+  background-color: #000000 !important;
+}
+
+.app-sidebar .menu {
+  background-color: #000000 !important;
+}
+
+.app-sidebar .menu-item {
+  background-color: transparent !important;
+}
+
+.app-sidebar .menu-link {
+  background-color: transparent !important;
+}
+
+/* Ensure collapsed sidebar menu items are visible */
+.app-sidebar.collapsed .menu-item {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.app-sidebar.collapsed .menu {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .transition-all {
@@ -61570,4 +61725,578 @@ input[type="number"] {
 /* Mukta font for AskQuestion page */
 .ask-question--mukta-font {
     font-family: 'Mukta', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
+}
+
+.card.portal-card-hover:hover {
+    border: 1px solid #000;
+    transition: all 0.15s ease;
+}
+
+/* Default state - maintain original colors */
+.card.portal-card-hover h5,
+.card.portal-card-hover h6,
+.card.portal-card-hover p,
+.card.portal-card-hover small,
+.card.portal-card-hover span,
+.card.portal-card-hover div {
+    transition: all 0.15s ease;
+}
+
+/* Portal Theme Hover Effects and Animations */
+.portal-card-hover {
+    transition: all 0.15s ease;
+    cursor: pointer;
+}
+.portal-card-hover:hover {
+    transition: all 0.15s ease;
+    background-color: black !important;
+    color: white !important;
+    cursor: pointer;
+}
+.portal-card-hover:hover .flex-fill p, .portal-card-hover:hover .stats-bottom-content span, .portal-card-hover:hover .stats-bottom-content i {
+    color: white !important;
+    cursor: pointer;
+}
+
+.portal-card-hover:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-color: #e9ecef;
+    background-color: #f8f9fa;
+}
+
+.portal-card-hover:hover h5 {
+    color: #495057 !important;
+    transition: color 0.3s ease-in-out;
+}
+
+/* Employee Pages Font */
+.employees--mukta-font {
+    font-family: 'Mukta', sans-serif !important;
+}
+
+.employee-details--mukta-font {
+    font-family: 'Mukta', sans-serif !important;
+}
+
+/* Employee Card Styles */
+.employee-details {
+    font-size: 14px;
+}
+
+.employee-details .d-flex {
+    padding: 4px 0;
+}
+
+/* Employee Card Hover Effects */
+.employee-details-hover {
+    display: none;
+}
+
+.portal-card-hover:hover .employee-details-default {
+    display: none;
+}
+
+.portal-card-hover:hover .employee-details-hover {
+    display: block;
+}
+
+.portal-card-hover:hover h5,
+.portal-card-hover:hover p {
+    color: white !important;
+}
+
+/* Case Details Hover Effects */
+.case-details-explain-card.portal-card-hover:hover,
+.case-details-info-card.portal-card-hover:hover,
+.case-details-financial-card.portal-card-hover:hover,
+.case-details-lawyer-card.portal-card-hover:hover {
+    background-color: black !important;
+    transition: all 0.15s ease;
+}
+
+.case-details-explain-card.portal-card-hover:hover h4,
+.case-details-explain-card.portal-card-hover:hover p,
+.case-details-explain-card.portal-card-hover:hover span,
+.case-details-info-card.portal-card-hover:hover small,
+.case-details-info-card.portal-card-hover:hover span,
+.case-details-financial-card.portal-card-hover:hover small,
+.case-details-financial-card.portal-card-hover:hover span,
+.case-details-lawyer-card.portal-card-hover:hover h6,
+.case-details-lawyer-card.portal-card-hover:hover div {
+    color: white !important;
+    transition: all 0.15s ease;
+}
+
+/* Dashboard Cards Hover Effect */
+.dashboard-card-hover {
+    transition: all 0.15s ease;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.dashboard-card-hover:hover {
+    background-color: black !important;
+    transition: all 0.15s ease;
+}
+
+.dashboard-card-hover:hover h5,
+.dashboard-card-hover:hover h6,
+.dashboard-card-hover:hover p,
+.dashboard-card-hover:hover small,
+.dashboard-card-hover:hover span,
+.dashboard-card-hover:hover div {
+    color: white !important;
+}
+
+.dashboard-card-hover-icon:hover i {
+    color: white !important;
+}
+.dashboard-card-hover:hover .bi-plus {
+    color: black !important;
+}
+
+.portal-button-hover {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.portal-button-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.portal-button-hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.portal-button-hover:hover::before {
+    left: 100%;
+}
+
+.portal-tab-hover {
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.portal-tab-hover:hover {
+    background-color: #f8f9fa;
+    color: #495057;
+    border-color: #e9ecef;
+}
+
+.portal-tab-hover.active {
+    /* background-color: #495057; */
+    color: white;
+    border-color: #495057;
+}
+
+.portal-tab-hover.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 3px;
+    /* background-color: #2196f3; */
+    border-radius: 2px;
+}
+
+.portal-image-hover {
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.portal-image-hover:hover {
+    transform: scale(1.05);
+}
+
+.portal-image-hover img {
+    transition: all 0.3s ease;
+}
+
+.portal-image-hover:hover img {
+    transform: scale(1.1);
+}
+
+.portal-nav-hover {
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.portal-nav-hover:hover {
+    color: #495057;
+    background-color: rgba(73, 80, 87, 0.1);
+}
+
+.portal-nav-hover::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: width 0.3s ease;
+}
+
+.portal-nav-hover:hover::after {
+    width: 100%;
+}
+
+.portal-form-hover {
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+}
+
+.portal-form-hover:focus {
+    border-color: #495057;
+    box-shadow: 0 0 0 0.2rem rgba(73, 80, 87, 0.25);
+    transform: translateY(-1px);
+}
+
+.portal-badge-hover {
+    transition: all 0.3s ease;
+}
+
+.portal-badge-hover:hover {
+    transform: scale(1.05);
+    background-color: #495057;
+    color: white;
+}
+
+.portal-list-hover {
+    transition: all 0.3s ease;
+}
+
+.portal-list-hover:hover {
+    background-color: #f8f9fa;
+    transform: translateX(3px);
+    border-left: 3px solid #495057;
+}
+
+.portal-modal-hover {
+    transition: all 0.3s ease;
+}
+
+.portal-modal-hover:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Loading animation */
+.portal-loading {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* Fade in animation */
+.portal-fade-in {
+    animation: fadeIn 0.6s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Slide in animation */
+.portal-slide-in {
+    animation: slideIn 0.6s ease-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInFromRight {
+    from { 
+        transform: translateX(100%); 
+        opacity: 0; 
+    }
+    to { 
+        transform: translateX(0); 
+        opacity: 1; 
+    }
+}
+
+@keyframes slideOutToRight {
+    from { 
+        transform: translateX(0); 
+        opacity: 1; 
+    }
+    to { 
+        transform: translateX(100%); 
+        opacity: 0; 
+    }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+/* My Cases Card Hover Effects */
+.portal-card-hover:hover .my-cases-card-title {
+    color: #fff !important;
+    transition: color 0.3s ease;
+}
+
+.portal-card-hover:hover .my-cases-card-badge {
+    background-color: #fff !important;
+    color: #000 !important;
+    transition: all 0.3s ease;
+}
+
+.portal-card-hover:hover .my-cases-card-description {
+    color: #fff !important;
+    transition: color 0.3s ease;
+}
+
+.portal-card-hover:hover .my-cases-card-label {
+    color: #fff !important;
+    transition: color 0.3s ease;
+}
+
+.portal-card-hover:hover .my-cases-card-value {
+    color: #fff !important;
+    transition: color 0.3s ease;
+}
+
+/* Employees Button Hover Fixes */
+.employees-filter-button:hover {
+    background-color: #f8f9fa !important;
+    color: #000 !important;
+    border-color: #e0e0e0 !important;
+    transform: none !important;
+}
+
+.employees-add-button:hover {
+    background-color: #f8f9fa !important;
+    color: #000 !important;
+    border-color: #e0e0e0 !important;
+    transform: none !important;
+}
+
+.employees-filter-button:hover i {
+    color: #000 !important;
+}
+
+.employees-add-button:hover i {
+    color: #000 !important;
+}
+
+/* Chat/List Lawyer Card Hover Effects */
+.portal-card-hover:hover .chat-lawyer-name {
+    color: #fff !important;
+    transition: color 0.3s ease;
+}
+
+.portal-card-hover:hover .chat-lawyer-price {
+    color: #fff !important;
+    transition: color 0.3s ease;
+}
+
+/* MyLawyers/List Chat Hover Effects */
+.my-lawyers-contact-card:hover {
+    background-color: #000 !important;
+    transition: background-color 0.3s ease;
+}
+
+.my-lawyers-contact-card:hover .my-lawyers-chat-name {
+    color: #fff !important;
+    transition: color 0.3s ease;
+}
+
+.my-lawyers-contact-card:hover .my-lawyers-chat-time {
+    color: #fff !important;
+    transition: color 0.3s ease;
+}
+
+.my-lawyers-contact-card:hover .my-lawyers-chat-message {
+    color: #fff !important;
+    transition: color 0.3s ease;
+}
+
+/* MyLawyers/List Lawyer Card Hover Effects */
+.my-lawyers-contact-card:hover .my-lawyers-lawyer-name {
+    color: #fff !important;
+    transition: color 0.3s ease;
+}
+
+.my-lawyers-contact-card:hover .my-lawyers-lawyer-title {
+    color: #fff !important;
+    transition: color 0.3s ease;
+}
+
+.my-lawyers-contact-card:hover .my-lawyers-lawyer-specializations {
+    color: #fff !important;
+    transition: color 0.3s ease;
+}
+
+.my-lawyers-contact-card:hover .my-lawyers-lawyer-renewal {
+    color: #fff !important;
+    transition: color 0.3s ease;
+}
+
+.my-lawyers-contact-card:hover .my-lawyers-lawyer-price {
+    color: #fff !important;
+    transition: color 0.3s ease;
+}
+
+/* Lawyers/List Rating Hover Effect */
+.portal-card-hover:hover .lawyers-rating-hover {
+    color: #fff !important;
+    transition: color 0.3s ease;
+}
+
+/* Chat/List Contact Hover Effects */
+.my-lawyers-contact-card:hover .chat-contact-name {
+    color: #fff !important;
+    transition: color 0.3s ease;
+}
+
+.my-lawyers-contact-card:hover .chat-contact-time {
+    color: #fff !important;
+    transition: color 0.3s ease;
+}
+
+.my-lawyers-contact-card:hover .chat-contact-badge {
+    background-color: #fff !important;
+    color: #000 !important;
+    transition: all 0.3s ease;
+}
+
+/* Notification Card Hover Effects */
+.notification-card-hover {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.notification-card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    background-color: #f8f9fa !important;
+}
+
+.notification-see-all-hover {
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.notification-see-all-hover:hover {
+    color: #495057 !important;
+    transform: translateX(3px);
+}
+
+.notification-see-all-hover::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #495057;
+    transition: width 0.3s ease;
+}
+
+.notification-see-all-hover:hover::after {
+    width: 100%;
+}
+
+.notification-item-hover {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    padding: 8px 0;
+    border-radius: 8px;
+    margin: 0 10px;
+}
+
+.notification-item-hover:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    transform: translateX(5px);
+    border-left: 3px solid #495057;
+    margin-left: 7px;
+}
+
+.notification-avatar-hover {
+    transition: all 0.3s ease;
+}
+
+.notification-item-hover:hover .notification-avatar-hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.notification-text-hover {
+    transition: all 0.3s ease;
+}
+
+.notification-item-hover:hover .notification-text-hover {
+    color: #495057 !important;
+    font-weight: 500;
+}
+
+.notification-time-hover {
+    transition: all 0.3s ease;
+}
+
+.notification-item-hover:hover .notification-time-hover {
+    color: #6c757d !important;
+    font-weight: 600;
+}
+
+/* Recent Question Card Hover Effects */
+.recent-question-card-hover {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.recent-question-card-hover:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.recent-question-card-hover:hover .recent-question-views-icon-hover,
+.recent-question-card-hover:hover .recent-question-message-icon-hover {
+    color: white !important;
+    transition: all 0.3s ease;
+}
+
+.recent-question-card-hover:hover .recent-question-views-text-hover,
+.recent-question-card-hover:hover .recent-question-message-text-hover {
+    color: white !important;
+    transition: all 0.3s ease;
+}
+
+.recent-question-card-hover:hover .recent-question-date-text-hover {
+    color: black !important;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.recent-question-card-hover:hover .recent-question-date-container-hover {
+    background-color: #e9ecef !important;
+    border: 1px solid #dee2e6;
+    transition: all 0.3s ease;
 }

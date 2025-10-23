@@ -5,7 +5,16 @@ import notificationProfile from "../../assets/images/notification-profile.png";
 const List = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [showCreateCase, setShowCreateCase] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
   const navigate = useNavigate();
+
+  const handleCloseCase = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      setShowCreateCase(false);
+      setIsClosing(false);
+    }, 300);
+  };
 
   const cases = [
     {
@@ -98,14 +107,14 @@ const List = () => {
               borderBottom: "1px solid #e6e6e6",
               borderTop: "1px solid #e6e6e6",
               marginTop: "30px",
-            }}>
+            }} data-aos="fade-up">
         <div className="col-12 px-0">
           <div className="d-flex gap-3 align-items-center">
             {/* Search Bar */}
             <div className="position-relative flex-grow-1" style={{ maxWidth: "400px" }}>
               <input
                 type="text"
-                className="form-control form-control-lg rounded-pill"
+                className="form-control form-control-lg rounded-pill portal-form-hover"
                 placeholder="Search"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -120,9 +129,9 @@ const List = () => {
               <i className="bi bi-search position-absolute top-50 translate-middle-y text-black fs-3 ms-4"></i>
             </div>
 
-            {/* Filter Button */}
+            {/* Filter Button
             <button
-              className="btn btn-outline-secondary rounded-pill d-flex align-items-center gap-2"
+              className="btn btn-outline-secondary rounded-pill d-flex align-items-center gap-2 portal-button-hover"
               style={{
                 fontSize: "18px",
                 fontWeight: "500",
@@ -135,17 +144,18 @@ const List = () => {
             >
               <i className="bi bi-funnel"></i>
               Filter
-            </button>
+            </button> */}
 
             {/* Add New Case Button */}
             <button
-              className="btn btn-outline-dark rounded-pill text-black px-4 py-2 d-flex justify-content-center align-items-center gap-2"
+              className="btn btn-outline-dark rounded-pill text-black px-4 py-2 d-flex justify-content-center align-items-center gap-2 portal-button-hover"
               style={{
                 fontSize: "18px",
                 fontWeight: "500",
                 backgroundColor: "white",
                 width: "224px",
                 height: "58px",
+                marginLeft: "80px",
                 border: "1px solid #e9ecef",
               }}
               type="button"
@@ -169,47 +179,47 @@ const List = () => {
 
       {/* Cases Grid */}
       <div className="row" style={{ marginLeft: "30px", marginRight: "30px" }}>
-        {cases.map((caseItem) => (
-          <div key={caseItem.id} className="col-lg-4 col-md-6 mb-4">
+        {cases.map((caseItem, index) => (
+          <div key={caseItem.id} className="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay={`${100 + index * 100}`}>
             <div 
-              className="card h-100 shadow-sm" 
+              className="card h-100 shadow-sm portal-card-hover" 
               style={{ cursor: "pointer" }}
               onClick={() => navigate(`/my-cases/${caseItem.id}`)}
             >
               <div className="card-body p-4">
                 <div className="d-flex justify-content-between align-items-start mb-3">
-                  <h5 className="card-title fw-bold text-dark mb-0">
+                  <h5 className="card-title mb-0 my-cases-card-title" style={{ fontSize: "21px", color: "#474747", fontWeight: "500" }}>
                     {caseItem.caseType}
                   </h5>
                   <span
-                    className="badge bg-light text-dark px-3 py-2 rounded-pill"
-                    style={{ fontSize: "0.8rem" }}
+                    className="badge bg-light px-3 py-2 rounded-pill my-cases-card-badge"
+                    style={{ fontSize: "14px", fontWeight: "500", color: "#474747" }}
                   >
                     {caseItem.caseId}
                   </span>
                 </div>
                 
-                <p className="text-muted mb-4" style={{ fontSize: "0.9rem" }}>
+                <p className="mb-4 my-cases-card-description" style={{ fontSize: "16px", color: "#474747" }}>
                   {caseItem.description}
                 </p>
 
                 <div className="row text-center">
                   <div className="col-4">
                     <div className="d-flex flex-column">
-                      <small className="text-muted mb-1">Jurisdiction</small>
-                      <span className="fw-bold text-dark">{caseItem.jurisdiction}</span>
+                      <small className="mb-1 my-cases-card-label" style={{ fontSize: "19px", color: "#989898", fontWeight: "400" }}>Jurisdiction</small>
+                      <span className="my-cases-card-value" style={{ color: "#474747", fontSize: "23px", fontWeight: "500" }}>{caseItem.jurisdiction}</span>
                     </div>
                   </div>
                   <div className="col-4">
                     <div className="d-flex flex-column">
-                      <small className="text-muted mb-1">Case Budget</small>
-                      <span className="fw-bold text-dark">{caseItem.caseBudget}</span>
+                      <small className="mb-1 my-cases-card-label" style={{ fontSize: "19px", color: "#989898", fontWeight: "400" }}>Case Budget</small>
+                      <span className="my-cases-card-value" style={{ color: "#474747", fontSize: "23px", fontWeight: "500" }}>{caseItem.caseBudget}</span>
                     </div>
                   </div>
                   <div className="col-4">
                     <div className="d-flex flex-column">
-                      <small className="text-muted mb-1">Respond</small>
-                      <span className="fw-bold text-dark">{caseItem.respond}</span>
+                      <small className="mb-1 my-cases-card-label" style={{ fontSize: "19px", color: "#989898", fontWeight: "400" }}>Respond</small>
+                      <span className="my-cases-card-value" style={{ color: "#474747", fontSize: "23px", fontWeight: "500" }}>{caseItem.respond}</span>
                     </div>
                   </div>
                 </div>
@@ -231,10 +241,13 @@ const List = () => {
             bottom: 0,
             visibility: "visible",
             width: "633px",
-            transition: "all 0.3s ease",
+            transition: "all 0.3s ease-out",
             borderRadius: "13px",
             margin: "20px",
             zIndex: 1045,
+            transform: isClosing ? "translateX(100%)" : "translateX(0)",
+            animation: isClosing ? "slideOutToRight 0.3s ease-in" : "slideInFromRight 0.3s ease-out",
+            backgroundColor: "#fff",
           }}
         >
           <div className="offcanvas-header border-bottom">
@@ -243,7 +256,7 @@ const List = () => {
               <button
                 type="button"
                 className="btn-close"
-                onClick={() => setShowCreateCase(false)}
+                onClick={handleCloseCase}
               ></button>
             </div>
           </div>
@@ -399,7 +412,7 @@ const List = () => {
       {showCreateCase && (
         <div
           className="offcanvas-backdrop fade show"
-          onClick={() => setShowCreateCase(false)}
+          onClick={handleCloseCase}
           style={{
             position: "fixed",
             top: 0,
@@ -407,7 +420,9 @@ const List = () => {
             zIndex: 1040,
             width: "100vw",
             height: "100vh",
-            backgroundColor: "rgba(0,0,0,1)",
+            backgroundColor: "rgba(0,0,0,0.2)",
+            transition: "all 0.3s ease-out",
+            animation: isClosing ? "fadeOut 0.3s ease-in" : "fadeIn 0.3s ease-out",
           }}
         ></div>
       )}

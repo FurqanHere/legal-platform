@@ -6,6 +6,7 @@ const List = () => {
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const [showDetail, setShowDetail] = useState(false);
   const [showPostQuestion, setShowPostQuestion] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
 
   const [questions, setQuestions] = useState([
     {
@@ -122,6 +123,14 @@ const List = () => {
     setShowPostQuestion(true);
   };
 
+  const handleClosePostQuestion = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      setShowPostQuestion(false);
+      setIsClosing(false);
+    }, 300); // Match animation duration
+  };
+
   return (
     <div
       className="d-flex flex-column flex-column-fluid ask-question--mukta-font"
@@ -132,12 +141,13 @@ const List = () => {
         <div
           className="d-flex gap-3 mb-6 bg-white p-4 border-top border-bottom"
           style={{ marginTop: "-20px" }}
+          data-aos="fade-up"
         >
           <div className="flex-fill" style={{ maxWidth: "30%" }}>
             <div className="position-relative">
               <input
                 type="text"
-                className="form-control form-control-lg rounded-pill"
+                className="form-control form-control-lg rounded-pill portal-form-hover"
                 placeholder="Search"
                 style={{ borderRadius: "12px", paddingLeft: "45px" }}
               />
@@ -146,16 +156,16 @@ const List = () => {
           </div>
 
           <div className="d-flex gap-3">
-            <button
-              className="btn btn-transparent border rounded-pill d-flex align-items-center gap-2"
+            {/* <button
+              className="btn btn-transparent border rounded-pill d-flex align-items-center gap-2 portal-button-hover"
               style={{ borderRadius: "12px", minWidth: "120px" }}
             >
               <i className="bi bi-funnel text-black"></i>
               Filter
-            </button>
+            </button> */}
 
             <button
-              className="btn bg-transparent border rounded-pill d-flex align-items-center gap-2"
+              className="btn bg-transparent border rounded-pill d-flex align-items-center gap-2 portal-button-hover"
               style={{ borderRadius: "12px", minWidth: "180px" }}
               onClick={handleAddQuestionClick}
             >
@@ -166,18 +176,31 @@ const List = () => {
         </div>
 
         {/* Questions Grid */}
-        <div className="app-container container-xxl px-0">
+        <div
+          className="app-container container-xxl px-0"
+          style={{
+            marginLeft: "15px",
+            marginRight: "15px",
+            width: "100%",
+            maxWidth: "1460px",
+          }}
+        >
           <div className="row g-4">
-            {questions.map((question) => (
-              <div key={question.id} className="col-lg-4 col-md-6">
+            {questions.map((question, index) => (
+              <div
+                key={question.id}
+                className="col-lg-3 col-md-6 d-flex justify-content-center align-items-center flex-column"
+                data-aos="fade-up"
+                data-aos-delay={`${100 + index * 100}`}
+              >
                 <div
-                  className={`card ${
-                    question.isHighlighted ? "text-white" : "bg-white border"
+                  className={`card portal-card-hover ${
+                    question.isHighlighted ? "text-black" : "bg-white border"
                   }`}
                   style={{
                     borderRadius: "12px",
-                    backgroundColor: question.isHighlighted ? "black" : "white",
-                    height: "200px",
+                    // width: "353px",
+                    height: "236px",
                     cursor: "pointer",
                   }}
                   onClick={() => handleCardClick(question)}
@@ -185,64 +208,35 @@ const List = () => {
                   <div className="card-body p-4 d-flex flex-column">
                     {/* Date */}
                     <div className="mb-3">
-                      <small
-                        className={`${
-                          question.isHighlighted
-                            ? "text-white-50"
-                            : "text-gray-500"
-                        }`}
-                      >
-                        {question.date}
-                      </small>
+                      <small>{question.date}</small>
                     </div>
 
                     {/* Question Content */}
                     <div className="flex-fill mb-4">
                       <p
                         className={`${
-                          question.isHighlighted ? "text-white" : "text-dark"
+                          question.isHighlighted ? "text-black" : "text-dark"
                         } mb-0`}
+                        style={{ fontSize: "20px", fontWeight: "500" }}
                       >
                         {question.title}
                       </p>
                     </div>
 
                     {/* Stats */}
-                    <div className="d-flex align-items-center gap-4">
+                    <div className="d-flex align-items-center justify-content-between stats-bottom-content">
                       <div className="d-flex align-items-center gap-2">
                         <i
-                          className={`bi bi-eye-fill ${
-                            question.isHighlighted
-                              ? "text-white"
-                              : "text-gray-600"
-                          }`}
+                          className="bi bi-eye-fill"
                         ></i>
-                        <span
-                          className={`${
-                            question.isHighlighted
-                              ? "text-white"
-                              : "text-gray-600"
-                          }`}
-                        >
-                          Views: {question.views}
-                        </span>
+                        <span>Views: {question.views}</span>
                       </div>
 
                       <div className="d-flex align-items-center gap-2">
                         <i
-                          className={`bi bi-chat-dots-fill ${
-                            question.isHighlighted
-                              ? "text-white"
-                              : "text-gray-600"
-                          }`}
+                          className="bi bi-chat-dots-fill"
                         ></i>
-                        <span
-                          className={`${
-                            question.isHighlighted
-                              ? "text-white"
-                              : "text-gray-600"
-                          }`}
-                        >
+                        <span>
                           Ans: {question.answers}
                         </span>
                       </div>
@@ -272,10 +266,12 @@ const List = () => {
           <div className="offcanvas-header border-bottom">
             <div className="d-flex justify-content-between align-items-center w-100">
               <div>
-                <small className="text-muted">{selectedQuestion.date}</small>
+                <small className="text-black">{selectedQuestion.date}</small>
               </div>
               <div className="d-flex gap-2">
-                <button className="btn btn-dark btn-sm">Mark Closed</button>
+                <button className="btn bg-black text-white btn-sm">
+                  Mark Closed
+                </button>
                 <button
                   type="button"
                   className="btn-close"
@@ -293,13 +289,13 @@ const List = () => {
               <div className="d-flex align-items-center gap-4 mb-4">
                 <div className="d-flex align-items-center gap-2">
                   <i className="bi bi-eye-fill text-gray-600"></i>
-                  <span className="text-gray-600">
+                  <span className="text-black">
                     Views: {selectedQuestion.views}
                   </span>
                 </div>
                 <div className="d-flex align-items-center gap-2">
                   <i className="bi bi-chat-dots-fill text-gray-600"></i>
-                  <span className="text-gray-600">
+                  <span className="text-black">
                     Ans: {selectedQuestion.answers}
                   </span>
                 </div>
@@ -313,7 +309,7 @@ const List = () => {
 
                 <div
                   className="d-flex flex-column gap-3"
-                  style={{ maxHeight: "400px", overflowY: "auto" }}
+                  // style={{ maxHeight: "400px", overflowY: "auto" }}
                 >
                   {lawyerResponses.map((lawyer) => (
                     <div
@@ -344,11 +340,11 @@ const List = () => {
                             >
                               {lawyer.name}
                             </strong>
-                            <small className="text-muted">{lawyer.title}</small>
+                            <small className="text-black">{lawyer.title}</small>
                           </div>
 
                           <p
-                            className="text-dark mb-1 mt-2"
+                            className="text-black mb-1 mt-2"
                             style={{ fontSize: "14px" }}
                           >
                             {lawyer.response}
@@ -393,12 +389,19 @@ const List = () => {
           className="offcanvas offcanvas-end show"
           tabIndex="-1"
           style={{
+            position: "fixed",
+            top: 0,
+            right: 0,
+            bottom: 0,
             visibility: "visible",
             width: "633px",
-            right: "0",
-            transition: "all 0.3s ease",
+            transition: "all 0.3s ease-out",
             borderRadius: "13px",
             margin: "20px",
+            zIndex: 1045,
+            transform: isClosing ? "translateX(100%)" : "translateX(0)",
+            animation: isClosing ? "slideOutToRight 0.3s ease-in" : "slideInFromRight 0.3s ease-out",
+            backgroundColor: "#fff",
           }}
         >
           <div className="offcanvas-header border-bottom">
@@ -407,7 +410,7 @@ const List = () => {
               <button
                 type="button"
                 className="btn-close"
-                onClick={() => setShowPostQuestion(false)}
+                onClick={handleClosePostQuestion}
               ></button>
             </div>
           </div>
@@ -557,7 +560,7 @@ const List = () => {
       {showPostQuestion && (
         <div
           className="offcanvas-backdrop fade show"
-          onClick={() => setShowPostQuestion(false)}
+          onClick={handleClosePostQuestion}
           style={{
             position: "fixed",
             top: 0,
@@ -565,7 +568,9 @@ const List = () => {
             zIndex: 1040,
             width: "100vw",
             height: "100vh",
-            backgroundColor: "rgba(0,0,0,1)",
+            backgroundColor: "rgba(0,0,0,0.2)",
+            transition: "all 0.3s ease-out",
+            animation: isClosing ? "fadeOut 0.3s ease-in" : "fadeIn 0.3s ease-out",
           }}
         ></div>
       )}

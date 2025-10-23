@@ -2,15 +2,24 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import AuthService from "../services/AuthService";
 import logo from "../assets/images/whiteLogo.png";
+import LogoutModal from "./LogoutModal";
 
 const Sidebar = () => {
-  const logout = () => {
-    if (window.confirm("Are you sure? you want to logout.")) {
-      AuthService.logout();
-    }
-  };
   const [openDropdown, setOpenDropdown] = useState(null);
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+
+  const logout = () => {
+    setShowLogoutModal(true);
+  };
+
+  const handleLogoutConfirm = () => {
+    setShowLogoutModal(false);
+  };
+
+  const handleLogoutCancel = () => {
+    setShowLogoutModal(false);
+  };
 
   const toggleDropdown = (dropdownId) => {
     setOpenDropdown(openDropdown === dropdownId ? null : dropdownId); // Toggle the dropdown
@@ -93,12 +102,13 @@ const Sidebar = () => {
       data-kt-drawer-name="app-sidebar"
       data-kt-drawer-activate="{default: true, lg: false}"
       data-kt-drawer-overlay="true"
-      data-kt-drawer-width={isCollapsed ? "120px" : "265px"}
+      data-kt-drawer-width={isCollapsed ? "80px" : "265px"}
       data-kt-drawer-direction="start"
       data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle"
       style={{
-        width: isCollapsed ? "120px" : "265px",
+        width: isCollapsed ? "80px" : "265px",
         transition: "width 0.3s ease",
+        backgroundColor: "black",
       }}
     >
       <div
@@ -159,7 +169,7 @@ const Sidebar = () => {
             data-kt-menu-expand="false"
           >
             <div className="menu-item">
-              <NavLink to="/dashboard" className="menu-link">
+              <NavLink to="/dashboard" className="menu-link portal-nav-hover">
                 <span className="menu-icon">
                   <span className="svg-icon svg-icon-2">
                     <i className="bi bi-house-door-fill fs-5"></i>
@@ -170,7 +180,7 @@ const Sidebar = () => {
             </div>
 
             <div className="menu-item">
-              <NavLink to="/ask-question" className="menu-link">
+              <NavLink to="/ask-question" className="menu-link portal-nav-hover">
                 <span className="menu-icon">
                   <i class="bi bi-question-circle"></i>
                 </span>
@@ -179,7 +189,7 @@ const Sidebar = () => {
             </div>
 
             <div className="menu-item">
-              <NavLink to="/my-lawyers" className="menu-link">
+              <NavLink to="/my-lawyers" className="menu-link portal-nav-hover">
                 <span className="menu-icon">
                   <svg
                     width="20"
@@ -220,7 +230,7 @@ const Sidebar = () => {
             </div>
 
             <div className="menu-item">
-              <NavLink to="/lawyers" className="menu-link">
+              <NavLink to="/lawyers" className="menu-link portal-nav-hover">
                 <span className="menu-icon">
                   <svg
                     width="20"
@@ -261,7 +271,7 @@ const Sidebar = () => {
             </div>
 
             <div className="menu-item">
-              <NavLink to="/chat" className="menu-link">
+              <NavLink to="/chat" className="menu-link portal-nav-hover">
                 <span className="menu-icon">
                   <i class="bi bi-chat-left-dots"></i>
                 </span>
@@ -270,7 +280,7 @@ const Sidebar = () => {
             </div>
 
             <div className="menu-item">
-              <NavLink to="/my-cases" className="menu-link">
+              <NavLink to="/my-cases" className="menu-link portal-nav-hover">
                 <span className="menu-icon">
                   <i class="bi bi-briefcase-fill"></i>
                 </span>
@@ -278,17 +288,17 @@ const Sidebar = () => {
               </NavLink>
             </div>
 
-            <div className="menu-item menu-accordion ">
-              <span className="menu-link" id="menuLink">
+            <div className="menu-item">
+              <NavLink to="/employees" className="menu-link portal-nav-hover">
                 <span className="menu-icon">
                   <i class="bi bi-person-lines-fill"></i>
                 </span>
                 <span className="menu-title fs-6">Employees</span>
-              </span>
+              </NavLink>
             </div>
 
             <div className="menu-item">
-              <NavLink to="/account" className="menu-link">
+              <NavLink to="/account" className="menu-link portal-nav-hover">
                 <span className="menu-icon">
                   <i class="bi bi-file-earmark-text"></i>
                 </span>
@@ -307,6 +317,13 @@ const Sidebar = () => {
           </div>
         </div>
       </div>
+
+      {/* Logout Modal */}
+      <LogoutModal
+        show={showLogoutModal}
+        onClose={handleLogoutCancel}
+        onConfirm={handleLogoutConfirm}
+      />
     </div>
   );
 };
