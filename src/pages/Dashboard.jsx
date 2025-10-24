@@ -32,20 +32,14 @@ const Dashboard = () => {
           <div className="row">
             {/* Left Column - Main Content */}
             <div
-              className="col-md-8 pt-4"
-              style={{
-                background:
-                  "linear-gradient(to bottom,rgba(0, 0, 0, 0.06) 0%, #ffffff 100%, #ffffff 100%)",
-                borderRadius: "12px",
-                padding: "20px",
-              }}
+              className="col-md-8 pt-4 dashboard-main-content"
             >
               {/* Welcome Header */}
               <div className="mb-6" data-aos="fade-up">
-                <h1 className="text-black mb-2" style={{ fontSize: "30px", fontWeight: "700" }}>
+                <h1 className="text-black mb-2 dashboard-welcome-title">
                   Welcome Back! Noon
                 </h1>
-                <p className="text-gray-600 mb-4" style={{ fontSize: "20px", fontWeight: "400" }}>
+                <p className="text-gray-600 mb-4 dashboard-welcome-subtitle">
                   Dubai internet city UAE
                 </p>
               </div>
@@ -58,8 +52,7 @@ const Dashboard = () => {
                   data-aos-delay="100"
                 >
                   <div
-                    className="card h-100 dashboard-card-hover"
-                    style={{ borderRadius: "20px" }}
+                    className="card h-100 dashboard-card-hover dashboard-action-card"
                   >
                     <div className="card-body p-4 d-flex flex-column justify-content-between h-100">
                       <div>
@@ -69,12 +62,7 @@ const Dashboard = () => {
                       </div>
                       <div className="d-flex justify-content-between align-items-center">
                         <button
-                          className="btn btn-light rounded-circle d-flex justify-content-center align-items-center portal-button-hover"
-                          style={{
-                            width: "40px",
-                            height: "40px",
-                            backgroundColor: "#EAEAEA",
-                          }}
+                          className="btn btn-light rounded-circle d-flex justify-content-center align-items-center portal-button-hover dashboard-action-button"
                           onClick={handleAddQuestionClick}
                         >
                           <i className="bi bi-plus fs-1 text-dark pe-0"></i>
@@ -95,8 +83,7 @@ const Dashboard = () => {
                   data-aos-delay="200"
                 >
                   <div
-                    className="card h-100 shadow dashboard-card-hover"
-                    style={{ borderRadius: "20px" }}
+                    className="card h-100 shadow dashboard-card-hover dashboard-action-card"
                   >
                     <div className="card-body p-4 d-flex flex-column justify-content-between h-100">
                       <div>
@@ -110,12 +97,7 @@ const Dashboard = () => {
                           className="dashboard-card-hover-icon"
                         >
                           <button
-                            className="btn rounded-circle d-flex justify-content-center align-items-center "
-                            style={{
-                              width: "40px",
-                              height: "40px",
-                              backgroundColor: "#EAEAEA",
-                            }}
+                            className="btn rounded-circle d-flex justify-content-center align-items-center dashboard-action-button"
                             type="button"
                           >
                             <i className="bi bi-plus fs-1 text-black p-0"></i>
@@ -137,8 +119,7 @@ const Dashboard = () => {
                   data-aos-delay="300"
                 >
                   <div
-                    className="card h-100 shadow dashboard-card-hover"
-                    style={{ borderRadius: "20px" }}
+                    className="card h-100 shadow dashboard-card-hover dashboard-action-card"
                   >
                     <div className="card-body p-4 d-flex flex-column justify-content-between h-100">
                       <div>
@@ -148,12 +129,7 @@ const Dashboard = () => {
                       </div>
                       <div className="d-flex justify-content-between align-items-center">
                         <button
-                          className="btn rounded-circle d-flex justify-content-center align-items-center"
-                          style={{
-                            width: "40px",
-                            height: "40px",
-                            backgroundColor: "#EAEAEA",
-                          }}
+                          className="btn rounded-circle d-flex justify-content-center align-items-center dashboard-action-button"
                           onClick={() => setShowCreateCase(true)}
                         >
                           <i className="bi bi-plus fs-1 text-black p-0"></i>
@@ -171,16 +147,14 @@ const Dashboard = () => {
 
               {/* Recent Posted Question and Lawyer Respond */}
               <div
-                className="card mb-6 shadow recent-posted-question-card recent-question-card-hover"
-                style={{ borderRadius: "12px" }}
+                className="card mb-6 shadow recent-posted-question-card recent-question-card-hover dashboard-recent-question-card"
                 data-aos="fade-up"
                 data-aos-delay="500"
               >
                 <div className="card-body p-4 d-flex justify-content-between">
                   {/* Recent Posted Question Section */}
                   <div
-                    className="me-4 d-flex flex-column"
-                    style={{ flex: "2" }}
+                    className="me-4 d-flex flex-column dashboard-recent-question-section"
                   >
                     <h1 className="fw-bold text-dark mb-4">
                       Recent Posted Question
@@ -191,7 +165,7 @@ const Dashboard = () => {
                       aperiam, eaque ipsa quae ab illo inventore veritatis.
                     </p>
                     <div className="mt-auto">
-                      <div className="d-flex align-items-center gap-4">
+                      <div className="d-flex align-items-center gap-2 recent-question-views-container">
                         <div className="d-flex align-items-center">
                           <i className="bi bi-eye-fill text-black me-2 recent-question-views-icon-hover"></i>
                           <span className="text-black recent-question-views-text-hover">
@@ -205,8 +179,7 @@ const Dashboard = () => {
                           </span>
                         </div>
                         <div
-                          className="d-flex align-items-center rounded-pill py-2 px-3 ms-5 recent-question-date-container-hover"
-                          style={{ backgroundColor: "#F0F0F0" }}
+                          className="d-flex align-items-center rounded-pill py-2 px-3 ms-5 recent-question-date-container-hover dashboard-recent-question-date-container"
                         >
                           <span className="text-black recent-question-date-text-hover">
                             Jan 05 - 2025 - 10:25 AM
@@ -217,10 +190,10 @@ const Dashboard = () => {
                   </div>
 
                   {/* Lawyer Respond Section */}
-                  <div style={{ flex: "1" }}>
+                  <div className="dashboard-lawyer-respond-section">
                     <div className="d-flex justify-content-between align-items-center mb-4 recent-posted-question-lawyer-respond">
                       <h2 className="fw-bold mb-0">Lawyer Respond</h2>
-                      <a href="#" className="--bs-tertiary-bg-rgb fw-semibold">
+                      <a href="#" className="--bs-tertiary-bg-rgb fw-semibold dashboard-see-all-hover">
                         See All
                       </a>
                     </div>
@@ -280,8 +253,7 @@ const Dashboard = () => {
 
               {/* My Lawyers */}
               <div
-                className="card shadow-sm border-0"
-                style={{ borderRadius: "12px" }}
+                className="card shadow-sm border-0 dashboard-my-lawyers-card"
                 data-aos="fade-up"
                 data-aos-delay="400"
               >
@@ -292,32 +264,22 @@ const Dashboard = () => {
                       <h4 className="fw-bold text-dark mb-0">My Lawyers</h4>
                       <div className="d-flex mb-4 ms-5">
                         <button
-                          className={`btn portal-tab-hover ${
+                          className={`btn portal-tab-hover dashboard-tab-button ${
                             activeTab === "active"
                               ? "btn-dark text-white active"
                               : "btn-light text-dark"
                           } me-2`}
                           onClick={() => setActiveTab("active")}
-                          style={{
-                            borderRadius: "20px",
-                            padding: "6px 20px",
-                            fontWeight: "500",
-                          }}
                         >
                           Active Lawyers
                         </button>
                         <button
-                          className={`btn portal-tab-hover ${
+                          className={`btn portal-tab-hover dashboard-tab-button ${
                             activeTab === "inactive"
                               ? "btn-dark text-white active"
                               : "btn-light text-dark"
                           }`}
                           onClick={() => setActiveTab("inactive")}
-                          style={{
-                            borderRadius: "20px",
-                            padding: "6px 20px",
-                            fontWeight: "500",
-                          }}
                         >
                           Inactive Lawyers
                         </button>
@@ -326,7 +288,7 @@ const Dashboard = () => {
                     <NavLink to={"/my-lawyers"}>
                       <a
                         href="#"
-                        className="fw-semibold text-decoration-none --bs-tertiary-bg-rgb"
+                        className="fw-semibold text-decoration-none --bs-tertiary-bg-rgb dashboard-see-all-hover"
                       >
                         See All
                       </a>
@@ -337,16 +299,14 @@ const Dashboard = () => {
                   {[1, 2].map((_, index) => (
                     <div
                       key={index}
-                      className="card mb-3 border-0 shadow-sm lawyer-card-hover"
-                      style={{ borderRadius: "12px" }}
+                      className="card mb-3 border-0 shadow-sm lawyer-card-hover dashboard-lawyer-card"
                       data-aos="fade-up"
                       data-aos-delay={`${500 + index * 100}`}
                     >
                       <div className="card-body d-flex align-items-center justify-content-between flex-wrap p-3">
                         {/* Profile */}
                         <div
-                          className="d-flex align-items-center"
-                          style={{ minWidth: "200px" }}
+                          className="d-flex align-items-center dashboard-lawyer-profile"
                         >
                           <img
                             src={notificationProfile}
@@ -367,16 +327,14 @@ const Dashboard = () => {
 
                         {/* Practice Areas */}
                         <div
-                          className="text-muted"
-                          style={{ minWidth: "180px" }}
+                          className="text-muted dashboard-lawyer-practice"
                         >
                           Criminal Law, Tax Law+
                         </div>
 
                         {/* Renewal Date */}
                         <div
-                          className="text-muted"
-                          style={{ minWidth: "160px" }}
+                          className="text-muted dashboard-lawyer-renewal"
                         >
                           Renew 21 September
                         </div>
@@ -393,8 +351,7 @@ const Dashboard = () => {
             <div className="col-md-4">
               {/* My Cases */}
               <div
-                className="card mb-6 shadow my-cases-card-hover"
-                style={{ borderRadius: "12px" }}
+                className="card mb-6 shadow my-cases-card-hover dashboard-my-cases-card"
                 data-aos="fade-left"
                 data-aos-delay="600"
               >
@@ -402,15 +359,14 @@ const Dashboard = () => {
                   <div className="d-flex justify-content-between align-items-center mb-4">
                     <h2 className="fw-bold text-dark mb-0">My Cases</h2>
                     <NavLink to={"/my-cases"}>
-                      <a href="#" className="--bs-tertiary-bg-rgb fw-semibold">
+                      <a href="#" className="--bs-tertiary-bg-rgb fw-semibold dashboard-see-all-hover">
                         See All
                       </a>
                     </NavLink>
                   </div>
 
                   <div
-                    className="card mb-3 my-cases-row-hover"
-                    style={{ borderRadius: "12px" }}
+                    className="card mb-3 my-cases-row-hover dashboard-case-card"
                     data-aos="fade-up"
                     data-aos-delay="700"
                   >
@@ -420,8 +376,7 @@ const Dashboard = () => {
                           Crimes Against Persons
                         </h6>
                         <span
-                          className="badge bg-light text-dark portal-badge-hover"
-                          style={{ borderRadius: "12px" }}
+                          className="badge bg-light text-dark portal-badge-hover dashboard-case-badge"
                         >
                           Case# 2548
                         </span>
@@ -434,8 +389,7 @@ const Dashboard = () => {
                   </div>
 
                   <div
-                    className="card mb-3 my-cases-row-hover"
-                    style={{ borderRadius: "12px" }}
+                    className="card mb-3 my-cases-row-hover dashboard-case-card"
                     data-aos="fade-up"
                     data-aos-delay="800"
                   >
@@ -445,8 +399,7 @@ const Dashboard = () => {
                           Crimes Against Persons
                         </h6>
                         <span
-                          className="badge bg-light text-dark portal-badge-hover"
-                          style={{ borderRadius: "12px" }}
+                          className="badge bg-light text-dark portal-badge-hover dashboard-case-badge"
                         >
                           Case# 2548
                         </span>
@@ -459,8 +412,7 @@ const Dashboard = () => {
                   </div>
 
                   <div
-                    className="card mb-3 my-cases-row-hover"
-                    style={{ borderRadius: "12px" }}
+                    className="card mb-3 my-cases-row-hover dashboard-case-card"
                     data-aos="fade-up"
                     data-aos-delay="900"
                   >
@@ -470,8 +422,7 @@ const Dashboard = () => {
                           Crimes Against Persons
                         </h6>
                         <span
-                          className="badge bg-light text-dark portal-badge-hover"
-                          style={{ borderRadius: "12px" }}
+                          className="badge bg-light text-dark portal-badge-hover dashboard-case-badge"
                         >
                           Case# 2548
                         </span>
@@ -487,32 +438,23 @@ const Dashboard = () => {
 
               {/* Notifications */}
               <div
-                className="card shadow notification-card-hover"
-                style={{ 
-                  borderRadius: "12px", 
-                  background: "#F3F3F3",
-                  minHeight: "400px",
-                  width: "100%"
-                }}
+                className="card shadow notification-card-hover dashboard-notification-card"
                 data-aos="fade-left"
                 data-aos-delay="1000"
               >
-                <div className="card-body px-4 pb-4" style={{ paddingTop: "20px" }}>
+                <div className="card-body px-4 pb-4 dashboard-notification-body">
                   <div
-                    className="d-flex justify-content-between align-items-center mb-4 pt-0 pb-5"
-                    style={{ borderBottom: "1px solid #DBDBDB" }}
+                    className="d-flex justify-content-between align-items-center mb-4 pt-0 pb-5 dashboard-notification-header"
                   >
                     <h4
-                      className="fw-bold text-black mb-0"
-                      style={{ margin: "0 20px" }}
+                      className="fw-bold text-black mb-0 dashboard-notification-title"
                     >
                       Notifications
                     </h4>
                     <NavLink to={"/notifications"}>
                       <a
                         href="#"
-                        className="text-black fw-semibold notification-see-all-hover"
-                        style={{ margin: "0 20px" }}
+                        className="text-black fw-semibold dashboard-see-all-hover dashboard-notification-see-all"
                       >
                         See All
                       </a>
@@ -520,14 +462,12 @@ const Dashboard = () => {
                   </div>
 
                   <div
-                    className="d-flex align-items-start mb-5 notification-item-hover"
-                    style={{ borderBottom: "1px solid #DBDBDB", paddingBottom: "15px" }}
+                    className="d-flex align-items-start mb-5 notification-item-hover dashboard-notification-item"
                     data-aos="fade-up"
                     data-aos-delay="1100"
                   >
                     <div
-                      className="symbol symbol-40px me-3"
-                      style={{ margin: "0 20px" }}
+                      className="symbol symbol-40px me-3 dashboard-notification-avatar"
                     >
                       <img
                         src={notificationProfile}
@@ -536,25 +476,23 @@ const Dashboard = () => {
                       />
                     </div>
                     <div>
-                      <p className="text-gray-600 mb-2 notification-text-hover" style={{ fontSize: "14px", lineHeight: "1.5" }}>
+                      <p className="text-gray-600 mb-2 notification-text-hover dashboard-notification-text">
                         Sed ut perspiciatis unde omnis iste natus error sit
                         volupta accusantium doloremque laudantium, totam rem.
                       </p>
-                      <span className="text-gray-500 fs-7 notification-time-hover" style={{ fontSize: "12px" }}>
+                      <span className="text-gray-500 fs-7 notification-time-hover dashboard-notification-time">
                         1 hour
                       </span>
                     </div>
                   </div>
 
                   <div
-                    className="d-flex align-items-start mb-5 notification-item-hover"
-                    style={{ borderBottom: "1px solid #DBDBDB", paddingBottom: "15px" }}
+                    className="d-flex align-items-start mb-5 notification-item-hover dashboard-notification-item"
                     data-aos="fade-up"
                     data-aos-delay="1200"
                   >
                     <div
-                      className="symbol symbol-40px me-3"
-                      style={{ margin: "0 20px" }}
+                      className="symbol symbol-40px me-3 dashboard-notification-avatar"
                     >
                       <img
                         src={notificationProfile}
@@ -574,14 +512,12 @@ const Dashboard = () => {
                   </div>
 
                   <div
-                    className="d-flex align-items-start mb-5 notification-item-hover"
-                    style={{ borderBottom: "1px solid #DBDBDB", paddingBottom: "15px" }}
+                    className="d-flex align-items-start mb-5 notification-item-hover dashboard-notification-item"
                     data-aos="fade-up"
                     data-aos-delay="1300"
                   >
                     <div
-                      className="symbol symbol-40px me-3"
-                      style={{ margin: "0 20px" }}
+                      className="symbol symbol-40px me-3 dashboard-notification-avatar"
                     >
                       <img
                         src={notificationProfile}
@@ -606,8 +542,7 @@ const Dashboard = () => {
                     data-aos-delay="1400"
                   >
                     <div
-                      className="symbol symbol-40px me-3"
-                      style={{ margin: "0 20px" }}
+                      className="symbol symbol-40px me-3 dashboard-notification-avatar"
                     >
                       <img
                         src={notificationProfile}
@@ -635,20 +570,8 @@ const Dashboard = () => {
       {/* Create Case Offcanvas */}
       {showCreateCase && (
         <div
-          className="offcanvas offcanvas-end show"
+          className="offcanvas offcanvas-end show dashboard-create-case-offcanvas"
           tabIndex="-1"
-          style={{
-            position: "fixed",
-            top: 0,
-            right: 0,
-            bottom: 0,
-            visibility: "visible",
-            width: "633px",
-            transition: "all 0.3s ease",
-            borderRadius: "13px",
-            margin: "20px",
-            zIndex: 1045,
-          }}
         >
           <div className="offcanvas-header border-bottom">
             <div className="d-flex justify-content-between align-items-center w-100">
@@ -662,22 +585,15 @@ const Dashboard = () => {
           </div>
 
           <div
-            className="offcanvas-body p-0 d-flex flex-column"
-            style={{ height: "100%" }}
+            className="offcanvas-body p-0 d-flex flex-column dashboard-offcanvas-body"
           >
-            <div className="p-4 flex-grow-1" style={{ overflowY: "auto" }}>
+            <div className="p-4 flex-grow-1 dashboard-offcanvas-content">
               {/* Top Row Selects */}
               <div className="row g-3 mb-3">
                 <div className="col-6">
                   <div className="position-relative">
                     <select
-                      className="form-select"
-                      style={{
-                        width: "100%",
-                        height: "56px",
-                        border: "1px solid #C9C9C9",
-                        borderRadius: "12px",
-                      }}
+                      className="form-select dashboard-form-select"
                     >
                       <option>Select Jurisdiction</option>
                     </select>
@@ -687,13 +603,7 @@ const Dashboard = () => {
                 <div className="col-6">
                   <div className="position-relative">
                     <select
-                      className="form-select"
-                      style={{
-                        width: "100%",
-                        height: "56px",
-                        border: "1px solid #C9C9C9",
-                        borderRadius: "12px",
-                      }}
+                      className="form-select dashboard-form-select"
                     >
                       <option>Type of legal consultant</option>
                     </select>
@@ -707,13 +617,7 @@ const Dashboard = () => {
                 <div className="col-6">
                   <div className="position-relative">
                     <select
-                      className="form-select"
-                      style={{
-                        width: "100%",
-                        height: "56px",
-                        border: "1px solid #C9C9C9",
-                        borderRadius: "12px",
-                      }}
+                      className="form-select dashboard-form-select"
                     >
                       <option>Criminal Law</option>
                     </select>
@@ -723,13 +627,7 @@ const Dashboard = () => {
                 <div className="col-6">
                   <div className="position-relative">
                     <select
-                      className="form-select"
-                      style={{
-                        width: "100%",
-                        height: "56px",
-                        border: "1px solid #C9C9C9",
-                        borderRadius: "12px",
-                      }}
+                      className="form-select dashboard-form-select"
                     >
                       <option>Select Sub Categories</option>
                     </select>
@@ -741,42 +639,21 @@ const Dashboard = () => {
               {/* Explain Case */}
               <div className="mb-3">
                 <textarea
-                  className="form-control"
+                  className="form-control dashboard-textarea"
                   placeholder="Explain Your Case"
-                  style={{
-                    resize: "none",
-                    width: "100%",
-                    height: "217px",
-                    border: "1px solid #C9C9C9",
-                    borderRadius: "12px",
-                  }}
                 ></textarea>
               </div>
 
               {/* Attach Document */}
               <div className="mb-3">
                 <div
-                  className="d-flex align-items-center justify-content-start border border-2 border-dashed rounded"
-                  style={{
-                    border: "1.5px dashed #C9C9C9",
-                    width: "100%",
-                    height: "80px",
-                    borderRadius: "12px",
-                  }}
+                  className="d-flex align-items-center justify-content-start border border-2 border-dashed rounded dashboard-file-upload"
                 >
                   <div
-                    className="p-3 mx-3 rounded-1"
-                    style={{
-                      backgroundColor: "#FDFDFD",
-                      border: "1px dashed #BEBEBE",
-                    }}
+                    className="p-3 mx-3 rounded-1 dashboard-file-upload-icon"
                   >
                     <i
-                      className="bi bi-paperclip fs-3 d-inline-block"
-                      style={{
-                        transform: "rotate(45deg)",
-                        display: "inline-block",
-                      }}
+                      className="bi bi-paperclip fs-3 d-inline-block dashboard-paperclip-icon"
                     ></i>
                   </div>
 
@@ -802,17 +679,10 @@ const Dashboard = () => {
 
             {/* Submit Button - fixed at bottom */}
             <div
-              className="p-4 border-top"
-              style={{ backgroundColor: "#fff", borderRadius: "13px" }}
+              className="p-4 border-top dashboard-submit-footer"
             >
               <button
-                className="btn text-white rounded-pill w-100"
-                style={{
-                  height: "63px",
-                  fontSize: "20px",
-                  fontWeight: "500",
-                  backgroundColor: "#474747",
-                }}
+                className="btn text-white rounded-pill w-100 dashboard-submit-button"
               >
                 Submit
               </button>
@@ -824,33 +694,16 @@ const Dashboard = () => {
       {/* Backdrop for Create Case */}
       {showCreateCase && (
         <div
-          className="offcanvas-backdrop fade show"
+          className="offcanvas-backdrop fade show dashboard-backdrop"
           onClick={() => setShowCreateCase(false)}
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            zIndex: 1040,
-            width: "100vw",
-            height: "100vh",
-            backgroundColor: "rgba(0,0,0,1)",
-          }}
         ></div>
       )}
 
       {/* Post Question Offcanvas */}
       {showPostQuestion && (
         <div
-          className="offcanvas offcanvas-end show"
+          className="offcanvas offcanvas-end show dashboard-post-question-offcanvas"
           tabIndex="-1"
-          style={{
-            visibility: "visible",
-            width: "633px",
-            right: "0",
-            transition: "all 0.3s ease",
-            borderRadius: "13px",
-            margin: "20px",
-          }}
         >
           <div className="offcanvas-header border-bottom">
             <div className="d-flex justify-content-between align-items-center w-100">
@@ -867,15 +720,8 @@ const Dashboard = () => {
             {/* Question Input */}
             <div className="mb-3">
               <textarea
-                className="form-control"
+                className="form-control dashboard-post-question-textarea"
                 placeholder="Explain Your Question"
-                style={{
-                  resize: "none",
-                  width: "606px",
-                  height: "217px",
-                  border: "1px solid #C9C9C9",
-                  borderRadius: "8px",
-                }}
               ></textarea>
             </div>
 
@@ -883,13 +729,7 @@ const Dashboard = () => {
             <div className="mb-3">
               <div className="position-relative">
                 <select
-                  className="form-select"
-                  style={{
-                    width: "606px",
-                    height: "79px",
-                    border: "1px solid #C9C9C9",
-                    borderRadius: "8px",
-                  }}
+                  className="form-select dashboard-post-question-select"
                 >
                   <option>Jurisdiction</option>
                   <option>United States</option>
@@ -904,27 +744,13 @@ const Dashboard = () => {
             {/* File Upload */}
             <div className="mb-3">
               <div
-                className="d-flex align-items-center justify-content-start border border-2 border-dashed rounded"
-                style={{
-                  border: "1.5px dashed #C9C9C9",
-                  width: "606px",
-                  height: "80px",
-                  borderRadius: "8px",
-                }}
+                className="d-flex align-items-center justify-content-start border border-2 border-dashed rounded dashboard-post-question-upload"
               >
                 <div
-                  className="p-3 mx-3 rounded-1"
-                  style={{
-                    backgroundColor: "#FDFDFD",
-                    border: "1px dashed #BEBEBE",
-                  }}
+                  className="p-3 mx-3 rounded-1 dashboard-file-upload-icon"
                 >
                   <i
-                    className="bi bi-paperclip fs-3 d-inline-block"
-                    style={{
-                      transform: "rotate(45deg)",
-                      display: "inline-block",
-                    }}
+                    className="bi bi-paperclip fs-3 d-inline-block dashboard-paperclip-icon"
                   ></i>
                 </div>
 
@@ -937,11 +763,7 @@ const Dashboard = () => {
               <h6 className="fw-bold mb-2">How it works</h6>
               <div className="d-flex align-items-start gap-5 my-5">
                 <i
-                  className="bi bi-moon-fill text-black"
-                  style={{
-                    transform: "rotate(35deg)",
-                    display: "inline-block",
-                  }}
+                  className="bi bi-moon-fill text-black dashboard-moon-icon"
                 ></i>
                 <small className="text-muted">
                   Ask your question and see the answer in Questions & Answers.
@@ -949,11 +771,7 @@ const Dashboard = () => {
               </div>
               <div className="d-flex align-items-start gap-5 my-5">
                 <i
-                  className="bi bi-moon-fill text-black"
-                  style={{
-                    transform: "rotate(35deg)",
-                    display: "inline-block",
-                  }}
+                  className="bi bi-moon-fill text-black dashboard-moon-icon"
                 ></i>
                 <small className="text-muted">
                   You will be notified when a lawyer answers.
@@ -963,13 +781,7 @@ const Dashboard = () => {
 
             {/* Post Question Fee */}
             <div
-              className="mb-3 rounded-4"
-              style={{
-                border: "1px solid #D3D3D3",
-                width: "606px",
-                height: "92px",
-                borderRadius: "8px",
-              }}
+              className="mb-3 rounded-4 dashboard-post-question-fee"
             >
               <div className="d-flex justify-content-between align-items-center h-100 rounded">
                 <div className="p-3">
@@ -977,8 +789,7 @@ const Dashboard = () => {
                   <small className="text-muted">1 Question post only</small>
                 </div>
                 <div
-                  className="text-end px-4 h-100 d-flex flex-column justify-content-center"
-                  style={{ borderLeft: "1px solid #D3D3D3" }}
+                  className="text-end px-4 h-100 d-flex flex-column justify-content-center dashboard-fee-divider"
                 >
                   <div className="fw-bold">USD</div>
                   <div className="fw-bold fs-5">1.00</div>
@@ -988,15 +799,7 @@ const Dashboard = () => {
 
             {/* Submit Button */}
             <button
-              className="btn text-white rounded-pill"
-              style={{
-                height: "63px",
-                fontSize: "20px",
-                fontWeight: "500",
-                backgroundColor: "#474747",
-                width: "606px",
-                marginTop: "25px",
-              }}
+              className="btn text-white rounded-pill dashboard-post-question-button"
             >
               Post Your Legal Issues
             </button>
@@ -1007,17 +810,8 @@ const Dashboard = () => {
       {/* Backdrop for Post Question */}
       {showPostQuestion && (
         <div
-          className="offcanvas-backdrop fade show"
+          className="offcanvas-backdrop fade show dashboard-backdrop"
           onClick={() => setShowPostQuestion(false)}
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            zIndex: 1040,
-            width: "100vw",
-            height: "100vh",
-            backgroundColor: "rgba(0,0,0,1)",
-          }}
         ></div>
       )}
     </div>

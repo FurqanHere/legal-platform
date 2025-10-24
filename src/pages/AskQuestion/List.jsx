@@ -177,7 +177,7 @@ const List = () => {
 
         {/* Questions Grid */}
         <div
-          className="app-container container-xxl px-0"
+          className="app-container container-xxl px-0 askQuestion-container"
           style={{
             marginLeft: "15px",
             marginRight: "15px",

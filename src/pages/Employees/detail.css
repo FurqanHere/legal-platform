@@ -263,16 +263,98 @@
   .profile-card {
     margin: -60px 10px 20px;
     padding: 20px;
+    width: 100% !important;
+    max-width: calc(100% - 20px) !important;
   }
+  
   .banner-image {
     height: 300px;
   }
-  .profile-image-wrapper {
-    width: 80px;
-    height: 80px;
-    margin-top: -40px;
+  
+  .profile-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 15px;
   }
+  
+  .profile-image-wrapper {
+    width: 100px !important;
+    height: 100px !important;
+    align-self: center !important;
+    margin: 0 auto !important;
+  }
+  
+  .profile-image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    border-radius: 50% !important;
+  }
+  
+  .profile-info {
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+    text-align: center !important;
+    width: 100% !important;
+  }
+  
+  .edit-button-wrapper {
+    margin-top: 0 !important;
+    width: 100% !important;
+    justify-content: center !important;
+  }
+  
   .company-name {
-    font-size: 22px;
+    font-size: 20px !important;
+    text-align: center !important;
+  }
+  
+  .company-location {
+    text-align: center !important;
+    font-size: 14px !important;
+  }
+  
+  .company-description {
+    font-size: 13px !important;
+    text-align: center !important;
+  }
+  
+  .social-section {
+    width: 100% !important;
+    text-align: center !important;
+    margin-top: 30px !important;
+  }
+  
+  .social-icons {
+    justify-content: center !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-card {
+    margin: -40px 5px 15px !important;
+    padding: 15px !important;
+  }
+  
+  .profile-image-wrapper {
+    width: 80px !important;
+    height: 80px !important;
+  }
+  
+  .company-name {
+    font-size: 18px !important;
+  }
+  
+  .company-location {
+    font-size: 13px !important;
+  }
+  
+  .company-description {
+    font-size: 12px !important;
+  }
+  
+  .edit-btn {
+    padding: 6px 14px !important;
+    font-size: 14px !important;
   }
 }

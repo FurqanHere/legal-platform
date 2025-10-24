@@ -177,7 +177,7 @@ const List = () => {
   return (
     <div className="container-fluid">
       {/* Search and Filter Section */}
-      <div className="row mb-4" style={{ marginTop: "30px" }} data-aos="fade-up">
+      <div className="row mb-4" data-aos="fade-up">
         <div className="col-12 px-0">
           {/* Search Bar */}
           <div

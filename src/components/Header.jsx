@@ -527,7 +527,7 @@ const Header = () => {
               className="btn btn-icon btn-active-color-primary w-35px h-35px"
               id="kt_app_sidebar_mobile_toggle"
             >
-              <i className="bi bi-list text-gray-600 fs-3"></i>
+              <i className="bi bi-list text-gray-600 fs-1"></i>
             </div>
           </div>
 

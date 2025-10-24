@@ -8,6 +8,7 @@ const Sidebar = () => {
   const [openDropdown, setOpenDropdown] = useState(null);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   const logout = () => {
     setShowLogoutModal(true);
@@ -38,7 +39,20 @@ const Sidebar = () => {
   useEffect(() => {
     initializeSidebar();
 
-    return () => cleanupSidebar();
+    // Add window resize listener for mobile responsiveness
+    const handleResize = () => {
+      if (window.innerWidth > 991) {
+        setIsMobileOpen(false);
+        document.body.classList.remove('sidebar-open');
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      cleanupSidebar();
+      window.removeEventListener('resize', handleResize);
+    };
   });
 
   // Handle initial state and cleanup
@@ -71,13 +85,33 @@ const Sidebar = () => {
   const toggleSidebar = () => {
     const sidebar = document.getElementById("kt_app_sidebar");
     console.log(sidebar);
-    sidebar.style.display =
-      sidebar.style.display === "block" ? "none" : "block";
+    
+    if (window.innerWidth <= 991) {
+      // Mobile behavior
+      setIsMobileOpen(!isMobileOpen);
+      if (!isMobileOpen) {
+        sidebar.classList.add('show');
+        document.body.classList.add('sidebar-open');
+      } else {
+        sidebar.classList.remove('show');
+        document.body.classList.remove('sidebar-open');
+      }
+    } else {
+      // Desktop behavior
+      sidebar.style.display =
+        sidebar.style.display === "block" ? "none" : "block";
+    }
   };
 
   const hideSidebar = () => {
     const sidebar = document.getElementById("kt_app_sidebar");
-    if (window.innerWidth <= 990) {
+    if (window.innerWidth <= 991) {
+      // Mobile behavior
+      setIsMobileOpen(false);
+      sidebar.classList.remove('show');
+      document.body.classList.remove('sidebar-open');
+    } else {
+      // Desktop behavior
       sidebar.style.display = "none";
     }
   };
@@ -95,22 +129,31 @@ const Sidebar = () => {
   };
 
   return (
-    <div
-      id="kt_app_sidebar"
-      className={`app-sidebar flex-column ${isCollapsed ? "collapsed" : ""}`}
-      data-kt-drawer="true"
-      data-kt-drawer-name="app-sidebar"
-      data-kt-drawer-activate="{default: true, lg: false}"
-      data-kt-drawer-overlay="true"
-      data-kt-drawer-width={isCollapsed ? "80px" : "265px"}
-      data-kt-drawer-direction="start"
-      data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle"
-      style={{
-        width: isCollapsed ? "80px" : "265px",
-        transition: "width 0.3s ease",
-        backgroundColor: "black",
-      }}
-    >
+    <>
+      {/* Mobile Backdrop */}
+      {isMobileOpen && (
+        <div 
+          className="sidebar-backdrop show"
+          onClick={hideSidebar}
+        ></div>
+      )}
+
+      <div
+        id="kt_app_sidebar"
+        className={`app-sidebar flex-column ${isCollapsed ? "collapsed" : ""} ${isMobileOpen ? "show" : ""}`}
+        data-kt-drawer="true"
+        data-kt-drawer-name="app-sidebar"
+        data-kt-drawer-activate="{default: true, lg: false}"
+        data-kt-drawer-overlay="true"
+        data-kt-drawer-width={isCollapsed ? "80px" : "265px"}
+        data-kt-drawer-direction="start"
+        data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle"
+        style={{
+          width: isCollapsed ? "80px" : "265px",
+          transition: "width 0.3s ease",
+          backgroundColor: "black",
+        }}
+      >
       <div
         className="app-sidebar-logo px-6 d-flex justify-content-center align-items-center position-relative"
         style={{ backgroundColor: "black", height: "100px" }}
@@ -137,7 +180,7 @@ const Sidebar = () => {
         {/* Collapse/Expand Toggle Button */}
         <button
           id="kt_app_sidebar_toggle"
-          className="btn btn-icon btn-sm position-absolute top-50 end-0 translate-middle-y me-1"
+          className="btn btn-icon sidebar-toggle-btn btn-sm position-absolute top-50 end-0 translate-middle-y me-1"
           onClick={toggleSidebarCollapse}
           style={{
             backgroundColor: "rgba(255, 255, 255, 0.1)",
@@ -324,7 +367,8 @@ const Sidebar = () => {
         onClose={handleLogoutCancel}
         onConfirm={handleLogoutConfirm}
       />
-    </div>
+      </div>
+    </>
   );
 };
 

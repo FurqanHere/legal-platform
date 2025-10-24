@@ -180,7 +180,7 @@ const Login = () => {
                 autoComplete="off"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="form-input rounded-pill login-inp"
+                className="form-input rounded-pill login-page-inp"
                 placeholder="noon@company.com"
                 style={{ fontSize: "18px", width: "398px", height: "67px", paddingLeft: "30px", paddingRight: "30px" }}
               />
@@ -195,7 +195,7 @@ const Login = () => {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="form-input rounded-pill login-inp"
+                  className="form-input rounded-pill login-page-inp"
                   placeholder="Password"
                   autoComplete="off"
                   style={{ width: "398px", height: "67px", fontSize: "18px", paddingLeft: "30px", paddingRight: "30px" }}

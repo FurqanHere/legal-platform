@@ -112,7 +112,7 @@ const EmployeesList = () => {
               />
             </div>
             
-            <button 
+            {/* <button 
               className="btn btn-white px-4 py-3 d-flex align-items-center gap-2 employees-filter-button"
               style={{ 
                 borderRadius: "50px",
@@ -125,7 +125,7 @@ const EmployeesList = () => {
             >
               <i className="bi bi-sliders2"></i>
               Filter
-            </button>
+            </button> */}
             
             <button 
               className="btn btn-white px-4 py-3 d-flex align-items-center gap-2 employees-add-button"
