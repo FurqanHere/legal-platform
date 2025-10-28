@@ -66,21 +66,22 @@ const SocketIOPopup = () => {
             role="dialog" 
             style={{ display: 'block' }}
           >
-            <div className="modal-dialog modal-lg modal-dialog-centered">
+            <div className="modal-dialog modal-dialog-centered" style={{ maxWidth: '90%', width: '400px' }}>
               <div className="modal-content">
                 <div className="modal-body">
-                  <div className="p-5 text-center">
+                  <div className="p-3 p-md-5 text-center">
                     <img 
                       src={orderImg} 
                       alt="new_order" 
-                      width="200" 
+                      width="150"
+                      className="mb-3"
                     />
-                    <h4>{orderHeading}</h4>
-                    <p>{orderText}</p>
+                    <h4 className="fs-5 fs-md-4 mb-3">{orderHeading}</h4>
+                    <p className="fs-6 mb-4">{orderText}</p>
                     <div className="text-center">
                       <button 
                         type="button" 
-                        className="btn btn-secondary" 
+                        className="btn btn-secondary py-2 py-md-1 px-4" 
                         data-bs-dismiss="modal" 
                         onClick={closePopup}
                       >

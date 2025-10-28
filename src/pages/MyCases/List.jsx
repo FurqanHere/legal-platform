@@ -121,7 +121,7 @@ const List = () => {
                 style={{
                   paddingLeft: "45px",
                   width: "483px",
-                  height: "58px",
+                  height: "45px",
                   border: "1px solid #e9ecef",
                   backgroundColor: "#fff",
                 }}
@@ -148,13 +148,13 @@ const List = () => {
 
             {/* Add New Case Button */}
             <button
-              className="btn btn-outline-dark rounded-pill text-black px-4 py-2 d-flex justify-content-center align-items-center gap-2 portal-button-hover"
+              className="btn btn-outline-dark rounded-pill text-white px-4 py-2 d-flex justify-content-center align-items-center gap-2 portal-button-hover my-cases-add-button"
               style={{
                 fontSize: "18px",
                 fontWeight: "500",
-                backgroundColor: "white",
-                width: "224px",
-                height: "58px",
+                backgroundColor: "black",
+                width: "185px",
+                height: "45px",
                 marginLeft: "80px",
                 border: "1px solid #e9ecef",
               }}
@@ -169,7 +169,7 @@ const List = () => {
                   backgroundColor: "#000",
                 }}
               >
-                <i className="bi bi-plus text-white fs-1 pe-0" style={{ fontSize: "12px" }}></i>
+                <i className="bi bi-plus text-black bg-white rounded-pill w-20px h-20px d-flex justify-content-center align-items-center pe-0 fs-1 pe-0" style={{ fontSize: "12px" }}></i>
               </div>
               Add New Case
             </button>
@@ -203,7 +203,7 @@ const List = () => {
                   {caseItem.description}
                 </p>
 
-                <div className="row text-center">
+                <div className="row text-center my-cases-card-details">
                   <div className="col-4">
                     <div className="d-flex flex-column">
                       <small className="mb-1 my-cases-card-label" style={{ fontSize: "19px", color: "#989898", fontWeight: "400" }}>Jurisdiction</small>

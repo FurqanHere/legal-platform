@@ -1,0 +1,125 @@
+/* Siri-like Animated Border Effect */
+.siri-border-animation {
+  position: relative;
+  display: inline-block;
+}
+
+.siri-border-animation::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(
+    45deg,
+    #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, 
+    #ff9ff3, #54a0ff, #5f27cd, #00d2d3, #ff9f43,
+    #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57
+  );
+  background-size: 400% 400%;
+  border-radius: 11px; /* Slightly larger than textarea border-radius */
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: siriFlow 3s ease-in-out infinite;
+}
+
+.siri-border-animation:focus-within::before {
+  opacity: 1;
+}
+
+@keyframes siriFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Alternative Siri effect with more vibrant colors */
+.siri-border-vibrant {
+  position: relative;
+  display: inline-block;
+}
+
+.siri-border-vibrant::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: conic-gradient(
+    from 0deg,
+    #ff0080, #ff8000, #80ff00, #00ff80, #0080ff, #8000ff, #ff0080
+  );
+  border-radius: 11px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: siriRotate 2s linear infinite;
+}
+
+.siri-border-vibrant:focus-within::before {
+  opacity: 1;
+}
+
+@keyframes siriRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Siri-like pulsing rainbow effect */
+.siri-border-pulse {
+  position: relative;
+  display: inline-block;
+}
+
+.siri-border-pulse::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(
+    90deg,
+    #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3, #ff0000
+  );
+  background-size: 200% 200%;
+  border-radius: 11px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: siriPulse 1.5s ease-in-out infinite;
+}
+
+.siri-border-pulse:focus-within::before {
+  opacity: 1;
+}
+
+@keyframes siriPulse {
+  0%, 100% {
+    background-position: 0% 50%;
+    transform: scale(1);
+  }
+  50% {
+    background-position: 100% 50%;
+    transform: scale(1.02);
+  }
+}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AuthService from "../services/AuthService";
 import { useNavigate, NavLink } from "react-router-dom";
+import { Dropdown } from 'primereact/dropdown';
 
 import notificationProfile from "../assets/images/notification-profile.png";
 
@@ -10,12 +11,48 @@ import createNewCase from "../assets/images/createNewCase.png";
 
 import { toast } from "react-toastify";
 import ApiService from "../services/ApiService";
+import "../assets/css/dashboard-hover-fixes.css";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("active");
   const [showPostQuestion, setShowPostQuestion] = useState(false);
   const [showCreateCase, setShowCreateCase] = useState(false);
+  
+  // Select states
+  const [postQuestionJurisdiction, setPostQuestionJurisdiction] = useState(null);
+  const [createCaseJurisdiction, setCreateCaseJurisdiction] = useState(null);
+  const [createCaseConsultantType, setCreateCaseConsultantType] = useState(null);
+  const [createCaseLawType, setCreateCaseLawType] = useState(null);
+  const [createCaseSubCategory, setCreateCaseSubCategory] = useState(null);
+  
+  // Select options
+  const jurisdictionOptions = [
+    { label: 'United States', value: 'us' },
+    { label: 'United Kingdom', value: 'uk' },
+    { label: 'Canada', value: 'ca' },
+    { label: 'Australia', value: 'au' }
+  ];
+  
+  const consultantTypeOptions = [
+    { label: 'Individual Lawyer', value: 'individual' },
+    { label: 'Law Firm', value: 'firm' },
+    { label: 'Legal Consultant', value: 'consultant' }
+  ];
+  
+  const lawTypeOptions = [
+    { label: 'Criminal Law', value: 'criminal' },
+    { label: 'Civil Law', value: 'civil' },
+    { label: 'Corporate Law', value: 'corporate' },
+    { label: 'Family Law', value: 'family' }
+  ];
+  
+  const subCategoryOptions = [
+    { label: 'Traffic Violations', value: 'traffic' },
+    { label: 'White Collar Crime', value: 'white-collar' },
+    { label: 'Drug Offenses', value: 'drug' },
+    { label: 'Violent Crimes', value: 'violent' }
+  ];
 
   const handleAddQuestionClick = () => {
     setShowPostQuestion(true);
@@ -94,13 +131,13 @@ const Dashboard = () => {
                       <div className="d-flex justify-content-between align-items-center">
                         <NavLink
                           to={"/lawyers"}
-                          className="dashboard-card-hover-icon"
+                          className="dashboard-card-hover-icon d-flex align-items-center"
                         >
                           <button
-                            className="btn rounded-circle d-flex justify-content-center align-items-center dashboard-action-button"
+                            className="btn btn-light rounded-circle d-flex justify-content-center align-items-center portal-button-hover dashboard-action-button"
                             type="button"
                           >
-                            <i className="bi bi-plus fs-1 text-black p-0"></i>
+                            <i className="bi bi-plus fs-1 text-dark pe-0"></i>
                           </button>
                         </NavLink>
                         <img
@@ -151,100 +188,90 @@ const Dashboard = () => {
                 data-aos="fade-up"
                 data-aos-delay="500"
               >
-                <div className="card-body p-4 d-flex justify-content-between">
-                  {/* Recent Posted Question Section */}
-                  <div
-                    className="me-4 d-flex flex-column dashboard-recent-question-section"
-                  >
-                    <h1 className="fw-bold text-dark mb-4">
-                      Recent Posted Question
-                    </h1>
-                    <p className="text-gray-700 mb-4">
-                      Sed ut perspiciatis unde omnis iste natus error sit
-                      voluptatem accusantium doloremque laudantium, totam rem
-                      aperiam, eaque ipsa quae ab illo inventore veritatis.
-                    </p>
-                    <div className="mt-auto">
-                      <div className="d-flex align-items-center gap-2 recent-question-views-container">
+                <div className="card-body p-4">
+                  <div className="row">
+                    {/* Recent Posted Question Section */}
+                    <div className="col-lg-7 col-md-12 mb-4 mb-lg-0">
+                      <h1 className="fw-bold text-dark mb-4">
+                        Recent Posted Question
+                      </h1>
+                      <p className="text-gray-700 mb-4">
+                        Sed ut perspiciatis unde omnis iste natus error sit
+                        voluptatem accusantium doloremque laudantium, totam rem
+                        aperiam, eaque ipsa quae ab illo inventore veritatis.
+                      </p>
+                      <div className="d-flex flex-wrap align-items-center gap-3 mb-3">
                         <div className="d-flex align-items-center">
-                          <i className="bi bi-eye-fill text-black me-2 recent-question-views-icon-hover"></i>
-                          <span className="text-black recent-question-views-text-hover">
-                            Views: 260
-                          </span>
+                          <i className="bi bi-eye-fill text-black me-2"></i>
+                          <span className="text-black">Views: 260</span>
                         </div>
-                        <div className="d-flex align-items-center ms-5">
-                          <i className="bi bi-chat-dots-fill text-black me-2 recent-question-message-icon-hover"></i>
-                          <span className="text-black recent-question-message-text-hover">
-                            Ans: 60
-                          </span>
-                        </div>
-                        <div
-                          className="d-flex align-items-center rounded-pill py-2 px-3 ms-5 recent-question-date-container-hover dashboard-recent-question-date-container"
-                        >
-                          <span className="text-black recent-question-date-text-hover">
-                            Jan 05 - 2025 - 10:25 AM
-                          </span>
+                        <div className="d-flex align-items-center">
+                          <i className="bi bi-chat-dots-fill text-black me-2"></i>
+                          <span className="text-black">Ans: 60</span>
                         </div>
                       </div>
-                    </div>
-                  </div>
-
-                  {/* Lawyer Respond Section */}
-                  <div className="dashboard-lawyer-respond-section">
-                    <div className="d-flex justify-content-between align-items-center mb-4 recent-posted-question-lawyer-respond">
-                      <h2 className="fw-bold mb-0">Lawyer Respond</h2>
-                      <a href="#" className="--bs-tertiary-bg-rgb fw-semibold dashboard-see-all-hover">
-                        See All
-                      </a>
-                    </div>
-
-                    <div className="d-flex align-items-center mb-4">
-                      <div className="symbol symbol-50px me-3">
-                        <img
-                          src={notificationProfile}
-                          alt="Jackline Dim"
-                          className="rounded-circle"
-                        />
-                      </div>
-                      <div>
-                        <h6 className="fw-bold text-dark mb-1">Jackline Dim</h6>
-                        <p className="text-gray-600 mb-0">
-                          Lorem ipsum dolor sit amet.
-                        </p>
+                      <div className="d-flex align-items-center bg-light rounded-pill py-2 px-3 dashboard-date-pill" style={{ width: "37%" }}>
+                        <span className="text-black dashboard-date-text">Jan 05 - 2025 - 10:25 AM</span>
                       </div>
                     </div>
 
-                    <div className="d-flex align-items-center mb-4">
-                      <div className="symbol symbol-50px me-3">
-                        <img
-                          src={notificationProfile}
-                          alt="Maxwell Clarck"
-                          className="rounded-circle"
-                        />
+                    {/* Lawyer Respond Section */}
+                    <div className="col-lg-5 col-md-12">
+                      <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4">
+                        <h2 className="fw-bold mb-0 mb-md-0 dashboard-lawyer-respond-title">Lawyer Respond</h2>
+                        <a href="#" className="text-muted fw-semibold text-decoration-none text-md-end">
+                          See All
+                        </a>
                       </div>
-                      <div>
-                        <h6 className="fw-bold text-dark mb-1">
-                          Maxwell Clarck
-                        </h6>
-                        <p className="text-gray-600 mb-0">
-                          Lorem ipsum dolor sit amet.
-                        </p>
-                      </div>
-                    </div>
 
-                    <div className="d-flex align-items-center">
-                      <div className="symbol symbol-50px me-3">
-                        <img
-                          src={notificationProfile}
-                          alt="Jackline Dim"
-                          className="rounded-circle"
-                        />
+                      <div className="d-flex align-items-start mb-4">
+                        <div className="symbol symbol-50px me-3 flex-shrink-0">
+                          <img
+                            src={notificationProfile}
+                            alt="Jackline Dim"
+                            className="rounded-circle"
+                          />
+                        </div>
+                        <div className="flex-grow-1">
+                          <h6 className="fw-bold text-dark mb-1">Jackline Dim</h6>
+                          <p className="text-gray-600 mb-0 small">
+                            Lorem ipsum dolor sit amet.
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h6 className="fw-bold text-dark mb-1">Jackline Dim</h6>
-                        <p className="text-gray-600 mb-0">
-                          Lorem ipsum dolor sit amet.
-                        </p>
+
+                      <div className="d-flex align-items-start mb-4">
+                        <div className="symbol symbol-50px me-3 flex-shrink-0">
+                          <img
+                            src={notificationProfile}
+                            alt="Maxwell Clarck"
+                            className="rounded-circle"
+                          />
+                        </div>
+                        <div className="flex-grow-1">
+                          <h6 className="fw-bold text-dark mb-1">
+                            Maxwell Clarck
+                          </h6>
+                          <p className="text-gray-600 mb-0 small">
+                            Lorem ipsum dolor sit amet.
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="d-flex align-items-start">
+                        <div className="symbol symbol-50px me-3 flex-shrink-0">
+                          <img
+                            src={notificationProfile}
+                            alt="Jackline Dim"
+                            className="rounded-circle"
+                          />
+                        </div>
+                        <div className="flex-grow-1">
+                          <h6 className="fw-bold text-dark mb-1">Jackline Dim</h6>
+                          <p className="text-gray-600 mb-0 small">
+                            Lorem ipsum dolor sit amet.
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -260,87 +287,91 @@ const Dashboard = () => {
                 <div className="card-body p-4">
                   {/* Header */}
                   <div className="d-flex justify-content-between align-items-center mb-4">
-                    <div className="d-flex">
-                      <h4 className="fw-bold text-dark mb-0">My Lawyers</h4>
-                      <div className="d-flex mb-4 ms-5">
-                        <button
-                          className={`btn portal-tab-hover dashboard-tab-button ${
-                            activeTab === "active"
-                              ? "btn-dark text-white active"
-                              : "btn-light text-dark"
-                          } me-2`}
-                          onClick={() => setActiveTab("active")}
-                        >
-                          Active Lawyers
-                        </button>
-                        <button
-                          className={`btn portal-tab-hover dashboard-tab-button ${
-                            activeTab === "inactive"
-                              ? "btn-dark text-white active"
-                              : "btn-light text-dark"
-                          }`}
-                          onClick={() => setActiveTab("inactive")}
-                        >
-                          Inactive Lawyers
-                        </button>
-                      </div>
-                    </div>
+                    <h4 className="fw-bold text-dark mb-0">My Lawyers</h4>
                     <NavLink to={"/my-lawyers"}>
                       <a
                         href="#"
-                        className="fw-semibold text-decoration-none --bs-tertiary-bg-rgb dashboard-see-all-hover"
+                        className="fw-semibold text-decoration-none text-muted"
                       >
                         See All
                       </a>
                     </NavLink>
                   </div>
 
+                  {/* Tab Buttons */}
+                  <div className="d-flex gap-2 mb-4">
+                    <button
+                      className={`btn portal-tab-hover ${
+                        activeTab === "active"
+                          ? "bg-black text-white"
+                          : "btn-light text-black"
+                      }`}
+                      onClick={() => setActiveTab("active")}
+                    >
+                      Active Lawyers
+                    </button>
+                    <button
+                      className={`btn portal-tab-hover ${
+                        activeTab === "inactive"
+                          ? "bg-black text-white"
+                          : "btn-light text-black"
+                      }`}
+                      onClick={() => setActiveTab("inactive")}
+                    >
+                      Inactive Lawyers
+                    </button>
+                  </div>
+
                   {/* Lawyers List */}
                   {[1, 2].map((_, index) => (
                     <div
                       key={index}
-                      className="card mb-3 border-0 shadow-sm lawyer-card-hover dashboard-lawyer-card"
+                      className="card mb-3 border-0 shadow-sm lawyer-card-hover"
                       data-aos="fade-up"
                       data-aos-delay={`${500 + index * 100}`}
                     >
-                      <div className="card-body d-flex align-items-center justify-content-between flex-wrap p-3">
-                        {/* Profile */}
-                        <div
-                          className="d-flex align-items-center dashboard-lawyer-profile"
-                        >
-                          <img
-                            src={notificationProfile}
-                            alt="Shamra Joseph"
-                            className="rounded-circle me-3"
-                            width="48"
-                            height="48"
-                          />
-                          <div>
-                            <h6 className="fw-bold text-dark mb-0">
-                              Shamra Joseph
-                            </h6>
-                            <small className="text-muted">
-                              Corporate lawyer
-                            </small>
+                      <div className="card-body p-3">
+                        <div className="row align-items-center">
+                          {/* Profile */}
+                          <div className="col-md-4 col-sm-12 mb-2 mb-md-0">
+                            <div className="d-flex align-items-center">
+                              <img
+                                src={notificationProfile}
+                                alt="Shamra Joseph"
+                                className="rounded-circle me-3"
+                                width="48"
+                                height="48"
+                              />
+                              <div>
+                                <h6 className="fw-bold text-dark mb-0">
+                                  Shamra Joseph
+                                </h6>
+                                <small className="text-muted">
+                                  Corporate lawyer
+                                </small>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Practice Areas */}
+                          <div className="col-md-3 col-sm-6 mb-2 mb-md-0">
+                            <div className="text-muted small">
+                              Criminal Law, Tax Law+
+                            </div>
+                          </div>
+
+                          {/* Renewal Date */}
+                          <div className="col-md-3 col-sm-6 mb-2 mb-md-0">
+                            <div className="text-muted small">
+                              Renew 21 September
+                            </div>
+                          </div>
+
+                          {/* Price */}
+                          <div className="col-md-2 col-sm-12 text-md-end">
+                            <div className="fw-semibold text-dark">1.99 USD</div>
                           </div>
                         </div>
-
-                        {/* Practice Areas */}
-                        <div
-                          className="text-muted dashboard-lawyer-practice"
-                        >
-                          Criminal Law, Tax Law+
-                        </div>
-
-                        {/* Renewal Date */}
-                        <div
-                          className="text-muted dashboard-lawyer-renewal"
-                        >
-                          Renew 21 September
-                        </div>
-
-                        {/* Price */}
-                        <div className="fw-semibold text-dark">1.99 USD</div>
                       </div>
                     </div>
                   ))}
@@ -351,7 +382,7 @@ const Dashboard = () => {
             <div className="col-md-4">
               {/* My Cases */}
               <div
-                className="card mb-6 shadow my-cases-card-hover dashboard-my-cases-card"
+                className="card mb-6 shadow my-cases-card-hover"
                 data-aos="fade-left"
                 data-aos-delay="600"
               >
@@ -359,14 +390,14 @@ const Dashboard = () => {
                   <div className="d-flex justify-content-between align-items-center mb-4">
                     <h2 className="fw-bold text-dark mb-0">My Cases</h2>
                     <NavLink to={"/my-cases"}>
-                      <a href="#" className="--bs-tertiary-bg-rgb fw-semibold dashboard-see-all-hover">
+                      <a href="#" className="text-muted fw-semibold text-decoration-none">
                         See All
                       </a>
                     </NavLink>
                   </div>
 
                   <div
-                    className="card mb-3 my-cases-row-hover dashboard-case-card"
+                    className="card mb-3 my-cases-row-hover"
                     data-aos="fade-up"
                     data-aos-delay="700"
                   >
@@ -375,13 +406,11 @@ const Dashboard = () => {
                         <h6 className="fw-bold text-dark mb-0">
                           Crimes Against Persons
                         </h6>
-                        <span
-                          className="badge bg-light text-dark portal-badge-hover dashboard-case-badge"
-                        >
+                        <span className="badge bg-light text-dark">
                           Case# 2548
                         </span>
                       </div>
-                      <p className="text-gray-600 mb-0">
+                      <p className="text-gray-600 mb-0 small">
                         Sed ut perspiciatis unde omnis iste natus error sit
                         voluptatem ipsum accusantium doloremque laudantium.
                       </p>
@@ -389,7 +418,7 @@ const Dashboard = () => {
                   </div>
 
                   <div
-                    className="card mb-3 my-cases-row-hover dashboard-case-card"
+                    className="card mb-3 my-cases-row-hover"
                     data-aos="fade-up"
                     data-aos-delay="800"
                   >
@@ -398,13 +427,11 @@ const Dashboard = () => {
                         <h6 className="fw-bold text-dark mb-0">
                           Crimes Against Persons
                         </h6>
-                        <span
-                          className="badge bg-light text-dark portal-badge-hover dashboard-case-badge"
-                        >
+                        <span className="badge bg-light text-dark">
                           Case# 2548
                         </span>
                       </div>
-                      <p className="text-gray-600 mb-0">
+                      <p className="text-gray-600 mb-0 small">
                         Sed ut perspiciatis unde omnis iste natus error sit
                         voluptatem ipsum accusantium doloremque laudantium.
                       </p>
@@ -412,7 +439,7 @@ const Dashboard = () => {
                   </div>
 
                   <div
-                    className="card mb-3 my-cases-row-hover dashboard-case-card"
+                    className="card mb-3 my-cases-row-hover"
                     data-aos="fade-up"
                     data-aos-delay="900"
                   >
@@ -421,13 +448,11 @@ const Dashboard = () => {
                         <h6 className="fw-bold text-dark mb-0">
                           Crimes Against Persons
                         </h6>
-                        <span
-                          className="badge bg-light text-dark portal-badge-hover dashboard-case-badge"
-                        >
+                        <span className="badge bg-light text-dark">
                           Case# 2548
                         </span>
                       </div>
-                      <p className="text-gray-600 mb-0">
+                      <p className="text-gray-600 mb-0 small">
                         Sed ut perspiciatis unde omnis iste natus error sit
                         voluptatem ipsum accusantium doloremque laudantium.
                       </p>
@@ -438,23 +463,19 @@ const Dashboard = () => {
 
               {/* Notifications */}
               <div
-                className="card shadow notification-card-hover dashboard-notification-card"
+                className="card shadow notification-card-hover"
                 data-aos="fade-left"
                 data-aos-delay="1000"
               >
-                <div className="card-body px-4 pb-4 dashboard-notification-body">
-                  <div
-                    className="d-flex justify-content-between align-items-center mb-4 pt-0 pb-5 dashboard-notification-header"
-                  >
-                    <h4
-                      className="fw-bold text-black mb-0 dashboard-notification-title"
-                    >
+                <div className="card-body p-4">
+                  <div className="d-flex justify-content-between align-items-center mb-4">
+                    <h4 className="fw-bold text-black mb-0">
                       Notifications
                     </h4>
                     <NavLink to={"/notifications"}>
                       <a
                         href="#"
-                        className="text-black fw-semibold dashboard-see-all-hover dashboard-notification-see-all"
+                        className="text-black fw-semibold text-decoration-none"
                       >
                         See All
                       </a>
@@ -462,75 +483,69 @@ const Dashboard = () => {
                   </div>
 
                   <div
-                    className="d-flex align-items-start mb-5 notification-item-hover dashboard-notification-item"
+                    className="d-flex align-items-start mb-4 notification-item-hover"
                     data-aos="fade-up"
                     data-aos-delay="1100"
                   >
-                    <div
-                      className="symbol symbol-40px me-3 dashboard-notification-avatar"
-                    >
+                    <div className="symbol symbol-40px me-3 flex-shrink-0">
                       <img
                         src={notificationProfile}
                         alt="Notification"
-                        className="rounded-circle notification-avatar-hover"
+                        className="rounded-circle"
                       />
                     </div>
-                    <div>
-                      <p className="text-gray-600 mb-2 notification-text-hover dashboard-notification-text">
+                    <div className="flex-grow-1">
+                      <p className="text-gray-600 mb-2 small">
                         Sed ut perspiciatis unde omnis iste natus error sit
                         volupta accusantium doloremque laudantium, totam rem.
                       </p>
-                      <span className="text-gray-500 fs-7 notification-time-hover dashboard-notification-time">
+                      <span className="text-gray-500 small">
                         1 hour
                       </span>
                     </div>
                   </div>
 
                   <div
-                    className="d-flex align-items-start mb-5 notification-item-hover dashboard-notification-item"
+                    className="d-flex align-items-start mb-4 notification-item-hover"
                     data-aos="fade-up"
                     data-aos-delay="1200"
                   >
-                    <div
-                      className="symbol symbol-40px me-3 dashboard-notification-avatar"
-                    >
+                    <div className="symbol symbol-40px me-3 flex-shrink-0">
                       <img
                         src={notificationProfile}
                         alt="Notification"
-                        className="rounded-circle notification-avatar-hover"
+                        className="rounded-circle"
                       />
                     </div>
-                    <div>
-                      <p className="text-gray-600 mb-2 notification-text-hover" style={{ fontSize: "14px", lineHeight: "1.5" }}>
+                    <div className="flex-grow-1">
+                      <p className="text-gray-600 mb-2 small">
                         Sed ut perspiciatis unde omnis iste natus error sit
                         volupta accusantium doloremque laudantium, totam rem.
                       </p>
-                      <span className="text-gray-500 fs-7 notification-time-hover" style={{ fontSize: "12px" }}>
+                      <span className="text-gray-500 small">
                         2 hours
                       </span>
                     </div>
                   </div>
 
                   <div
-                    className="d-flex align-items-start mb-5 notification-item-hover dashboard-notification-item"
+                    className="d-flex align-items-start mb-4 notification-item-hover"
                     data-aos="fade-up"
                     data-aos-delay="1300"
                   >
-                    <div
-                      className="symbol symbol-40px me-3 dashboard-notification-avatar"
-                    >
+                    <div className="symbol symbol-40px me-3 flex-shrink-0">
                       <img
                         src={notificationProfile}
                         alt="Notification"
-                        className="rounded-circle notification-avatar-hover"
+                        className="rounded-circle"
                       />
                     </div>
-                    <div>
-                      <p className="text-gray-600 mb-2 notification-text-hover" style={{ fontSize: "14px", lineHeight: "1.5" }}>
+                    <div className="flex-grow-1">
+                      <p className="text-gray-600 mb-2 small">
                         Sed ut perspiciatis unde omnis iste natus error sit
                         volupta accusantium doloremque laudantium, totam rem.
                       </p>
-                      <span className="text-gray-500 fs-7 notification-time-hover" style={{ fontSize: "12px" }}>
+                      <span className="text-gray-500 small">
                         3 hours
                       </span>
                     </div>
@@ -541,21 +556,19 @@ const Dashboard = () => {
                     data-aos="fade-up"
                     data-aos-delay="1400"
                   >
-                    <div
-                      className="symbol symbol-40px me-3 dashboard-notification-avatar"
-                    >
+                    <div className="symbol symbol-40px me-3 flex-shrink-0">
                       <img
                         src={notificationProfile}
                         alt="Notification"
-                        className="rounded-circle notification-avatar-hover"
+                        className="rounded-circle"
                       />
                     </div>
-                    <div>
-                      <p className="text-gray-600 mb-2 notification-text-hover" style={{ fontSize: "14px", lineHeight: "1.5" }}>
+                    <div className="flex-grow-1">
+                      <p className="text-gray-600 mb-2 small">
                         Sed ut perspiciatis unde omnis iste natus error sit
                         volupta accusantium doloremque laudantium, totam rem.
                       </p>
-                      <span className="text-gray-500 fs-7 notification-time-hover" style={{ fontSize: "12px" }}>
+                      <span className="text-gray-500 small">
                         4 hours
                       </span>
                     </div>
@@ -573,9 +586,9 @@ const Dashboard = () => {
           className="offcanvas offcanvas-end show dashboard-create-case-offcanvas"
           tabIndex="-1"
         >
-          <div className="offcanvas-header border-bottom">
+          <div className="offcanvas-header border-bottom p-3 p-md-4">
             <div className="d-flex justify-content-between align-items-center w-100">
-              <h5 className="mb-0 fw-bold">Create a Case</h5>
+              <h5 className="mb-0 fw-bold fs-5 fs-md-4">Create a Case</h5>
               <button
                 type="button"
                 className="btn-close"
@@ -587,77 +600,78 @@ const Dashboard = () => {
           <div
             className="offcanvas-body p-0 d-flex flex-column dashboard-offcanvas-body"
           >
-            <div className="p-4 flex-grow-1 dashboard-offcanvas-content">
+            <div className="p-3 p-md-4 flex-grow-1 dashboard-offcanvas-content">
               {/* Top Row Selects */}
-              <div className="row g-3 mb-3">
-                <div className="col-6">
-                  <div className="position-relative">
-                    <select
-                      className="form-select dashboard-form-select"
-                    >
-                      <option>Select Jurisdiction</option>
-                    </select>
-                    <i className="bi bi-chevron-down position-absolute top-50 end-0 translate-middle-y me-3 text-gray-600"></i>
-                  </div>
+              <div className="row g-2 g-md-3 mb-3">
+                <div className="col-12 col-md-6">
+                  <Dropdown
+                    value={createCaseJurisdiction}
+                    onChange={(e) => setCreateCaseJurisdiction(e.value)}
+                    options={jurisdictionOptions}
+                    placeholder="Select Jurisdiction"
+                    className="w-100"
+                    style={{ height: '60px' }}
+                  />
                 </div>
-                <div className="col-6">
-                  <div className="position-relative">
-                    <select
-                      className="form-select dashboard-form-select"
-                    >
-                      <option>Type of legal consultant</option>
-                    </select>
-                    <i className="bi bi-chevron-down position-absolute top-50 end-0 translate-middle-y me-3 text-gray-600"></i>
-                  </div>
+                <div className="col-12 col-md-6">
+                  <Dropdown
+                    value={createCaseConsultantType}
+                    onChange={(e) => setCreateCaseConsultantType(e.value)}
+                    options={consultantTypeOptions}
+                    placeholder="Type of legal consultant"
+                    className="w-100"
+                    style={{ height: '60px' }}
+                  />
                 </div>
               </div>
 
               {/* Second Row Selects */}
-              <div className="row g-3 mb-3">
-                <div className="col-6">
-                  <div className="position-relative">
-                    <select
-                      className="form-select dashboard-form-select"
-                    >
-                      <option>Criminal Law</option>
-                    </select>
-                    <i className="bi bi-chevron-down position-absolute top-50 end-0 translate-middle-y me-3 text-gray-600"></i>
-                  </div>
+              <div className="row g-2 g-md-3 mb-3">
+                <div className="col-12 col-md-6">
+                  <Dropdown
+                    value={createCaseLawType}
+                    onChange={(e) => setCreateCaseLawType(e.value)}
+                    options={lawTypeOptions}
+                    placeholder="Criminal Law"
+                    className="w-100"
+                    style={{ height: '60px' }}
+                  />
                 </div>
-                <div className="col-6">
-                  <div className="position-relative">
-                    <select
-                      className="form-select dashboard-form-select"
-                    >
-                      <option>Select Sub Categories</option>
-                    </select>
-                    <i className="bi bi-chevron-down position-absolute top-50 end-0 translate-middle-y me-3 text-gray-600"></i>
-                  </div>
+                <div className="col-12 col-md-6">
+                  <Dropdown
+                    value={createCaseSubCategory}
+                    onChange={(e) => setCreateCaseSubCategory(e.value)}
+                    options={subCategoryOptions}
+                    placeholder="Select Sub Categories"
+                    className="w-100"
+                    style={{ height: '60px' }}
+                  />
                 </div>
               </div>
 
               {/* Explain Case */}
               <div className="mb-3">
                 <textarea
-                  className="form-control dashboard-textarea"
+                  className="form-control form-control-lg dashboard-textarea"
                   placeholder="Explain Your Case"
+                  rows="4"
                 ></textarea>
               </div>
 
               {/* Attach Document */}
               <div className="mb-3">
                 <div
-                  className="d-flex align-items-center justify-content-start border border-2 border-dashed rounded dashboard-file-upload"
+                  className="d-flex align-items-center justify-content-start border border-2 border-dashed rounded dashboard-file-upload p-3"
                 >
                   <div
-                    className="p-3 mx-3 rounded-1 dashboard-file-upload-icon"
+                    className="p-2 p-md-3 me-3 rounded-1 dashboard-file-upload-icon"
                   >
                     <i
-                      className="bi bi-paperclip fs-3 d-inline-block dashboard-paperclip-icon"
+                      className="bi bi-paperclip fs-4 fs-md-3 d-inline-block dashboard-paperclip-icon"
                     ></i>
                   </div>
 
-                  <p className="text-muted mb-0">Attach Document</p>
+                  <p className="text-muted mb-0 fs-6">Attach Document</p>
                 </div>
               </div>
 
@@ -679,10 +693,10 @@ const Dashboard = () => {
 
             {/* Submit Button - fixed at bottom */}
             <div
-              className="p-4 border-top dashboard-submit-footer"
+              className="p-3 p-md-4 border-top dashboard-submit-footer"
             >
               <button
-                className="btn text-white rounded-pill w-100 dashboard-submit-button"
+                className="btn text-white rounded-pill w-100 dashboard-submit-button py-3 py-md-2"
               >
                 Submit
               </button>
@@ -705,9 +719,9 @@ const Dashboard = () => {
           className="offcanvas offcanvas-end show dashboard-post-question-offcanvas"
           tabIndex="-1"
         >
-          <div className="offcanvas-header border-bottom">
+          <div className="offcanvas-header border-bottom p-3 p-md-4">
             <div className="d-flex justify-content-between align-items-center w-100">
-              <h5 className="mb-0 fw-bold">Post Question</h5>
+              <h5 className="mb-0 fw-bold fs-5 fs-md-4">Post Question</h5>
               <button
                 type="button"
                 className="btn-close"
@@ -716,64 +730,61 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <div className="offcanvas-body p-4">
+          <div className="offcanvas-body p-3 p-md-4">
             {/* Question Input */}
             <div className="mb-3">
               <textarea
-                className="form-control dashboard-post-question-textarea"
+                className="form-control form-control-lg dashboard-post-question-textarea"
                 placeholder="Explain Your Question"
+                rows="4"
               ></textarea>
             </div>
 
             {/* Jurisdiction Dropdown */}
             <div className="mb-3">
-              <div className="position-relative">
-                <select
-                  className="form-select dashboard-post-question-select"
-                >
-                  <option>Jurisdiction</option>
-                  <option>United States</option>
-                  <option>United Kingdom</option>
-                  <option>Canada</option>
-                  <option>Australia</option>
-                </select>
-                <i className="bi bi-chevron-down position-absolute top-50 end-0 translate-middle-y me-3 text-gray-600"></i>
-              </div>
+              <Dropdown
+                value={postQuestionJurisdiction}
+                onChange={(e) => setPostQuestionJurisdiction(e.value)}
+                options={jurisdictionOptions}
+                placeholder="Jurisdiction"
+                className="w-100"
+                style={{ height: '60px' }}
+              />
             </div>
 
             {/* File Upload */}
             <div className="mb-3">
               <div
-                className="d-flex align-items-center justify-content-start border border-2 border-dashed rounded dashboard-post-question-upload"
+                className="d-flex align-items-center justify-content-start border border-2 border-dashed rounded dashboard-post-question-upload p-3"
               >
                 <div
-                  className="p-3 mx-3 rounded-1 dashboard-file-upload-icon"
+                  className="p-2 p-md-3 me-3 rounded-1 dashboard-file-upload-icon"
                 >
                   <i
-                    className="bi bi-paperclip fs-3 d-inline-block dashboard-paperclip-icon"
+                    className="bi bi-paperclip fs-4 fs-md-3 d-inline-block dashboard-paperclip-icon"
                   ></i>
                 </div>
 
-                <p className="text-muted mb-0">Attach Document</p>
+                <p className="text-muted mb-0 fs-6">Attach Document</p>
               </div>
             </div>
 
             {/* How it works Section */}
             <div className="mb-3">
               <h6 className="fw-bold mb-2">How it works</h6>
-              <div className="d-flex align-items-start gap-5 my-5">
+              <div className="d-flex align-items-start gap-3 gap-md-5 my-3 my-md-5">
                 <i
-                  className="bi bi-moon-fill text-black dashboard-moon-icon"
+                  className="bi bi-moon-fill text-black dashboard-moon-icon fs-5"
                 ></i>
-                <small className="text-muted">
+                <small className="text-muted fs-6">
                   Ask your question and see the answer in Questions & Answers.
                 </small>
               </div>
-              <div className="d-flex align-items-start gap-5 my-5">
+              <div className="d-flex align-items-start gap-3 gap-md-5 my-3 my-md-5">
                 <i
-                  className="bi bi-moon-fill text-black dashboard-moon-icon"
+                  className="bi bi-moon-fill text-black dashboard-moon-icon fs-5"
                 ></i>
-                <small className="text-muted">
+                <small className="text-muted fs-6">
                   You will be notified when a lawyer answers.
                 </small>
               </div>
@@ -785,13 +796,13 @@ const Dashboard = () => {
             >
               <div className="d-flex justify-content-between align-items-center h-100 rounded">
                 <div className="p-3">
-                  <h6 className="fw-bold mb-1">Post Question Fee</h6>
-                  <small className="text-muted">1 Question post only</small>
+                  <h6 className="fw-bold mb-1 fs-6">Post Question Fee</h6>
+                  <small className="text-muted fs-7">1 Question post only</small>
                 </div>
                 <div
-                  className="text-end px-4 h-100 d-flex flex-column justify-content-center dashboard-fee-divider"
+                  className="text-end px-3 px-md-4 h-100 d-flex flex-column justify-content-center dashboard-fee-divider"
                 >
-                  <div className="fw-bold">USD</div>
+                  <div className="fw-bold fs-6">USD</div>
                   <div className="fw-bold fs-5">1.00</div>
                 </div>
               </div>
@@ -799,7 +810,7 @@ const Dashboard = () => {
 
             {/* Submit Button */}
             <button
-              className="btn text-white rounded-pill dashboard-post-question-button"
+              className="btn text-white rounded-pill dashboard-post-question-button w-100 py-3 py-md-2"
             >
               Post Your Legal Issues
             </button>

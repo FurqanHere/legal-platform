@@ -90,6 +90,10 @@ a {
     background-color: #4A4A4A !important;
 }
 
+input:focus, select:focus {
+    border: 1px solid black !important;
+}
+
 body {
     margin: 0;
     font-family: var(--bs-body-font-family);
@@ -59876,6 +59880,7 @@ html:not([data-theme=dark]) {
 
 .app-sidebar .app-sidebar-logo {
     border-bottom: 0.1px solid #A4A4A4;
+    border-right: 0.1px solid #A4A4A4;
 }
 
 .app-header-menu .menu .menu-item .menu-link {
@@ -60947,9 +60952,9 @@ input[type="number"] {
   }
 
   /* Mobile menu adjustments */
-  .app-sidebar-menu {
+  /* .app-sidebar-menu {
     padding: 0 1rem !important;
-  }
+  } */
 
   .menu-item {
     margin-bottom: 0.5rem !important;
@@ -61215,6 +61220,7 @@ body.sidebar-open {
     align-items: center !important;
     justify-content: flex-start !important;
     gap: 0.25rem !important;
+    width: 50% !important;
   }
 
   .recent-posted-question-card .d-flex.align-items-center span {
@@ -61335,7 +61341,7 @@ body.sidebar-open {
 
 /* Dashboard.jsx Inline CSS Extracted Classes */
 .dashboard-main-content {
-  background: linear-gradient(to bottom,rgba(0, 0, 0, 0.06) 0%, #ffffff 100%, #ffffff 100%);
+  background: linear-gradient(to bottom,rgba(0, 0, 0, 0.06) 0%, #7e7e7e 100%, #ffffff 100%);
   border-radius: 12px;
   padding: 20px;
 }
@@ -61539,7 +61545,7 @@ body.sidebar-open {
 }
 
 .dashboard-notification-title {
-  margin: 0 20px;
+  margin: 0 0px;
 }
 
 .dashboard-notification-see-all {
@@ -61552,7 +61558,7 @@ body.sidebar-open {
 }
 
 .dashboard-notification-avatar {
-  margin: 0 20px;
+  margin: 0 5px;
 }
 
 .dashboard-notification-text {
@@ -61637,11 +61643,12 @@ body.sidebar-open {
   height: 63px;
   font-size: 20px;
   font-weight: 500;
-  background-color: #474747;
+  background-color: #474747 !important;
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .dashboard-submit-footer {
-  background-color: #fff;
+  background-color: #2d2d2d !important;
   border-radius: 13px;
 }
 
@@ -62166,12 +62173,21 @@ body.sidebar-open {
   background-color: #000000 !important;
 }
 
+.stats-bottom-content i,
+.stats-bottom-content span {
+    font-size: 14px;
+}
+
+.dashboard-date-text {
+    font-size: 11px;
+}
+
 .app-sidebar.collapsed * {
   background-color: transparent !important;
 }
 
 .app-sidebar.collapsed .app-sidebar-logo {
-  background-color: #000000 !important;
+  background-color: #000000;
 }
 
 .app-sidebar.collapsed .app-sidebar-menu {

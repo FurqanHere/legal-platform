@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import notificationProfile from "../../assets/images/lawyerImg.png";
+import lawyersImg from "../../assets/images/Lawyers.png";
 
 const List = () => {
   const [selectedFilter, setSelectedFilter] = useState("Company");
@@ -10,10 +11,25 @@ const List = () => {
   const [showJurisdictionDropdown, setShowJurisdictionDropdown] = useState(false);
   const [showLawyerDetail, setShowLawyerDetail] = useState(false);
   const [selectedLawyer, setSelectedLawyer] = useState(null);
+  const [imageLoadingStates, setImageLoadingStates] = useState({});
 
   const handleLawyerClick = (lawyer) => {
     setSelectedLawyer(lawyer);
     setShowLawyerDetail(true);
+  };
+
+  const handleImageLoad = (imageId) => {
+    setImageLoadingStates(prev => ({
+      ...prev,
+      [imageId]: 'loaded'
+    }));
+  };
+
+  const handleImageError = (imageId) => {
+    setImageLoadingStates(prev => ({
+      ...prev,
+      [imageId]: 'error'
+    }));
   };
 
   // Company lawyers data
@@ -25,7 +41,7 @@ const List = () => {
       rating: 4.5,
       location: "Dubai Internet City UAE",
       specialization: "Commercial Law + Jurisdiction: UAE+",
-      image: notificationProfile,
+      image: lawyersImg,
       category: "Commercial Law",
       jurisdiction: "UAE",
       description: "Leading commercial law firm specializing in corporate transactions and business law."
@@ -37,7 +53,7 @@ const List = () => {
       rating: 4.8,
       location: "Abu Dhabi, UAE",
       specialization: "Corporate Law + Jurisdiction: UAE+",
-      image: notificationProfile,
+      image: lawyersImg,
       category: "Corporate Law",
       jurisdiction: "UAE",
       description: "Premier corporate law firm with expertise in mergers, acquisitions, and corporate governance."
@@ -49,7 +65,7 @@ const List = () => {
       rating: 4.3,
       location: "Dubai, UAE",
       specialization: "Real Estate Law + Jurisdiction: UAE+",
-      image: notificationProfile,
+      image: lawyersImg,
       category: "Real Estate Law",
       jurisdiction: "UAE",
       description: "Specialized real estate law firm handling property transactions and development projects."
@@ -66,7 +82,7 @@ const List = () => {
       rating: 4.9,
       location: "Dubai, UAE",
       specialization: "Criminal Defense + Jurisdiction: UAE+",
-      image: notificationProfile,
+      image: lawyersImg,
       category: "Criminal Law",
       jurisdiction: "UAE",
       description: "Experienced criminal defense attorney with 15+ years of practice in UAE courts."
@@ -79,7 +95,7 @@ const List = () => {
       rating: 4.6,
       location: "Abu Dhabi, UAE",
       specialization: "Family Law + Jurisdiction: UAE+",
-      image: notificationProfile,
+      image: lawyersImg,
       category: "Family Law",
       jurisdiction: "UAE",
       description: "Dedicated family law practitioner specializing in divorce, custody, and inheritance matters."
@@ -92,7 +108,7 @@ const List = () => {
       rating: 4.7,
       location: "Dubai, UAE",
       specialization: "Immigration Law + Jurisdiction: UAE+",
-      image: notificationProfile,
+      image: lawyersImg,
       category: "Immigration Law",
       jurisdiction: "UAE",
       description: "Expert immigration lawyer helping clients with visa applications and residency matters."
@@ -159,6 +175,19 @@ const List = () => {
     setShowJurisdictionDropdown(false);
   };
 
+  // Preload images for better performance
+  useEffect(() => {
+    const preloadImages = () => {
+      const imagesToPreload = [lawyersImg, notificationProfile];
+      imagesToPreload.forEach(src => {
+        const img = new Image();
+        img.src = src;
+      });
+    };
+    
+    preloadImages();
+  }, []);
+
   // Close dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -181,10 +210,11 @@ const List = () => {
         <div className="col-12 px-0">
           {/* Search Bar */}
           <div
-            className="d-flex justify-content-center mb-4 bg-white"
+            className="d-flex justify-content-center mb-4 bg-white lawyers-list-header-bar"
             style={{
-              borderBottom: "1px solid #e6e6e6",
-              borderTop: "1px solid #e6e6e6",
+              borderBottom: "0.1px solid #e6e6e6",
+              borderTop: "0.1px solid #e6e6e6",
+              marginTop: "28px"
             }}
           >
             <div
@@ -216,7 +246,7 @@ const List = () => {
           </div>
         </div>
          {/* Filter Buttons */}
-         <div className="d-flex justify-content-start gap-3 flex-wrap">
+         <div className="d-flex justify-content-start gap-3 flex-wrap lawyers-filter-tabs">
            {filters.map((filter) => (
              <div key={filter} className="position-relative">
                {filter === "Categories" ? (
@@ -364,12 +394,17 @@ const List = () => {
                   src={lawyer.image}
                   className="card-img-top"
                   alt={lawyer.type === "Individual" ? lawyer.name : lawyer.firmName}
+                  loading="lazy"
+                  decoding="async"
+                  onLoad={() => handleImageLoad(`lawyer-${lawyer.id}`)}
+                  onError={() => handleImageError(`lawyer-${lawyer.id}`)}
                   style={{
                     height: "200px",
                     objectFit: "cover",
                     width: "100%",
                     borderTopRightRadius: "15px",
-                    borderTopLeftRadius: "15px"
+                    borderTopLeftRadius: "15px",
+                    backgroundColor: "#f8f9fa"
                   }}
                 />
               </div>
@@ -425,22 +460,10 @@ const List = () => {
         <div
           className="offcanvas offcanvas-end show"
           tabIndex="-1"
-          style={{
-            position: "fixed",
-            top: 0,
-            right: 0,
-            bottom: 0,
-            visibility: "visible",
-            width: "633px",
-            transition: "all 0.3s ease",
-            borderRadius: "13px",
-            margin: "20px",
-            zIndex: 1045,
-          }}
         >
-          <div className="offcanvas-header border-bottom">
+          <div className="offcanvas-header border-bottom p-3 p-md-4">
             <div className="d-flex justify-content-between align-items-center w-100">
-              <h5 className="mb-0 fw-bold">Lawyer Detail</h5>
+              <h5 className="mb-0 fw-bold fs-5 fs-md-4">Lawyer Detail</h5>
               <button
                 type="button"
                 className="btn-close"
@@ -450,14 +473,22 @@ const List = () => {
           </div>
 
           <div className="offcanvas-body p-0 d-flex flex-column" style={{ height: "100%" }}>
-            <div className="p-4 flex-grow-1" style={{ overflowY: "auto" }}>
+            <div className="p-3 p-md-4 flex-grow-1" style={{ overflowY: "auto" }}>
               {/* Main Image */}
               <div className="mb-4">
                 <img
                   src={selectedLawyer.image}
                   alt={selectedLawyer.type === "Individual" ? selectedLawyer.name : selectedLawyer.firmName}
                   className="w-100 rounded"
-                  style={{ height: "250px", objectFit: "cover" }}
+                  loading="lazy"
+                  decoding="async"
+                  onLoad={() => handleImageLoad(`detail-${selectedLawyer.id}`)}
+                  onError={() => handleImageError(`detail-${selectedLawyer.id}`)}
+                  style={{ 
+                    height: "250px", 
+                    objectFit: "cover",
+                    backgroundColor: "#f8f9fa"
+                  }}
                 />
               </div>
 
@@ -474,7 +505,13 @@ const List = () => {
                       border: "1px solid #e9ecef"
                     }}
                   >
-                    <img src={ notificationProfile } className="w-100 h-100" alt="" />
+                    <img 
+                      src={notificationProfile} 
+                      className="w-100 h-100" 
+                      alt="Lawyer profile thumbnail"
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </div>
                 ))}
               </div>
@@ -565,6 +602,8 @@ const List = () => {
                       src={notificationProfile}
                       alt="Reviewer"
                       className="rounded-circle me-3"
+                      loading="lazy"
+                      decoding="async"
                       style={{ width: "40px", height: "40px" }}
                     />
                     <div className="flex-grow-1">
@@ -588,6 +627,8 @@ const List = () => {
                       src={notificationProfile}
                       alt="Reviewer"
                       className="rounded-circle me-3"
+                      loading="lazy"
+                      decoding="async"
                       style={{ width: "40px", height: "40px" }}
                     />
                     <div className="flex-grow-1">
@@ -662,15 +703,15 @@ const List = () => {
               {/* Action Buttons */}
               <div className="d-flex gap-3">
                 <button
-                  className="btn btn-outline-secondary flex-grow-1 d-flex align-items-center justify-content-center"
-                  style={{ height: "50px" }}
+                  className="btn btn-outline-secondary d-flex align-items-center justify-content-center"
+                  style={{ height: "55px", width: "120px", flexShrink: 0 }}
                 >
                   <i className="bi bi-apple me-2"></i>
-                  Apple Pay
+                  
                 </button>
                 <button
-                  className="btn btn-dark flex-grow-1"
-                  style={{ height: "50px" }}
+                  className="btn flex-grow-1"
+                  style={{ height: "55px", backgroundColor: "#474747", color: "white", width: "120px" }}
                 >
                   Get Service
                 </button>

@@ -1,0 +1,1121 @@
+/* Dark Mode Styles */
+
+/* Smooth transitions for mode switching */
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.mode-transitioning {
+  transition: all 0.3s ease;
+}
+
+body.mode-transitioning * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body.dark-mode input:focus {
+  border: 1px solid #fff !important;
+}
+/* Dark mode toggle button styling */
+.dark-mode-toggle {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dark-mode-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: scale(1.05);
+}
+
+.dark-mode-toggle .modern-icon {
+  font-size: 1.2rem;
+  color: #6c757d;
+  transition: color 0.3s ease;
+}
+
+.dark-mode-toggle:hover .modern-icon {
+  color: #495057;
+}
+
+/* Enhanced dark mode toggle animations */
+.dark-mode-toggle i {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark mode specific toggle styling */
+body.dark-mode .dark-mode-toggle {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .dark-mode-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .dark-mode-toggle .modern-icon {
+  color: #ffc107;
+}
+
+body.dark-mode .dark-mode-toggle:hover .modern-icon {
+  color: #ffd700;
+}
+
+/* Dark mode body styles */
+body.dark-mode {
+  background-color: #1a1a1a !important;
+  color: #ffffff !important;
+}
+
+/* Dark mode header styles */
+body.dark-mode .app-header {
+  background-color: #2d2d2d !important;
+  border-bottom: 0.1px solid #A4A4A4 !important;
+}
+
+/* Dark mode search input */
+body.dark-mode .modern-search-input {
+  background-color: #3a3a3a !important;
+  border-color: #555555 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .modern-search-input::placeholder {
+  color: #aaaaaa !important;
+}
+
+body.dark-mode .modern-search-icon {
+  color: #aaaaaa !important;
+}
+
+/* Dark mode icons */
+body.dark-mode .modern-icon {
+  color: #aaaaaa !important;
+}
+
+body.dark-mode .modern-icon:hover {
+  color: #ffffff !important;
+}
+
+/* Dark mode cards */
+body.dark-mode .card {
+  background-color: #2d2d2d !important;
+  border-color: #404040 !important;
+  color: #ffffff !important;
+}
+
+/* Dark mode text */
+body.dark-mode .text-dark {
+  color: #ffffff !important;
+}
+
+body.dark-mode .text-black {
+  color: white !important;
+}
+
+body.dark-mode .text-gray-600 {
+  color: #aaaaaa !important;
+}
+
+body.dark-mode .text-gray-700 {
+  color: #cccccc !important;
+}
+
+body.dark-mode .text-muted {
+  color: #888888 !important;
+}
+
+/* Dark mode buttons */
+body.dark-mode .btn-light {
+  background-color: #3a3a3a !important;
+  border-color: #555555 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .btn-light:hover {
+  background-color: #4a4a4a !important;
+  border-color: #666666 !important;
+}
+
+/* Dark mode dropdowns */
+body.dark-mode .notification-dropdown,
+body.dark-mode .profile-dropdown {
+  background-color: #2d2d2d !important;
+  border-color: #404040 !important;
+}
+
+body.dark-mode .notification-dropdown .text-dark,
+body.dark-mode .profile-dropdown .text-dark {
+  color: #ffffff !important;
+}
+
+body.dark-mode .notification-dropdown .text-muted,
+body.dark-mode .profile-dropdown .text-muted {
+  color: #aaaaaa !important;
+}
+
+/* Dark mode sidebar */
+body.dark-mode .app-sidebar {
+  background-color: #2d2d2d !important;
+  border-right: 0.1px solid #A4A4A4 !important;
+}
+
+/* Dark mode sidebar logo area */
+body.dark-mode .app-sidebar-logo {
+  background-color: #2d2d2d !important;
+}
+
+/* Dark mode sidebar navigation items */
+body.dark-mode .app-sidebar .nav-link {
+  color: #ffffff !important;
+}
+
+body.dark-mode .app-sidebar .nav-link:hover {
+  background-color: #3a3a3a !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .app-sidebar .nav-link.active {
+  background-color: transparent !important;
+  color: #ffffff !important;
+}
+
+/* Dark mode sidebar logo */
+body.dark-mode .app-sidebar .logo {
+  color: #ffffff !important;
+}
+
+/* Dark mode sidebar icons */
+body.dark-mode .app-sidebar .nav-icon {
+  color: #aaaaaa !important;
+}
+
+body.dark-mode .app-sidebar .nav-link:hover .nav-icon {
+  color: #ffffff !important;
+}
+
+body.dark-mode .app-sidebar .nav-link.active .nav-icon {
+  color: #ffffff !important;
+}
+
+/* Dark mode sidebar menu items */
+body.dark-mode .app-sidebar .menu-item {
+  color: #ffffff !important;
+}
+
+body.dark-mode .app-sidebar .menu-link {
+  color: #ffffff !important;
+}
+
+body.dark-mode .app-sidebar .menu-link:hover {
+  background-color: #3a3a3a !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .app-sidebar .menu-link.active {
+  background-color: transparent !important;
+  color: #ffffff !important;
+}
+
+/* Dark mode sidebar toggle button */
+body.dark-mode .sidebar-toggle-btn {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .sidebar-toggle-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Dark mode sidebar backdrop */
+body.dark-mode .sidebar-backdrop {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Dark mode sidebar menu overrides */
+body.dark-mode .app-sidebar .menu {
+  background-color: #2d2d2d !important;
+}
+
+body.dark-mode .app-sidebar .app-sidebar-menu {
+  background-color: #2d2d2d !important;
+}
+
+/* Dark mode main content */
+body.dark-mode .app-content {
+  background-color: #1a1a1a !important;
+}
+
+/* Dark mode form controls */
+body.dark-mode .form-control {
+  background-color: #3a3a3a !important;
+  border-color: #555555 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .form-control:focus {
+  background-color: #3a3a3a !important;
+  border-color: #fff !important;
+  color: #ffffff !important;
+}
+
+/* Dark mode badges */
+body.dark-mode .badge {
+  background-color: #404040 !important;
+  color: #ffffff !important;
+}
+
+/* Dark mode borders */
+body.dark-mode .border {
+  border-color: #404040 !important;
+}
+
+body.dark-mode .border-bottom {
+  border-bottom-color: #404040 !important;
+}
+
+body.dark-mode .border-top {
+  border-top-color: #404040 !important;
+}
+
+/* Dark mode shadows */
+body.dark-mode .shadow {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.4) !important;
+}
+
+body.dark-mode .shadow-sm {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.3) !important;
+}
+
+body.dark-mode .shadow-lg {
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Dark mode toggle icon colors */
+body.dark-mode .dark-mode-toggle .modern-icon {
+  color: #ffc107 !important;
+}
+
+body.dark-mode .dark-mode-toggle:hover .modern-icon {
+  color: #ffd700 !important;
+}
+
+body.dark-mode .dashboard-card-hover i {
+  color: black !important;
+  transition: all 0.3s ease;
+}
+
+/* Dashboard dark-mode targeted fixes */
+body.dark-mode .dashboard-lawyer-respond-title {
+  color: #ffffff !important;
+}
+
+/* Keep pill light, but make sure date text is readable */
+body.dark-mode .dashboard-date-pill {
+  background-color: #f8f9fa !important;
+}
+
+body.dark-mode .dashboard-date-text {
+  color: #000000 !important;
+  font-size: 11px;
+}
+body.dark-mode .modern-icon-container,
+body.dark-mode .modern-notification-container {
+  background-color: #2D2D2D !important;
+  transition: all 0.3s ease;
+  cursor: pointer !important;
+}
+body.dark-mode .modern-icon-container:hover,
+body.dark-mode .modern-notification-container:hover {
+  background-color: #fff !important;
+  transition: all 0.3s ease;
+  cursor: pointer !important;
+}
+
+body.dark-mode .modern-icon-container:hover i,
+body.dark-mode .modern-notification-container:hover i {
+  transition: all 0.3s ease;
+  color: black !important;
+  cursor: pointer !important;
+}
+
+body.dark-mode .recent-posted-question-card:hover span {
+  color: black !important;
+}
+body.dark-mode .post-question-list-header {
+  background-color: #2d2d2d !important;
+}
+/* Dark mode MyLawyers/List.jsx fixes */
+body.dark-mode .my-lawyers-tabs-container .btn {
+  color: #ffffff !important;
+}
+
+body.dark-mode .my-lawyers-tabs-container .btn.border-bottom-3px {
+  border-bottom-color: #ffffff !important;
+}
+
+body.dark-mode .my-lawyers-tabs-container .btn:hover {
+  color: #ffffff !important;
+}
+
+/* Dark mode chat cards background */
+body.dark-mode .my-lawyers-contact-card {
+  background-color: #000000 !important;
+}
+
+/* Override bg-white inline class */
+body.dark-mode .my-lawyers-contact-card.bg-white {
+  background-color: #000000 !important;
+}
+
+body.dark-mode .my-lawyers-contact-list .card {
+  background-color: #000000 !important;
+}
+
+/* Dark mode chat names and messages */
+body.dark-mode .my-lawyers-chat-name {
+  color: #ffffff !important;
+}
+
+body.dark-mode .my-lawyers-chat-message {
+  color: #ffffff !important;
+}
+
+/* Override any inline text-dark classes in chat cards */
+body.dark-mode .my-lawyers-contact-card .text-dark {
+  color: #ffffff !important;
+}
+
+body.dark-mode .my-lawyers-contact-card h6 {
+  color: #ffffff !important;
+}
+
+body.dark-mode .my-lawyers-contact-card p {
+  color: #ffffff !important;
+}
+
+/* Dark mode chat time */
+body.dark-mode .my-lawyers-chat-time {
+  color: #aaaaaa !important;
+}
+
+/* Dark mode unread badge */
+body.dark-mode .my-lawyers-chat-unread-badge {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+body.dark-mode .my-lawyers-chat-unread-badge.bg-black {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+body.dark-mode .my-lawyers-chat-unread-badge.bg-success {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* Dark mode lawyer unread badge */
+body.dark-mode .my-lawyers-unread-badge {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* Dark mode MyLawyers sub-tabs hover fixes */
+body.dark-mode .my-lawyers-sub-tabs .btn:hover {
+  color: #000000 !important;
+}
+
+body.dark-mode .my-lawyers-sub-tabs .btn.bg-black:hover {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+}
+
+body.dark-mode .my-lawyers-sub-tabs .btn.btn-light:hover {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+}
+
+/* Dark mode MyLawyers right panel empty state */
+body.dark-mode .my-lawyers-right-panel .bg-light {
+  background-color: #1a1a1a !important;
+}
+
+body.dark-mode .my-lawyers-right-panel .text-muted {
+  color: #aaaaaa !important;
+}
+
+body.dark-mode .my-lawyers-right-panel .bi-chat-dots {
+  color: #aaaaaa !important;
+}
+
+body.dark-mode .my-lawyers-right-panel h4 {
+  color: #ffffff !important;
+}
+
+body.dark-mode .my-lawyers-right-panel p {
+  color: #aaaaaa !important;
+}
+
+/* Dark mode MyLawyers right panel chat interface */
+body.dark-mode .my-lawyers-right-panel .text-dark {
+  color: #ffffff !important;
+}
+
+body.dark-mode .my-lawyers-right-panel h6 {
+  color: #ffffff !important;
+}
+
+body.dark-mode .my-lawyers-right-panel small {
+  color: #aaaaaa !important;
+}
+
+/* Dark mode MyLawyers right panel messages */
+body.dark-mode .my-lawyers-right-panel .text-white-50 {
+  color: #aaaaaa !important;
+}
+body.dark-mode .lawyers-list-header-bar { 
+  background-color: #2d2d2d !important;
+ }
+ body.dark-mode .case-details--mukta-font .row.mb-4.bg-white.px-4.py-5 {
+  background-color: #2d2d2d !important;
+ }
+ body.dark-mode .case-details--mukta-font .row.mb-4.bg-white.px-4.py-5 i.bi-search {
+  color: #ffffff !important;
+ }
+
+/* Dark mode popups, modals, and offcanvas */
+body.dark-mode .offcanvas {
+  background-color: #2d2d2d !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .offcanvas-header {
+  background-color: #2d2d2d !important;
+  border-bottom-color: #404040 !important;
+}
+
+body.dark-mode .offcanvas-body {
+  background-color: #2d2d2d !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .offcanvas-title {
+  color: #ffffff !important;
+}
+
+body.dark-mode .offcanvas-backdrop {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Dark mode modal */
+body.dark-mode .modal-content {
+  background-color: #2d2d2d !important;
+  border-color: #404040 !important;
+}
+
+body.dark-mode .modal-header {
+  background-color: #2d2d2d !important;
+  border-bottom-color: #404040 !important;
+}
+
+body.dark-mode .modal-body {
+  background-color: #2d2d2d !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .modal-footer {
+  background-color: #2d2d2d !important;
+  border-top-color: #404040 !important;
+}
+
+body.dark-mode .modal-title {
+  color: #ffffff !important;
+}
+
+body.dark-mode .modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Dark mode dropdown menus */
+body.dark-mode .dropdown-menu {
+  background-color: #2d2d2d !important;
+  border-color: #404040 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .dropdown-item {
+  color: #ffffff !important;
+}
+
+body.dark-mode .dropdown-item:hover {
+  background-color: #3a3a3a !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .dropdown-item:focus {
+  background-color: #3a3a3a !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .dropdown-divider {
+  border-top-color: #404040 !important;
+}
+
+body.dark-mode .dropdown-header {
+  color: #aaaaaa !important;
+}
+
+/* Dark mode popup text elements */
+body.dark-mode .offcanvas .text-dark,
+body.dark-mode .modal .text-dark {
+  color: #ffffff !important;
+}
+
+body.dark-mode .offcanvas .text-muted,
+body.dark-mode .modal .text-muted {
+  color: #aaaaaa !important;
+}
+
+body.dark-mode .offcanvas .text-black,
+body.dark-mode .modal .text-black {
+  color: #ffffff !important;
+}
+
+/* Dark mode popup form elements */
+body.dark-mode .offcanvas .form-control,
+body.dark-mode .modal .form-control {
+  background-color: #3a3a3a !important;
+  border-color: #555555 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .offcanvas .form-control:focus,
+body.dark-mode .modal .form-control:focus {
+  background-color: #3a3a3a !important;
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .offcanvas .form-label,
+body.dark-mode .modal .form-label {
+  color: #ffffff !important;
+}
+
+body.dark-mode .offcanvas .form-select,
+body.dark-mode .modal .form-select {
+  background-color: #3a3a3a !important;
+  border-color: #555555 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .offcanvas .form-select:focus,
+body.dark-mode .modal .form-select:focus {
+  background-color: #3a3a3a !important;
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+/* Dark mode popup buttons */
+body.dark-mode .offcanvas .btn-close,
+body.dark-mode .modal .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+body.dark-mode .offcanvas .btn-secondary,
+body.dark-mode .modal .btn-secondary {
+  background-color: #555555 !important;
+  border-color: #666666 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .offcanvas .btn-secondary:hover,
+body.dark-mode .modal .btn-secondary:hover {
+  background-color: #666666 !important;
+  border-color: #777777 !important;
+  color: #ffffff !important;
+}
+
+/* Dark mode popup badges and labels */
+body.dark-mode .offcanvas .badge,
+body.dark-mode .modal .badge {
+  background-color: #404040 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .offcanvas .badge.bg-light,
+body.dark-mode .modal .badge.bg-light {
+  background-color: #404040 !important;
+  color: #ffffff !important;
+}
+
+/* Dark mode popup borders */
+body.dark-mode .offcanvas .border,
+body.dark-mode .modal .border {
+  border-color: #404040 !important;
+}
+
+body.dark-mode .offcanvas .border-bottom,
+body.dark-mode .modal .border-bottom {
+  border-bottom-color: #404040 !important;
+}
+
+body.dark-mode .offcanvas .border-top,
+body.dark-mode .modal .border-top {
+  border-top-color: #404040 !important;
+}
+
+/* Dark mode Dashboard post question popup specific fixes */
+body.dark-mode .dashboard-post-question-offcanvas h5 {
+  color: #ffffff !important;
+}
+
+body.dark-mode .dashboard-post-question-offcanvas h6 {
+  color: #ffffff !important;
+}
+
+body.dark-mode .dashboard-post-question-offcanvas .fw-bold {
+  color: #ffffff !important;
+}
+
+/* Dark mode Dashboard post question jurisdiction dropdown */
+body.dark-mode .dashboard-post-question-offcanvas .p-dropdown {
+  background-color: #3a3a3a !important;
+  border-color: #555555 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .dashboard-post-question-offcanvas .p-dropdown .p-dropdown-label {
+  color: #ffffff !important;
+}
+
+body.dark-mode .dashboard-post-question-offcanvas .p-dropdown .p-dropdown-trigger {
+  color: #ffffff !important;
+}
+
+body.dark-mode .dashboard-post-question-offcanvas .p-dropdown:not(.p-disabled).p-focus {
+  border-color: #ffffff !important;
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Dark mode Dashboard post question fee section */
+body.dark-mode .dashboard-post-question-fee {
+  background-color: #3a3a3a !important;
+  border: 1px solid #555555 !important;
+}
+
+body.dark-mode .dashboard-post-question-fee h6 {
+  color: #ffffff !important;
+}
+
+body.dark-mode .dashboard-post-question-fee small {
+  color: #aaaaaa !important;
+}
+
+body.dark-mode .dashboard-post-question-fee .dashboard-fee-divider {
+  border-left: 1px solid #555555 !important;
+}
+
+/* Dark mode Dashboard create case popup specific fixes */
+body.dark-mode .dashboard-offcanvas-content h5 {
+  color: #ffffff !important;
+}
+
+body.dark-mode .dashboard-offcanvas-content h6 {
+  color: #ffffff !important;
+}
+
+body.dark-mode .dashboard-offcanvas-content .fw-bold {
+  color: #ffffff !important;
+}
+
+body.dark-mode .dashboard-offcanvas-content label {
+  color: #ffffff !important;
+}
+
+/* Dark mode Dashboard create case dropdowns */
+body.dark-mode .dashboard-offcanvas-content .p-dropdown {
+  background-color: #3a3a3a !important;
+  border-color: #555555 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .dashboard-offcanvas-content .p-dropdown .p-dropdown-label {
+  color: #ffffff !important;
+}
+
+body.dark-mode .dashboard-offcanvas-content .p-dropdown .p-dropdown-trigger {
+  color: #ffffff !important;
+}
+
+body.dark-mode .dashboard-offcanvas-content .p-dropdown:not(.p-disabled).p-focus {
+  border-color: #ffffff !important;
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Dark mode Dashboard create case textarea */
+body.dark-mode .dashboard-offcanvas-content textarea {
+  background-color: #3a3a3a !important;
+  border-color: #555555 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .dashboard-offcanvas-content textarea:focus {
+  background-color: #3a3a3a !important;
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+/* Dark mode Dashboard create case checkbox */
+body.dark-mode .dashboard-offcanvas-content .form-check-input {
+  background-color: #3a3a3a !important;
+  border-color: #555555 !important;
+}
+
+body.dark-mode .dashboard-offcanvas-content .form-check-input:checked {
+  background-color: #007bff !important;
+  border-color: #007bff !important;
+}
+
+body.dark-mode .dashboard-offcanvas-content .form-check-label {
+  color: #ffffff !important;
+}
+
+/* Dark mode Dashboard create case submit button */
+body.dark-mode .dashboard-offcanvas-content .btn-primary {
+  background-color: #007bff !important;
+  border-color: #007bff !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .dashboard-offcanvas-content .btn-primary:hover {
+  background-color: #0056b3 !important;
+  border-color: #0056b3 !important;
+  color: #ffffff !important;
+}
+
+/* Dark mode Dashboard post question moon icons */
+body.dark-mode .dashboard-moon-icon {
+  color: #ffffff !important;
+}
+
+/* Remove white border from Add New Case button in dark mode */
+body.dark-mode .my-cases-add-button {
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+ body.dark-mode .employees--mukta-font .row.mb-4.bg-white.px-4.py-5 {
+  background-color: #2d2d2d !important;
+ }
+ body.dark-mode .dashboard-create-case-offcanvas h5 {
+  color: #fff !important;
+ }
+/* Dark mode Lawyers page filter tabs */
+body.dark-mode .lawyers-filter-tabs .btn {
+  background-color: #3a3a3a !important;
+  color: #ffffff !important;
+  border-color: #555555 !important;
+}
+
+body.dark-mode .lawyers-filter-tabs .btn.bg-white {
+  background-color: #3a3a3a !important;
+  color: #ffffff !important;
+  border-color: #555555 !important;
+}
+
+body.dark-mode .lawyers-filter-tabs .btn.bg-black {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+}
+
+body.dark-mode .lawyers-filter-tabs .btn:hover {
+  background-color: #4a4a4a !important;
+  color: #ffffff !important;
+  border-color: #666666 !important;
+}
+
+/* Dark mode Lawyers page filter tabs text */
+body.dark-mode .lawyers-filter-tabs .btn.text-black {
+  color: #ffffff !important;
+}
+
+/* Dark mode chat interface fixes for Chat/List.jsx and MyLawyers/List.jsx */
+body.dark-mode .my-lawyers-conversation-header {
+  background-color: #2d2d2d !important;
+  border-bottom-color: #404040 !important;
+}
+
+body.dark-mode .my-lawyers-conversation-header h6 {
+  color: #ffffff !important;
+}
+
+body.dark-mode .my-lawyers-conversation-header small {
+  color: #aaaaaa !important;
+}
+
+body.dark-mode .my-lawyers-conversation-header .text-dark {
+  color: #ffffff !important;
+}
+
+body.dark-mode .my-lawyers-conversation-header .text-muted {
+  color: #aaaaaa !important;
+}
+
+/* Dark mode chat messages area */
+body.dark-mode .my-lawyers-messages-area {
+  background-color: #1a1a1a !important;
+}
+
+body.dark-mode .my-lawyers-messages-area .bg-light {
+  background-color: #2d2d2d !important;
+}
+
+body.dark-mode .my-lawyers-messages-area .bg-primary {
+  background-color: #007bff !important;
+}
+
+body.dark-mode .my-lawyers-messages-area .text-muted {
+  color: #aaaaaa !important;
+}
+
+body.dark-mode .my-lawyers-messages-area .text-white-50 {
+  color: #aaaaaa !important;
+}
+
+body.dark-mode .my-lawyers-messages-area p {
+  color: #ffffff !important;
+}
+
+/* Dark mode chat message input area */
+body.dark-mode .my-lawyers-message-input {
+  background-color: #2d2d2d !important;
+  border-top-color: #404040 !important;
+}
+
+body.dark-mode .my-lawyers-message-input input {
+  background-color: #3a3a3a !important;
+  border-color: #555555 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .my-lawyers-message-input input:focus {
+  background-color: #3a3a3a !important;
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .my-lawyers-message-input input::placeholder {
+  color: #aaaaaa !important;
+}
+
+body.dark-mode .my-lawyers-message-input .btn-primary {
+  background-color: #007bff !important;
+  border-color: #007bff !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .my-lawyers-message-input .btn-primary:hover {
+  background-color: #0056b3 !important;
+  border-color: #0056b3 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .my-lawyers-message-input .btn-secondary {
+  background-color: #555555 !important;
+  border-color: #666666 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .my-lawyers-message-input .btn-secondary:hover {
+  background-color: #666666 !important;
+  border-color: #777777 !important;
+  color: #ffffff !important;
+}
+
+/* Dark mode chat icons */
+body.dark-mode .my-lawyers-message-input i {
+  color: #ffffff !important;
+}
+
+body.dark-mode .my-lawyers-conversation-header i {
+  color: #ffffff !important;
+}
+body.dark-mode .my-lawyers-right-panel {
+  background-color: #1a1a1a !important;
+}
+/* Dark mode MyCases cards text brightness */
+body.dark-mode .my-cases-card-title {
+  color: #ffffff !important;
+}
+
+body.dark-mode .my-cases-card-badge {
+  background-color: #404040 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .my-cases-card-description {
+  color: #e0e0e0 !important;
+}
+
+body.dark-mode .my-cases-card-details h6 {
+  color: #ffffff !important;
+}
+
+body.dark-mode .my-cases-card-details p {
+  color: #e0e0e0 !important;
+}
+
+body.dark-mode .my-cases-card-details small {
+  color: #e0e0e0 !important;
+}
+
+/* Dark mode MyCases card hover effects */
+body.dark-mode .portal-card-hover:hover .my-cases-card-title {
+  color: #ffffff !important;
+}
+
+body.dark-mode .portal-card-hover:hover .my-cases-card-description {
+  color: #e0e0e0 !important;
+}
+
+body.dark-mode .portal-card-hover:hover .my-cases-card-details h6 {
+  color: #ffffff !important;
+}
+
+body.dark-mode .portal-card-hover:hover .my-cases-card-details p {
+  color: #e0e0e0 !important;
+}
+
+body.dark-mode .portal-card-hover:hover .my-cases-card-details small {
+  color: #e0e0e0 !important;
+}
+
+/* Dark mode MyCases card specific elements */
+body.dark-mode .my-cases-card-label {
+  color: #e0e0e0 !important;
+}
+
+body.dark-mode .my-cases-card-value {
+  color: #ffffff !important;
+}
+
+body.dark-mode .portal-card-hover:hover .my-cases-card-label {
+  color: #e0e0e0 !important;
+}
+
+body.dark-mode .portal-card-hover:hover .my-cases-card-value {
+  color: #ffffff !important;
+}
+body.dark-mode .profile-card {
+  background-color: #2d2d2d !important;
+  color: #ffffff !important;
+}
+
+/* Dark mode Employees/Details page specific fixes */
+body.dark-mode .employee-container {
+  background-color: #1a1a1a !important;
+}
+
+body.dark-mode .company-name {
+  color: #ffffff !important;
+}
+
+body.dark-mode .company-location {
+  color: #e0e0e0 !important;
+}
+
+body.dark-mode .company-description {
+  color: #e0e0e0 !important;
+}
+
+body.dark-mode .company-description a {
+  color: #ffffff !important;
+}
+
+/* Dark mode Employees/Details textarea */
+body.dark-mode .company-textarea {
+  background-color: #3a3a3a !important;
+  border-color: #555555 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .company-textarea:focus {
+  border-color: #ffd700 !important;
+  box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2) !important;
+}
+
+body.dark-mode .company-textarea::placeholder {
+  color: #aaaaaa !important;
+}
+
+/* Dark mode Employees/Details social section */
+body.dark-mode .social-section h6 {
+  color: #ffffff !important;
+}
+
+body.dark-mode .social-icons i {
+  color: #000000 !important;
+}
+
+/* Dark mode Employees/Details edit panel */
+body.dark-mode .edit-panel {
+  background-color: #2d2d2d !important;
+}
+
+body.dark-mode .edit-header {
+  border-bottom-color: #404040 !important;
+}
+
+body.dark-mode .edit-header h5 {
+  color: #ffffff !important;
+}
+
+body.dark-mode .edit-header button {
+  color: #ffffff !important;
+}
+
+body.dark-mode .edit-body label {
+  color: #ffffff !important;
+}
+
+body.dark-mode .edit-body input,
+body.dark-mode .edit-body textarea {
+  background-color: #3a3a3a !important;
+  border-color: #555555 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .edit-body input:focus,
+body.dark-mode .edit-body textarea:focus {
+  border-color: #ffffff !important;
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25) !important;
+}
+
+body.dark-mode .save-btn {
+  background-color: #007bff !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .save-btn:hover {
+  background-color: #0056b3 !important;
+}
+
+/* Dark mode Employees/Details edit button */
+body.dark-mode .edit-btn {
+  background-color: #000 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .edit-btn:hover {
+  background-color: gray !important;
+}
+
+body.dark-mode .edit-btn i {
+  color: #ffffff !important;
+}

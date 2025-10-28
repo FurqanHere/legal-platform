@@ -2,7 +2,7 @@
 import Dashboard from '../pages/Dashboard';
 import Login from '../pages/Login';
 
-import CompanyList from '../pages/AskQuestion/List';
+import CompanyList from '../pages/PostQuestion/List';
 
 import PostList from '../pages/posts/List.jsx';
 

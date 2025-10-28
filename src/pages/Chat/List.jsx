@@ -258,7 +258,8 @@ const List = () => {
           className="app-container container-xxl h-100 px-0 mx-0"
         >
           <div className="row h-100 g-0" data-aos="fade-up">
-            <div className="col-lg-4 col-md-5">
+            {/* Left Panel - Contact List */}
+            <div className={`col-lg-4 col-md-5 ${selectedContact ? 'd-none d-lg-block' : ''}`}>
               <div className="d-flex flex-column h-100 my-lawyers-left-panel">
                 {/* Main Tabs */}
                 <div className="py-4">
@@ -372,11 +373,11 @@ const List = () => {
                               <p className="text-muted mb-1 fs-7">
                                 {item.title}
                               </p>
-                              <p className="text-muted mb-2 fs-8">
+                              <p className="text-muted mb-2 fs-8 d-none d-md-block">
                                 {item.specializations}
                               </p>
-                              <div className="d-flex justify-content-between align-items-center">
-                                <small className="text-muted">
+                              <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
+                                <small className="text-muted mb-1 mb-md-0">
                                   {item.renewalDate}
                                 </small>
                                 <div className="d-flex align-items-center gap-2">
@@ -454,15 +455,22 @@ const List = () => {
               </div>
             </div>
 
-            {/* Right Panel - Chat Interface (70% width) */}
-            <div className="col-lg-8 col-md-7 d-flex flex-column my-lawyers-right-panel">
+            {/* Right Panel - Chat Interface */}
+            <div className={`col-lg-8 col-md-7 d-flex flex-column my-lawyers-right-panel ${selectedContact ? 'col-12' : ''}`}>
               {selectedContact ? (
-                // Chat Interface - Always show chat when contact is selected
+                // Chat Interface - Only show when contact is selected
                 <>
                   {/* Conversation Header */}
                   <div className="p-4 bg-white my-lawyers-conversation-header">
                     <div className="d-flex justify-content-between align-items-center">
                       <div className="d-flex align-items-center">
+                        {/* Mobile Back Button */}
+                        <button 
+                          className="btn btn-sm d-lg-none me-3"
+                          onClick={() => setSelectedContact(null)}
+                        >
+                          <i className="bi bi-arrow-left"></i>
+                        </button>
                         <div className="symbol symbol-40px me-3">
                           <img
                             src={selectedContact.avatar}
@@ -543,8 +551,8 @@ const List = () => {
                   </div>
 
                   {/* Message Input */}
-                  <div className="p-4 border-top bg-white rounded-3 shadow mx-5 my-lawyers-message-input">
-                    <div className="d-flex align-items-center gap-3">
+                  <div className="p-3 p-lg-4 border-top bg-white rounded-3 shadow mx-2 mx-lg-5 my-lawyers-message-input">
+                    <div className="d-flex align-items-center gap-2 gap-lg-3">
                       <div className="flex-fill">
                         <input
                           type="text"
@@ -557,7 +565,7 @@ const List = () => {
                           }
                         />
                       </div>
-                      <button className="btn btn-sm">
+                      <button className="btn btn-sm d-none d-md-block">
                         <i className="bi bi-paperclip"></i>
                       </button>
                       <button
@@ -570,12 +578,16 @@ const List = () => {
                   </div>
                 </>
               ) : (
-                <div className="d-flex align-items-center justify-content-center h-100">
-                  <div className="text-center">
-                    <i className="bi bi-chat-dots text-muted my-lawyers-empty-state-icon"></i>
-                    <h5 className="text-muted mt-3">
-                      Select a contact to start chatting
-                    </h5>
+                // Empty State - Only show when no contact is selected
+                <div className="d-flex align-items-center justify-content-center h-100 bg-light">
+                  <div className="text-center p-5">
+                    <div className="mb-4">
+                      <i className="bi bi-chat-dots text-muted" style={{ fontSize: "4rem" }}></i>
+                    </div>
+                    <h4 className="text-muted mb-2">Welcome to Chat</h4>
+                    <p className="text-muted mb-0">
+                      Select a contact from the list to start chatting
+                    </p>
                   </div>
                 </div>
               )}

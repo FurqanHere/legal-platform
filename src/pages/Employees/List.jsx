@@ -86,8 +86,8 @@ const EmployeesList = () => {
     <div className="container-fluid employees--mukta-font">
       {/* Search and Filter Section */}
       <div className="row mb-4 bg-white px-4 py-5" style={{
-              borderBottom: "1px solid #e6e6e6",
-              borderTop: "1px solid #e6e6e6",
+              borderBottom: "0.1px solid #e6e6e6",
+              borderTop: "0.1px solid #e6e6e6",
               marginTop: "30px",
               paddingLeft: "30px"
             }}

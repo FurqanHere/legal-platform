@@ -1,0 +1,65 @@
+/* Mobile Sidebar Animations - Only for mobile screens */
+@media (max-width: 991.98px) {
+  
+  /* Mobile Sidebar Slide Animation */
+  .app-sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .app-sidebar.show {
+    transform: translateX(0);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  /* Mobile Sidebar Backdrop Fade Animation */
+  .sidebar-backdrop {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .sidebar-backdrop.show {
+    opacity: 0.5;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  /* Ensure sidebar is positioned correctly on mobile */
+  .app-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 106;
+    display: flex;
+  }
+  
+  /* Prevent body scroll when sidebar is open */
+  body.sidebar-open {
+    overflow: hidden;
+  }
+  
+  /* Smooth transition for sidebar content */
+  .app-sidebar-menu {
+    transition: opacity 0.2s ease-in-out;
+  }
+  
+  .app-sidebar.show .app-sidebar-menu {
+    opacity: 1;
+  }
+  
+  .app-sidebar:not(.show) .app-sidebar-menu {
+    opacity: 0.8;
+  }
+}
+
+/* Desktop - No animations needed */
+@media (min-width: 992px) {
+  .app-sidebar {
+    transform: none !important;
+    transition: width 0.3s ease !important;
+  }
+  
+  .sidebar-backdrop {
+    display: none !important;
+  }
+}

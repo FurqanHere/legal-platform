@@ -1,0 +1,81 @@
+/* Profile Dropdown Styling for All Headers */
+
+/* Profile dropdown positioning and styling */
+.profile-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  border-radius: 0.75rem;
+  z-index: 1050;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+/* Profile dropdown content */
+.profile-dropdown .p-3 {
+  padding: 1rem;
+}
+
+/* Profile image in dropdown */
+.profile-dropdown .symbol-50px img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* User info styling */
+.profile-dropdown .fw-bold {
+  font-weight: 600;
+  color: #212529;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.profile-dropdown .text-muted {
+  color: #6c757d;
+  font-size: 0.875rem;
+}
+
+/* Separator styling */
+.profile-dropdown .separator {
+  border-top: 1px solid #e9ecef;
+  margin: 0.75rem 0;
+}
+
+/* Button styling in dropdown */
+.profile-dropdown .btn-transparent {
+  background: transparent;
+  border: none;
+  padding: 0.5rem;
+  text-align: left;
+  color: #6c757d;
+  font-size: 0.875rem;
+  transition: color 0.2s ease;
+}
+
+.profile-dropdown .btn-transparent:hover {
+  color: #212529;
+  background-color: #f8f9fa;
+}
+
+/* Cursor pointer for profile images */
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Ensure profile dropdown appears above other elements */
+.position-relative {
+  position: relative;
+}

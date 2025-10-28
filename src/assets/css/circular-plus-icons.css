@@ -1,0 +1,133 @@
+/* Circular Plus Icon Fixes for Dashboard Action Cards */
+
+/* Ensure perfect circular shape for plus icon buttons */
+.dashboard-action-button,
+.btn.dashboard-action-button,
+.btn.btn-light.dashboard-action-button,
+.btn.rounded-circle.dashboard-action-button {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  max-width: 40px !important;
+  border-radius: 50% !important; /* Perfect circle */
+  background-color: #EAEAEA !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-shrink: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.dashboard-action-button:hover,
+.btn.dashboard-action-button:hover,
+.btn.btn-light.dashboard-action-button:hover,
+.btn.rounded-circle.dashboard-action-button:hover {
+  background-color: #D5D5D5 !important;
+  transform: scale(1.05) !important;
+  transition: all 0.2s ease !important;
+}
+
+.dashboard-action-button:focus,
+.btn.dashboard-action-button:focus,
+.btn.btn-light.dashboard-action-button:focus,
+.btn.rounded-circle.dashboard-action-button:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.1) !important;
+  outline: none !important;
+}
+
+.dashboard-action-button:active,
+.btn.dashboard-action-button:active,
+.btn.btn-light.dashboard-action-button:active,
+.btn.rounded-circle.dashboard-action-button:active {
+  transform: scale(0.95) !important;
+}
+
+.dashboard-action-button i {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+  font-size: 1.2rem !important;
+}
+
+/* Mobile Responsive - Maintain circular shape */
+@media (max-width: 768px) {
+  .dashboard-action-button,
+  .btn.dashboard-action-button,
+  .btn.btn-light.dashboard-action-button,
+  .btn.rounded-circle.dashboard-action-button {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    max-width: 40px !important;
+    border-radius: 50% !important; /* Perfect circle on mobile too */
+  }
+}
+
+@media (max-width: 576px) {
+  .dashboard-action-button,
+  .btn.dashboard-action-button,
+  .btn.btn-light.dashboard-action-button,
+  .btn.rounded-circle.dashboard-action-button {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    max-width: 40px !important;
+    border-radius: 50% !important; /* Perfect circle on small screens */
+  }
+}
+
+@media (max-width: 991.98px) {
+  .dashboard-action-button,
+  .btn.dashboard-action-button,
+  .btn.btn-light.dashboard-action-button,
+  .btn.rounded-circle.dashboard-action-button {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    max-width: 40px !important;
+    border-radius: 50% !important; /* Perfect circle on tablet */
+  }
+}
+
+/* Override any conflicting Bootstrap styles */
+.btn.dashboard-action-button {
+  border-radius: 50% !important;
+}
+
+.btn.rounded-circle.dashboard-action-button {
+  border-radius: 50% !important;
+}
+
+/* Ensure the plus icon is centered perfectly */
+.dashboard-action-button .bi-plus {
+  position: relative !important;
+  top: 0 !important;
+  left: 0 !important;
+  transform: none !important;
+}
+
+/* Fix NavLink alignment issues */
+.dashboard-card-hover-icon {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-decoration: none !important;
+}
+
+.dashboard-card-hover-icon:hover {
+  text-decoration: none !important;
+}
+
+/* Ensure NavLink doesn't affect button alignment */
+.dashboard-card-hover-icon .dashboard-action-button {
+  margin: 0 !important;
+  padding: 0 !important;
+}

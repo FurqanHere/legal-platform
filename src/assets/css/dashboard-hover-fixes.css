@@ -1,0 +1,39 @@
+/* Dashboard Hover Fixes - Turn icons and text white on hover, but keep date black */
+
+/* Fix for Recent Posted Question card hover effects */
+.dashboard-recent-question-card:hover i.bi-eye-fill,
+.dashboard-recent-question-card:hover i.bi-chat-dots-fill {
+  color: #fff !important;
+  opacity: 1 !important;
+}
+
+/* Turn view and answer text white on hover - but NOT the date */
+.dashboard-recent-question-card:hover .d-flex.flex-wrap .d-flex.align-items-center span {
+  color: #fff !important;
+}
+
+/* CRITICAL: Keep date black on hover - it has light background */
+.dashboard-recent-question-card:hover .bg-light span {
+  color: #000 !important;
+}
+
+/* Specific fix for the date pill */
+.dashboard-recent-question-card:hover .bg-light {
+  background-color: #f8f9fa !important;
+}
+
+/* Turn main content white on hover */
+.dashboard-recent-question-card:hover h1,
+.dashboard-recent-question-card:hover h2,
+.dashboard-recent-question-card:hover h6,
+.dashboard-recent-question-card:hover p {
+  color: #fff !important;
+}
+
+/* Override any card hover effects that might hide text - but exclude date */
+.recent-question-card-hover:hover .text-black:not(.bg-light span),
+.recent-question-card-hover:hover i:not(.bg-light i),
+.recent-question-card-hover:hover span:not(.bg-light span) {
+  color: #fff !important;
+  opacity: 1 !important;
+}

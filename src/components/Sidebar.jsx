@@ -150,7 +150,6 @@ const Sidebar = () => {
         data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle"
         style={{
           width: isCollapsed ? "80px" : "265px",
-          transition: "width 0.3s ease",
           backgroundColor: "black",
         }}
       >
@@ -227,7 +226,7 @@ const Sidebar = () => {
                 <span className="menu-icon">
                   <i class="bi bi-question-circle"></i>
                 </span>
-                <span className="menu-title fs-6">Ask Question</span>
+                <span className="menu-title fs-6">Post Question</span>
               </NavLink>
             </div>
 

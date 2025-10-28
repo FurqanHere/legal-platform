@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import notificationProfile from "../../assets/images/notification-profile.png";
+import "../../assets/css/siri-border-animation.css";
 
 const List = () => {
   const [selectedQuestion, setSelectedQuestion] = useState(null);
@@ -139,11 +140,11 @@ const List = () => {
       <div className="app-content flex-column-fluid">
         {/* Search and Filter Bar */}
         <div
-          className="d-flex gap-3 mb-6 bg-white p-4 border-top border-bottom"
+          className="d-flex gap-3 mb-6 bg-white p-4 border-top border-bottom post-question-list-header"
           style={{ marginTop: "-20px" }}
           data-aos="fade-up"
         >
-          <div className="flex-fill" style={{ maxWidth: "30%" }}>
+          <div className="flex-fill" style={{ maxWidth: "40%" }}>
             <div className="position-relative">
               <input
                 type="text"
@@ -165,59 +166,58 @@ const List = () => {
             </button> */}
 
             <button
-              className="btn bg-transparent border rounded-pill d-flex align-items-center gap-2 portal-button-hover"
-              style={{ borderRadius: "12px", minWidth: "180px" }}
+              className="btn border rounded-pill d-flex align-items-center gap-2 bg-black text-white"
+              style={{ borderRadius: "12px", minWidth: "160px" }}
               onClick={handleAddQuestionClick}
             >
-              <i className="bi bi-plus text-white rounded-pill w-20px h-20px bg-black d-flex justify-content-center align-items-center pe-0"></i>
-              Add New Question
+              <i className="bi bi-plus rounded-pill w-20px h-20px bg-white text-black d-flex justify-content-center align-items-center pe-0"></i>
+              Post New Question
             </button>
           </div>
         </div>
 
         {/* Questions Grid */}
-        <div
-          className="app-container container-xxl px-0 askQuestion-container"
-          style={{
-            marginLeft: "15px",
-            marginRight: "15px",
-            width: "100%",
-            maxWidth: "1460px",
-          }}
-        >
-          <div className="row g-4">
+        <div className="container-fluid px-3 px-md-4">
+          <div className="row g-3 g-md-4">
             {questions.map((question, index) => (
               <div
                 key={question.id}
-                className="col-lg-3 col-md-6 d-flex justify-content-center align-items-center flex-column"
+                className="col-12 col-sm-6 col-lg-4 col-xl-3"
                 data-aos="fade-up"
                 data-aos-delay={`${100 + index * 100}`}
               >
                 <div
-                  className={`card portal-card-hover ${
+                  className={`card portal-card-hover h-100 ${
                     question.isHighlighted ? "text-black" : "bg-white border"
                   }`}
                   style={{
                     borderRadius: "12px",
-                    // width: "353px",
-                    height: "236px",
+                    minHeight: "236px",
                     cursor: "pointer",
                   }}
                   onClick={() => handleCardClick(question)}
                 >
-                  <div className="card-body p-4 d-flex flex-column">
+                  <div className="card-body p-3 p-md-4 d-flex flex-column">
                     {/* Date */}
-                    <div className="mb-3">
-                      <small>{question.date}</small>
+                    <div className="mb-2 mb-md-3">
+                      <small className="text-muted">{question.date}</small>
                     </div>
 
                     {/* Question Content */}
-                    <div className="flex-fill mb-4">
+                    <div className="flex-fill mb-3 mb-md-4">
                       <p
                         className={`${
                           question.isHighlighted ? "text-black" : "text-dark"
                         } mb-0`}
-                        style={{ fontSize: "20px", fontWeight: "500" }}
+                        style={{ 
+                          fontSize: "clamp(14px, 4vw, 20px)", 
+                          fontWeight: "500",
+                          lineHeight: "1.4",
+                          overflow: "hidden",
+                          display: "-webkit-box",
+                          WebkitLineClamp: 3,
+                          WebkitBoxOrient: "vertical"
+                        }}
                       >
                         {question.title}
                       </p>
@@ -225,18 +225,14 @@ const List = () => {
 
                     {/* Stats */}
                     <div className="d-flex align-items-center justify-content-between stats-bottom-content">
-                      <div className="d-flex align-items-center gap-2">
-                        <i
-                          className="bi bi-eye-fill"
-                        ></i>
-                        <span>Views: {question.views}</span>
+                      <div className="d-flex align-items-center gap-1 gap-md-2">
+                        <i className="bi bi-eye-fill text-muted"></i>
+                        <span className="text-muted">Views: {question.views}</span>
                       </div>
 
-                      <div className="d-flex align-items-center gap-2">
-                        <i
-                          className="bi bi-chat-dots-fill"
-                        ></i>
-                        <span>
+                      <div className="d-flex align-items-center gap-1 gap-md-2">
+                        <i className="bi bi-chat-dots-fill text-muted"></i>
+                        <span className="text-muted">
                           Ans: {question.answers}
                         </span>
                       </div>
@@ -417,7 +413,7 @@ const List = () => {
 
           <div className="offcanvas-body p-4">
             {/* Question Input */}
-            <div className="mb-3">
+            <div className="mb-3 siri-border-animation">
               <textarea
                 className="form-control"
                 placeholder="Explain Your Question"
@@ -427,6 +423,9 @@ const List = () => {
                   height: "217px",
                   border: "1px solid #C9C9C9",
                   borderRadius: "8px",
+                  position: "relative",
+                  zIndex: 1,
+                  backgroundColor: "#ffffff",
                 }}
               ></textarea>
             </div>
