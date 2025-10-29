@@ -1119,3 +1119,25 @@ body.dark-mode .edit-btn:hover {
 body.dark-mode .edit-btn i {
   color: #ffffff !important;
 }
+
+/* Dark mode Dashboard My Lawyers tabs hover fix */
+body.dark-mode .portal-tab-hover:hover {
+  background-color: #404040 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .portal-tab-hover.btn-light:hover {
+  background-color: #404040 !important;
+  color: #ffffff !important;
+}
+body.dark-mode .post-question-list-header i.bi-plus,
+body.dark-mode .case-details--mukta-font i.bi-plus {
+  color: #000 !important;
+}
+body.dark-mode .my-lawyers-message-bubble {
+  background-color: #2d2d2d !important;
+}
+body.dark-mode .employees--mukta-font .employees-add-button {
+  background-color: black !important;
+  color: white !important;
+}

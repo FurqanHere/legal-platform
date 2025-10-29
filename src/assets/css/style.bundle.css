@@ -39131,7 +39131,7 @@ html:not([data-theme=dark]) .theme-light-bg-body {
 
 .btn:not(.btn-outline):not(.btn-dashed):not(.border-hover):not(.border-active):not(.btn-flush):not(.btn-icon) {
     border: 0;
-    padding: calc(.775rem + 1px) calc(1.5rem + 1px)
+    padding: 8px 17px
 }
 
 .btn-group-lg>.btn:not(.btn-outline):not(.btn-dashed):not(.border-hover):not(.border-active):not(.btn-flush):not(.btn-icon),

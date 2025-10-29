@@ -9,6 +9,7 @@ import logoImg2 from "../assets/images/logoImg2.png";
 import logo from "../assets/images/logo.png";
 import G from "../assets/images/G.png";
 import notificationProfile from "../assets/images/notification-profile.png";
+// import loginBgVideo from "../assets/login-bg-video.mp4"; // Moved to public folder
 import "./Login.css";
 
 const Login = () => {
@@ -20,37 +21,37 @@ const Login = () => {
   const [agreeToTerms, setAgreeToTerms] = useState(false);
   const navigate = useNavigate();
 
-  // Slider data
-  const sliderData = [
-    {
-      id: 1,
-      title: "Professional Legal Services",
-      description:
-        "Get expert legal advice from qualified attorneys. Our platform connects you with experienced lawyers for all your business and personal legal needs.",
-      image: logoImg,
-    },
-    {
-      id: 2,
-      title: "Legal Solutions Made Simple",
-      description:
-        "Connect with experienced lawyers and get expert legal advice for all your business needs. Streamlined process for quick and effective legal solutions.",
-      image: logoImg2,
-    },
-    {
-      id: 3,
-      title: "Expert Legal Guidance",
-      description:
-        "Access a network of qualified attorneys ready to help you navigate complex legal challenges. Get professional guidance when you need it most.",
-      image: logoImg,
-    },
-    {
-      id: 4,
-      title: "Secure & Confidential",
-      description:
-        "Your legal matters are handled with the highest level of security and confidentiality. Trust us with your sensitive legal information and documents.",
-      image: logoImg2,
-    },
-  ];
+  // Slider data - COMMENTED OUT FOR VIDEO BACKGROUND
+  // const sliderData = [
+  //   {
+  //     id: 1,
+  //     title: "Professional Legal Services",
+  //     description:
+  //       "Get expert legal advice from qualified attorneys. Our platform connects you with experienced lawyers for all your business and personal legal needs.",
+  //     image: logoImg,
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Legal Solutions Made Simple",
+  //     description:
+  //       "Connect with experienced lawyers and get expert legal advice for all your business needs. Streamlined process for quick and effective legal solutions.",
+  //     image: logoImg2,
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Expert Legal Guidance",
+  //     description:
+  //       "Access a network of qualified attorneys ready to help you navigate complex legal challenges. Get professional guidance when you need it most.",
+  //     image: logoImg,
+  //   },
+  //   {
+  //     id: 4,
+  //     title: "Secure & Confidential",
+  //     description:
+  //       "Your legal matters are handled with the highest level of security and confidentiality. Trust us with your sensitive legal information and documents.",
+  //     image: logoImg2,
+  //   },
+  // ];
 
   useEffect(() => {
     // COMMENTED OUT: Authentication check to allow direct access
@@ -60,21 +61,21 @@ const Login = () => {
     // }
   }, []);
 
-  // Auto-advance slider
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prevSlide) =>
-        prevSlide === sliderData.length - 1 ? 0 : prevSlide + 1
-      );
-    }, 4000); // Change slide every 4 seconds
+  // Auto-advance slider - COMMENTED OUT FOR VIDEO BACKGROUND
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setCurrentSlide((prevSlide) =>
+  //       prevSlide === sliderData.length - 1 ? 0 : prevSlide + 1
+  //     );
+  //   }, 4000); // Change slide every 4 seconds
 
-    return () => clearInterval(interval);
-  }, [sliderData.length]);
+  //   return () => clearInterval(interval);
+  // }, [sliderData.length]);
 
-  // Handle dot click
-  const handleDotClick = (index) => {
-    setCurrentSlide(index);
-  };
+  // Handle dot click - COMMENTED OUT FOR VIDEO BACKGROUND
+  // const handleDotClick = (index) => {
+  //   setCurrentSlide(index);
+  // };
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -121,32 +122,62 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      {/* Left Panel - Slider Section */}
+      {/* Left Panel - Video Background Section */}
       <div className="left-panel" data-aos="fade-right" data-aos-delay="100">
-        {/* Slider Container */}
-        <div className="slider-container">
-          {/* Background Image */}
-          <div
-            key={currentSlide}
-            className="left-panel-bg"
+        {/* Video Container */}
+        <div className="slider-container" style={{ position: "relative", width: "100%", height: "100%", overflow: "hidden" }}>
+          {/* Video Background */}
+          <video
+            className="login-video-bg"
+            autoPlay
+            muted
+            loop
+            playsInline
             style={{
-              backgroundImage: `url(${sliderData[currentSlide].image})`,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center center",
+              display: "block",
+              position: "absolute",
+              top: 0,
+              left: 0,
+              maxWidth: "none",
+              maxHeight: "none",
+              transform: "none",
+              zIndex: 1
+            }}
+          >
+            <source src={`${process.env.PUBLIC_URL}/login-bg-video.mp4`} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+
+          {/* Gradient Overlay */}
+          <div 
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              background: "linear-gradient(135deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.3) 100%)",
+              zIndex: 2
             }}
           />
 
           {/* Content Overlay */}
-          <div className="left-panel-content" data-aos="fade-up" data-aos-delay="300">
+          <div className="left-panel-content" data-aos="fade-up" data-aos-delay="300" style={{ position: "relative", zIndex: 3 }}>
             <h1 className="left-panel-title text-white text-center">
-              {sliderData[currentSlide].title}
+              Professional Legal Services
             </h1>
             <p className="left-panel-description text-white text-center">
-              {sliderData[currentSlide].description}
+              Get expert legal advice from qualified attorneys. Our platform connects you with experienced lawyers for all your business and personal legal needs.
             </p>
           </div>
         </div>
 
-        {/* Pagination Dots */}
-        <div className="pagination-dots">
+        {/* Pagination Dots - COMMENTED OUT FOR VIDEO BACKGROUND */}
+        {/* <div className="pagination-dots">
           {sliderData.map((_, index) => (
             <div
               key={index}
@@ -156,7 +187,7 @@ const Login = () => {
               onClick={() => handleDotClick(index)}
             />
           ))}
-        </div>
+        </div> */}
       </div>
 
       {/* Right Panel - Login Form Section */}

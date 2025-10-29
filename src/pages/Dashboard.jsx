@@ -210,7 +210,7 @@ const Dashboard = () => {
                           <span className="text-black">Ans: 60</span>
                         </div>
                       </div>
-                      <div className="d-flex align-items-center bg-light rounded-pill py-2 px-3 dashboard-date-pill" style={{ width: "37%" }}>
+                      <div className="d-flex align-items-center justify-content-center bg-light rounded-pill py-2 px-3 dashboard-date-pill" style={{ width: "37%" }}>
                         <span className="text-black dashboard-date-text">Jan 05 - 2025 - 10:25 AM</span>
                       </div>
                     </div>
@@ -301,7 +301,7 @@ const Dashboard = () => {
                   {/* Tab Buttons */}
                   <div className="d-flex gap-2 mb-4">
                     <button
-                      className={`btn portal-tab-hover ${
+                      className={`btn rounded-pill portal-tab-hover ${
                         activeTab === "active"
                           ? "bg-black text-white"
                           : "btn-light text-black"
@@ -311,7 +311,7 @@ const Dashboard = () => {
                       Active Lawyers
                     </button>
                     <button
-                      className={`btn portal-tab-hover ${
+                      className={`btn rounded-pill portal-tab-hover ${
                         activeTab === "inactive"
                           ? "bg-black text-white"
                           : "btn-light text-black"
