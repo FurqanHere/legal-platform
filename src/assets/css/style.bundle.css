@@ -59880,7 +59880,6 @@ html:not([data-theme=dark]) {
 
 .app-sidebar .app-sidebar-logo {
     border-bottom: 0.1px solid #A4A4A4;
-    border-right: 0.1px solid #A4A4A4;
 }
 
 .app-header-menu .menu .menu-item .menu-link {
@@ -62420,12 +62419,11 @@ body.sidebar-open {
 }
 
 .my-lawyers-left-panel {
-    border-right: 1px solid #DEDEDE;
-    border-top: 1px solid #DEDEDE;
+    border-right: 1px solid #A4A4A4;
 }
 
 .my-lawyers-tabs-container {
-    border-bottom: 1px solid #D3D3D3;
+    border-bottom: 1px solid #A4A4A4;
     height: 54px;
 }
 

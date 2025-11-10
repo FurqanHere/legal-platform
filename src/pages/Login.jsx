@@ -10,6 +10,7 @@ import logo from "../assets/images/logo.png";
 import G from "../assets/images/G.png";
 import notificationProfile from "../assets/images/notification-profile.png";
 // import loginBgVideo from "../assets/login-bg-video.mp4"; // Moved to public folder
+import "../assets/css/dark-mode.css";
 import "./Login.css";
 
 const Login = () => {
@@ -19,6 +20,9 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [agreeToTerms, setAgreeToTerms] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(
+    localStorage.getItem("darkMode") === "true" || false
+  );
   const navigate = useNavigate();
 
   // Slider data - COMMENTED OUT FOR VIDEO BACKGROUND
@@ -60,6 +64,40 @@ const Login = () => {
     //   navigate("/dashboard");
     // }
   }, []);
+
+  // Apply dark mode on component mount and when it changes
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
+  }, [isDarkMode]);
+
+  // Sync dark mode with localStorage changes from other pages
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const darkModeValue = localStorage.getItem("darkMode") === "true";
+      setIsDarkMode(darkModeValue);
+    };
+
+    // Listen for storage changes
+    window.addEventListener("storage", handleStorageChange);
+    
+    // Also check periodically for changes (in case of same-tab updates)
+    const interval = setInterval(() => {
+      const darkModeValue = localStorage.getItem("darkMode") === "true";
+      if (darkModeValue !== isDarkMode) {
+        setIsDarkMode(darkModeValue);
+      }
+    }, 100);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+      clearInterval(interval);
+    };
+  }, [isDarkMode]);
+
 
   // Auto-advance slider - COMMENTED OUT FOR VIDEO BACKGROUND
   // useEffect(() => {
@@ -166,7 +204,7 @@ const Login = () => {
           />
 
           {/* Content Overlay */}
-          <div className="left-panel-content" data-aos="fade-up" data-aos-delay="300" style={{ position: "relative", zIndex: 3 }}>
+          <div className="left-panel-content" data-aos="fade-up" data-aos-delay="300" style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "40px", zIndex: 3 }}>
             <h1 className="left-panel-title text-white text-center">
               Professional Legal Services
             </h1>
