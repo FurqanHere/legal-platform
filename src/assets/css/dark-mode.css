@@ -13,6 +13,16 @@ body.mode-transitioning * {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+    color: #ffffff !important;
+    outline: 0
+}
+
 body.dark-mode input:focus {
   border: 1px solid #fff !important;
 }
@@ -714,11 +724,95 @@ body.dark-mode .dashboard-post-question-fee h6 {
 }
 
 body.dark-mode .dashboard-post-question-fee small {
-  color: #aaaaaa !important;
+  color: #ffffff !important;
 }
 
 body.dark-mode .dashboard-post-question-fee .dashboard-fee-divider {
   border-left: 1px solid #555555 !important;
+}
+
+body.dark-mode .dashboard-post-question-fee .dashboard-fee-divider div {
+  color: #ffffff !important;
+}
+
+/* Fix all text-muted elements in post question popup */
+body.dark-mode .dashboard-post-question-offcanvas .text-muted {
+  color: #ffffff !important;
+}
+
+body.dark-mode .dashboard-post-question-offcanvas small {
+  color: #ffffff !important;
+}
+
+/* Fix Attach Document text */
+body.dark-mode .dashboard-post-question-upload p {
+  color: #ffffff !important;
+}
+
+body.dark-mode .dashboard-post-question-upload {
+  border-color: #555555 !important;
+  background-color: #2d2d2d !important;
+}
+
+/* Add border-radius to post question popup */
+body.dark-mode .dashboard-post-question-offcanvas {
+  border-radius: 15px !important;
+  overflow: hidden !important;
+}
+
+.dashboard-post-question-offcanvas {
+  border-radius: 15px !important;
+  overflow: hidden !important;
+}
+
+/* Ensure rounded corners are visible on all sides */
+body.dark-mode .dashboard-post-question-offcanvas.offcanvas-end {
+  border-top-left-radius: 15px !important;
+  border-bottom-left-radius: 15px !important;
+}
+
+.dashboard-post-question-offcanvas.offcanvas-end {
+  border-top-left-radius: 15px !important;
+  border-bottom-left-radius: 15px !important;
+}
+
+/* Override specific elements that might have bluish color */
+body.dark-mode .dashboard-post-question-offcanvas h5,
+body.dark-mode .dashboard-post-question-offcanvas h6,
+body.dark-mode .dashboard-post-question-offcanvas p:not(.btn *),
+body.dark-mode .dashboard-post-question-offcanvas span:not(.btn *),
+body.dark-mode .dashboard-post-question-offcanvas small,
+body.dark-mode .dashboard-post-question-offcanvas label {
+  color: #ffffff !important;
+}
+
+/* Fix text-muted specifically - override the general offcanvas text-muted style */
+body.dark-mode .dashboard-post-question-offcanvas .text-muted,
+body.dark-mode .dashboard-post-question-offcanvas .text-muted *,
+body.dark-mode .dashboard-post-question-offcanvas .offcanvas-body .text-muted {
+  color: #ffffff !important;
+}
+
+/* Fix fee section text */
+body.dark-mode .dashboard-post-question-fee * {
+  color: #ffffff !important;
+}
+
+/* Fix "How it works" section text */
+body.dark-mode .dashboard-post-question-offcanvas .d-flex.align-items-start small {
+  color: #ffffff !important;
+}
+
+/* Fix placeholder text color in Post Question popup */
+body.dark-mode .dashboard-post-question-offcanvas textarea::placeholder,
+body.dark-mode .dashboard-post-question-offcanvas input::placeholder {
+  color: #999999 !important;
+  opacity: 1 !important;
+}
+
+/* Ensure all divs with text in fee section are white */
+body.dark-mode .dashboard-post-question-fee .fw-bold {
+  color: #ffffff !important;
 }
 
 /* Dark mode Dashboard create case popup specific fixes */
@@ -1142,6 +1236,11 @@ body.dark-mode .employees--mukta-font .employees-add-button {
   color: white !important;
 }
 
+body.dark-mode .employees-add-button {
+  background-color: #000 !important;
+  color: white;
+}
+
 /* Dark mode NotFound page specific fixes */
 body.dark-mode .not-found-title {
   color: #ffffff !important;
@@ -1285,4 +1384,16 @@ body.dark-mode .login-button.rounded-pill.d-flex.align-items-center.justify-cont
 body.dark-mode .login-button.rounded-pill.d-flex.align-items-center.justify-content-center.position-relative.aos-init.aos-animate:hover {
   background-color: #000000a0 !important;
   transition: all 0.3s ease;
+}
+
+/* Dark mode Siri border animation visibility */
+body.dark-mode .siri-border-animation::before {
+  z-index: 0 !important;
+}
+
+body.dark-mode .siri-border-animation textarea,
+body.dark-mode .siri-border-animation .dashboard-post-question-textarea {
+  background-color: #2d2d2d !important;
+  position: relative;
+  z-index: 1 !important;
 }

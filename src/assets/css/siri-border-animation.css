@@ -1,7 +1,7 @@
 /* Siri-like Animated Border Effect */
 .siri-border-animation {
   position: relative;
-  display: inline-block;
+  display: block;
 }
 
 .siri-border-animation::before {
@@ -19,14 +19,23 @@
   );
   background-size: 400% 400%;
   border-radius: 11px; /* Slightly larger than textarea border-radius */
-  z-index: -1;
+  z-index: 0;
   opacity: 0;
   transition: opacity 0.3s ease;
   animation: siriFlow 3s ease-in-out infinite;
+  pointer-events: none;
 }
 
 .siri-border-animation:focus-within::before {
   opacity: 1;
+}
+
+/* Ensure textarea has proper background and z-index */
+.siri-border-animation textarea,
+.siri-border-animation .dashboard-post-question-textarea {
+  background-color: #ffffff;
+  position: relative;
+  z-index: 1;
 }
 
 @keyframes siriFlow {

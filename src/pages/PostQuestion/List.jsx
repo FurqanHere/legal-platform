@@ -259,7 +259,7 @@ const List = () => {
             margin: "20px",
           }}
         >
-          <div className="offcanvas-header border-bottom">
+          <div className="offcanvas-header border-bottom" style={{ borderTopLeftRadius: "15px", borderTopRightRadius: "15px" }}>
             <div className="d-flex justify-content-between align-items-center w-100">
               <div>
                 <small className="text-black">{selectedQuestion.date}</small>
@@ -277,7 +277,7 @@ const List = () => {
             </div>
           </div>
 
-          <div className="offcanvas-body p-0">
+          <div className="offcanvas-body p-0" style={{ borderBottomLeftRadius: "15px", borderBottomRightRadius: "15px" }}>
             {/* Question Details */}
             <div className="p-4">
               <h5 className="mb-3">{selectedQuestion.title}</h5>
@@ -400,7 +400,7 @@ const List = () => {
             backgroundColor: "#fff",
           }}
         >
-          <div className="offcanvas-header border-bottom">
+          <div className="offcanvas-header border-bottom" style={{ borderTopLeftRadius: "15px", borderTopRightRadius: "15px" }}>
             <div className="d-flex justify-content-between align-items-center w-100">
               <h5 className="mb-0 fw-bold">Post Question</h5>
               <button
@@ -411,7 +411,7 @@ const List = () => {
             </div>
           </div>
 
-          <div className="offcanvas-body p-4">
+          <div className="offcanvas-body p-4" style={{ borderBottomLeftRadius: "15px", borderBottomRightRadius: "15px" }}>
             {/* Question Input */}
             <div className="mb-3 siri-border-animation">
               <textarea

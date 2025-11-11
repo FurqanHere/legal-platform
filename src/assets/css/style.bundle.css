@@ -32977,7 +32977,17 @@ h3,
 h4,
 h5,
 h6 {
-    color: var(--kt-headings-color);
+    color: #000000;
+    outline: 0
+}
+
+body.dark-mode .h1,
+body.dark-mode .h2,
+body.dark-mode .h3,
+body.dark-mode .h4,
+body.dark-mode .h5,
+body.dark-mode .h6 {
+    color: #ffffff !important;
     outline: 0
 }
 
@@ -61543,6 +61553,10 @@ body.sidebar-open {
   border-bottom: 1px solid #DBDBDB;
 }
 
+.notification-header {
+    margin-top: 30px;
+}
+
 .dashboard-notification-title {
   margin: 0 0px;
 }
@@ -61647,7 +61661,7 @@ body.sidebar-open {
 }
 
 .dashboard-submit-footer {
-  background-color: #2d2d2d !important;
+  /* background-color: #2d2d2d !important; */
   border-radius: 13px;
 }
 
@@ -61852,6 +61866,14 @@ body.sidebar-open {
 }
 .p-dropdown-items > li:hover{
     background-color: #fff5f8;
+}
+
+.offcanvas.offcanvas-end.show {
+    width: 667px;
+    margin-right: 25px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border-radius: 15px;
 }
 
 /* Override PrimeReact's Tailwind styles */

@@ -461,7 +461,7 @@ const List = () => {
           className="offcanvas offcanvas-end show"
           tabIndex="-1"
         >
-          <div className="offcanvas-header border-bottom p-3 p-md-4">
+          <div className="offcanvas-header p-3 p-md-4">
             <div className="d-flex justify-content-between align-items-center w-100">
               <h5 className="mb-0 fw-bold fs-5 fs-md-4">Lawyer Detail</h5>
               <button
@@ -658,8 +658,8 @@ const List = () => {
                   <div
                     className="d-flex align-items-center justify-content-between p-3 rounded"
                     style={{
-                      backgroundColor: "#e3f2fd",
-                      border: "2px solid #2196f3"
+                      backgroundColor: "rgba(0, 0, 0, 0.2)",
+                      border: "2px solid #000"
                     }}
                   >
                     <div className="d-flex align-items-center">
@@ -668,7 +668,7 @@ const List = () => {
                         style={{
                           width: "20px",
                           height: "20px",
-                          backgroundColor: "#2196f3"
+                          backgroundColor: "#000000d3"
                         }}
                       >
                         <i className="bi bi-check text-white" style={{ fontSize: "0.8rem" }}></i>

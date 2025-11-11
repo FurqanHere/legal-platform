@@ -250,9 +250,9 @@ const List = () => {
             backgroundColor: "#fff",
           }}
         >
-          <div className="offcanvas-header border-bottom">
+          <div className="offcanvas-header">
             <div className="d-flex justify-content-between align-items-center w-100">
-              <h5 className="mb-0 fw-bold">Create a Case</h5>
+              <h3 className="mb-0 fw-bold">Create a Case</h3>
               <button
                 type="button"
                 className="btn-close"
@@ -391,7 +391,7 @@ const List = () => {
             </div>
 
             {/* Submit Button - fixed at bottom */}
-            <div className="p-4 border-top" style={{ backgroundColor: "#fff", borderRadius: "13px" }}>
+            <div className="p-4" style={{ backgroundColor: "#fff", borderRadius: "13px" }}>
               <button
                 className="btn text-white rounded-pill w-100"
                 style={{

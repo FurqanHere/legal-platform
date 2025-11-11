@@ -12,6 +12,7 @@ import createNewCase from "../assets/images/createNewCase.png";
 import { toast } from "react-toastify";
 import ApiService from "../services/ApiService";
 import "../assets/css/dashboard-hover-fixes.css";
+import "../assets/css/siri-border-animation.css";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -732,11 +733,15 @@ const Dashboard = () => {
 
           <div className="offcanvas-body p-3 p-md-4">
             {/* Question Input */}
-            <div className="mb-3">
+            <div className="mb-3 siri-border-animation">
               <textarea
                 className="form-control form-control-lg dashboard-post-question-textarea"
                 placeholder="Explain Your Question"
                 rows="4"
+                style={{
+                  position: "relative",
+                  zIndex: 1
+                }}
               ></textarea>
             </div>
 

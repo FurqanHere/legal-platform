@@ -308,7 +308,7 @@ const EmployeesList = () => {
               </div>
             </form>
           </div>
-          <div className="p-4 border-top" style={{ backgroundColor: "#fff" }}>
+          <div className="p-4 border-top" style={{ backgroundColor: "#fff", borderBottomLeftRadius: "15px", borderBottomRightRadius: "15px" }}>
             <button className="btn text-white rounded-pill w-100 portal-button-hover" style={{ height: "63px", fontSize: "20px", fontWeight: "500", backgroundColor: "#474747" }}>
               Add Employee
             </button>
