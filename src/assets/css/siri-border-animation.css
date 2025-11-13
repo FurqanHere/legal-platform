@@ -13,9 +13,9 @@
   bottom: -3px;
   background: linear-gradient(
     45deg,
-    #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, 
-    #ff9ff3, #54a0ff, #5f27cd, #00d2d3, #ff9f43,
-    #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57
+    #000000, #1a1a1a, #333333, #4d4d4d, #666666,
+    #808080, #999999, #b3b3b3, #cccccc, #e6e6e6,
+    #000000, #1a1a1a, #333333, #4d4d4d, #666666
   );
   background-size: 400% 400%;
   border-radius: 11px; /* Slightly larger than textarea border-radius */

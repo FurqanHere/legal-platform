@@ -123,7 +123,7 @@ body.dark-mode .text-dark {
 }
 
 body.dark-mode .text-black {
-  color: white !important;
+  color: #fff !important;
 }
 
 body.dark-mode .text-gray-600 {
@@ -316,7 +316,7 @@ body.dark-mode .dark-mode-toggle:hover .modern-icon {
 }
 
 body.dark-mode .dashboard-card-hover i {
-  color: black !important;
+  color: #000 !important;
   transition: all 0.3s ease;
 }
 
@@ -350,12 +350,12 @@ body.dark-mode .modern-notification-container:hover {
 body.dark-mode .modern-icon-container:hover i,
 body.dark-mode .modern-notification-container:hover i {
   transition: all 0.3s ease;
-  color: black !important;
+  color: #000 !important;
   cursor: pointer !important;
 }
 
 body.dark-mode .recent-posted-question-card:hover span {
-  color: black !important;
+  color: #000 !important;
 }
 body.dark-mode .post-question-list-header {
   background-color: #2d2d2d !important;
@@ -1207,7 +1207,7 @@ body.dark-mode .edit-btn {
 }
 
 body.dark-mode .edit-btn:hover {
-  background-color: gray !important;
+  background-color: #808080 !important;
 }
 
 body.dark-mode .edit-btn i {
@@ -1232,13 +1232,13 @@ body.dark-mode .my-lawyers-message-bubble {
   background-color: #2d2d2d !important;
 }
 body.dark-mode .employees--mukta-font .employees-add-button {
-  background-color: black !important;
-  color: white !important;
+  background-color: #000 !important;
+  color: #fff !important;
 }
 
 body.dark-mode .employees-add-button {
   background-color: #000 !important;
-  color: white;
+  color: #fff !important;
 }
 
 /* Dark mode NotFound page specific fixes */
